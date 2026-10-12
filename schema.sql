@@ -9,7 +9,8 @@ create table public.theme_catalog (
 create table public.theme_votes (
   voter_id uuid primary key,
   created_at timestamptz not null default now(),
-  choices text[] not null check (cardinality(choices) between 1 and 42),
+  updated_at timestamptz not null default now(),
+  choices text[] not null check (cardinality(choices) between 1 and 48),
   age_group text check (age_group in ('under_18','18_24','25_34','35_44','45_54','55_64','65_plus')),
   gender text check (gender in ('woman','man','other'))
 );
@@ -59,18 +60,26 @@ insert into public.theme_catalog(id,family,name,hex) values
 ('warm-ce8b61','Warm','Terracotta','CE8B61'),
 ('warm-685548','Warm','Cocoa','685548'),
 ('warm-f1d3ab','Warm','Amber Linen','F1D3AB'),
-('warm-403936','Warm','Espresso','403936');
+('warm-403936','Warm','Espresso','403936'),
+('pink-d7a6cb','Pink','Orchid','D7A6CB'),
+('green-91b6a5','Green','Jade','91B6A5'),
+('green-789373','Green','Moss','789373'),
+('green-22483d','Green','Pine','22483D'),
+('warm-d3a66b','Warm','Caramel','D3A66B'),
+('warm-a76543','Warm','Copper','A76543');
 
 create function public.submit_theme_vote(
   p_voter_id uuid, p_choices text[], p_age_group text default null, p_gender text default null
 ) returns text
 language plpgsql security definer set search_path = ''
 as $$
-declare inserted integer;
 begin
-  if p_voter_id is null or p_choices is null or cardinality(p_choices) not between 1 and 42
+  if p_voter_id is null or p_choices is null or cardinality(p_choices) not between 4 and 48
     or array_ndims(p_choices) <> 1 then
     raise exception 'Invalid vote' using errcode = '22023';
+  end if;
+  if (select count(distinct family) from public.theme_catalog where id = any(p_choices)) <> 4 then
+    raise exception 'Choose at least one theme in every group' using errcode = '22023';
   end if;
   if (select count(distinct choice) from unnest(p_choices) choice) <> cardinality(p_choices)
     or exists (select 1 from unnest(p_choices) choice
@@ -83,9 +92,9 @@ begin
   end if;
   insert into public.theme_votes(voter_id, choices, age_group, gender)
     values (p_voter_id, p_choices, p_age_group, p_gender)
-    on conflict (voter_id) do nothing;
-  get diagnostics inserted = row_count;
-  if inserted = 0 then return 'already_submitted'; end if;
+    on conflict (voter_id) do update set
+      choices = excluded.choices, age_group = excluded.age_group,
+      gender = excluded.gender, updated_at = now();
   return 'accepted';
 end;
 $$;
