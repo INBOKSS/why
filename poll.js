@@ -9,12 +9,20 @@
   try {
     identity = JSON.parse(localStorage.getItem(storageKey) || 'null');
     if (!identity || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(identity.id || '')) identity = { id: crypto.randomUUID(), submitted: false };
+    delete identity.choices;
+    delete identity.age;
+    delete identity.gender;
     localStorage.setItem(storageKey, JSON.stringify(identity));
     submitted = identity.submitted === true;
   } catch {
     identity = null;
     status.textContent = 'Please allow browser storage to save votes and group submissions from this browser. You can still preview the themes.';
     submit.disabled = true;
+  }
+  function clearForm() {
+    document.querySelectorAll('.theme-vote').forEach(input => input.checked = false);
+    form.elements.age.value = '';
+    form.elements.gender.value = '';
   }
   function update() {
     const selected = choices();
@@ -33,18 +41,15 @@
     document.getElementById('vote-notice').textContent = (Number.isInteger(count) && count > 0 ? 'Saved votes from this browser: ' + count + '. ' : submitted ? 'Earlier votes from this browser are saved. ' : '') + 'You may vote more than once. Each new submission adds a separate vote; previous votes remain saved. We group votes using a browser identifier.';
   }
   document.querySelectorAll('.theme-vote').forEach(input => input.addEventListener('change', update));
+  clearForm();
   if (identity && (submitted || identity.pending)) {
-    const restoredChoices = identity.pending ? identity.pending.p_choices : identity.choices;
-    document.querySelectorAll('.theme-vote').forEach(input => input.checked = Array.isArray(restoredChoices) && restoredChoices.includes(input.value));
-    form.elements.age.value = (identity.pending ? identity.pending.p_age_group : identity.age) || '';
-    form.elements.gender.value = (identity.pending ? identity.pending.p_gender : identity.gender) || '';
-    status.textContent = identity.pending ? 'Your last submission has not been confirmed. Retry it before sending another vote; it will not be counted twice.' : Array.isArray(identity.choices) ? 'Your last saved choices are selected. Change them if you like and submit another vote.' : 'A previous vote is saved. Select at least one theme in every group to submit another vote.';
+    status.textContent = identity.pending ? 'Your last submission has not been confirmed. Retry will resend that saved submission without selecting its choices here. It will not be counted twice.' : 'A fresh form is ready for the next voter. Previous votes remain saved.';
   }
   form.addEventListener('submit', async event => {
     event.preventDefault();
     if (!identity || busy) return;
     const missing = [...document.querySelectorAll('.family')].filter(group => !group.querySelector('.theme-vote:checked'));
-    if (missing.length) {
+    if (missing.length && !identity.pending) {
       missing.forEach(group => group.classList.add('missing-choice'));
       status.textContent = 'Select at least one theme in every group. Still needed: ' + missing.map(group => group.dataset.family).join(', ') + '.';
       missing[0].querySelector('.theme-vote').focus();
@@ -79,14 +84,12 @@
       const result = await response.json();
       if (!Number.isInteger(result) || result < 1) throw new Error('Unexpected response');
       identity.submitted = true;
-      identity.choices = payload.p_choices;
-      identity.age = payload.p_age_group;
-      identity.gender = payload.p_gender;
       identity.voteCount = result;
       delete identity.pending;
       submitted = true;
+      clearForm();
       try { localStorage.setItem(storageKey, JSON.stringify(identity)); } catch { /* A restored pending submission is still safe to retry. */ }
-      status.textContent = 'Thank you! Vote #' + result + ' from this browser has been saved. Previous votes remain saved. You can submit another vote.';
+      status.textContent = 'Thank you! Vote #' + result + ' from this browser has been saved. The form is cleared and ready for the next voter. Previous votes remain saved.';
     } catch {
       status.textContent = 'We could not confirm your vote. Retry this submission before changing your choices. Retrying will not count the same submission twice.';
     } finally {
