@@ -13,7 +13,7 @@
     submitted = identity.submitted === true;
   } catch {
     identity = null;
-    status.textContent = 'Please allow browser storage to save and update your vote. You can still preview the themes.';
+    status.textContent = 'Please allow browser storage to save votes and group submissions from this browser. You can still preview the themes.';
     submit.disabled = true;
   }
   function update() {
@@ -26,17 +26,19 @@
     });
     document.querySelectorAll('.theme-option').forEach(card => card.classList.toggle('voted', card.querySelector('input').checked));
     submit.disabled = !identity || busy;
-    submit.textContent = submitted ? 'Update vote' : 'Submit vote';
-    form.querySelectorAll('select').forEach(input => input.disabled = busy);
-    document.querySelectorAll('.theme-vote').forEach(input => input.disabled = busy);
-    document.getElementById('vote-notice').textContent = submitted ? 'You have already voted. Submitting again will replace your previous vote, not add another one.' : 'You can update your vote later from this browser. Each submission replaces any previous vote from this browser.';
+    submit.textContent = identity && identity.pending ? 'Retry submission' : submitted ? 'Submit another vote' : 'Submit vote';
+    form.querySelectorAll('select').forEach(input => input.disabled = busy || !!(identity && identity.pending));
+    document.querySelectorAll('.theme-vote').forEach(input => input.disabled = busy || !!(identity && identity.pending));
+    const count = identity && identity.voteCount;
+    document.getElementById('vote-notice').textContent = (Number.isInteger(count) && count > 0 ? 'Saved votes from this browser: ' + count + '. ' : submitted ? 'Earlier votes from this browser are saved. ' : '') + 'You may vote more than once. Each new submission adds a separate vote; previous votes remain saved. We group votes using a browser identifier.';
   }
   document.querySelectorAll('.theme-vote').forEach(input => input.addEventListener('change', update));
-  if (submitted) {
-    document.querySelectorAll('.theme-vote').forEach(input => input.checked = Array.isArray(identity.choices) && identity.choices.includes(input.value));
-    form.elements.age.value = identity.age || '';
-    form.elements.gender.value = identity.gender || '';
-    status.textContent = Array.isArray(identity.choices) ? 'Your last saved choices are selected. You can change them and update your vote.' : 'A previous vote is saved. Select at least one theme in every group to replace it.';
+  if (identity && (submitted || identity.pending)) {
+    const restoredChoices = identity.pending ? identity.pending.p_choices : identity.choices;
+    document.querySelectorAll('.theme-vote').forEach(input => input.checked = Array.isArray(restoredChoices) && restoredChoices.includes(input.value));
+    form.elements.age.value = (identity.pending ? identity.pending.p_age_group : identity.age) || '';
+    form.elements.gender.value = (identity.pending ? identity.pending.p_gender : identity.gender) || '';
+    status.textContent = identity.pending ? 'Your last submission has not been confirmed. Retry it before sending another vote; it will not be counted twice.' : Array.isArray(identity.choices) ? 'Your last saved choices are selected. Change them if you like and submit another vote.' : 'A previous vote is saved. Select at least one theme in every group to submit another vote.';
   }
   form.addEventListener('submit', async event => {
     event.preventDefault();
@@ -55,17 +57,19 @@
     }
     busy = true;
     update();
-    status.textContent = submitted ? 'Updating your previous vote…' : 'Submitting your vote…';
-    const payload = {
+    status.textContent = 'Submitting your vote…';
+    const payload = identity.pending || {
       p_voter_id: identity.id,
+      p_submission_id: crypto.randomUUID(),
       p_choices: choices(),
       p_age_group: form.elements.age.value || null,
       p_gender: form.elements.gender.value || null
     };
     try {
-      // Save the identifier before sending so a retry uses the same idempotency key.
+      // Persist the complete pending submission. Retries and reloads reuse its ID.
+      identity.pending = payload;
       localStorage.setItem(storageKey, JSON.stringify(identity));
-      const response = await fetch(config.supabaseUrl + '/rest/v1/rpc/submit_theme_vote', {
+      const response = await fetch(config.supabaseUrl + '/rest/v1/rpc/record_theme_vote', {
         method: 'POST',
         headers: { apikey: config.publishableKey, 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -73,17 +77,18 @@
       });
       if (!response.ok) throw new Error('Submission failed');
       const result = await response.json();
-      if (result !== 'accepted') throw new Error('Unexpected response');
+      if (!Number.isInteger(result) || result < 1) throw new Error('Unexpected response');
       identity.submitted = true;
       identity.choices = payload.p_choices;
       identity.age = payload.p_age_group;
       identity.gender = payload.p_gender;
-      const wasSubmitted = submitted;
+      identity.voteCount = result;
+      delete identity.pending;
       submitted = true;
-      try { localStorage.setItem(storageKey, JSON.stringify(identity)); } catch { /* The server keeps one response for this identifier. */ }
-      status.textContent = wasSubmitted ? 'Thank you! Your previous vote has been replaced with these choices.' : 'Thank you! Your vote has been saved. Any previous vote from this browser has been replaced. You can change your choices and update it anytime.';
+      try { localStorage.setItem(storageKey, JSON.stringify(identity)); } catch { /* A restored pending submission is still safe to retry. */ }
+      status.textContent = 'Thank you! Vote #' + result + ' from this browser has been saved. Previous votes remain saved. You can submit another vote.';
     } catch {
-      status.textContent = 'We could not confirm your vote. Please try again. Retrying will not count the same submission twice.';
+      status.textContent = 'We could not confirm your vote. Retry this submission before changing your choices. Retrying will not count the same submission twice.';
     } finally {
       busy = false;
       update();

@@ -44,7 +44,7 @@
 <label>Gender <select name="gender"><option value="">Prefer not to say</option><option value="woman">Woman</option><option value="man">Man</option><option value="other">Another gender</option></select></label></div>
 <p id="vote-notice" class="vote-notice"></p>
 <button type="submit" class="submit-vote" id="submit-vote" disabled>Submit vote</button><span class="vote-summary" id="vote-count" aria-live="polite">0 themes selected</span>
-<p class="poll-status" id="vote-status" role="status" aria-live="polite"></p><p class="privacy-note">No name, email or account is requested. We save your selected themes, optional age group and gender, submission time and a random browser identifier in Supabase (Europe). Responses are available to the survey owner for theme research. This browser remembers that you voted. One response per browser, which you can update at any time. Updating replaces your previous choices. Another device or clearing browser storage creates a separate response.</p></form>
+<p class="poll-status" id="vote-status" role="status" aria-live="polite"></p><p class="privacy-note">No name, email or account is requested. We save your selected themes, optional age group and gender, submission time and a random browser identifier in Supabase (Europe). Responses are available to the survey owner for theme research. This browser remembers that you voted. Multiple votes are allowed. Each new submission is saved separately with a vote number and grouped by browser identifier. Previous votes remain saved. Another browser, device or clearing browser storage creates a separate group.</p></form>
 </section>
 <section class="preview-pane" id="preview-pane" aria-label="Live mailbox preview"><div class="preview-heading"><strong>Mailbox preview</strong><span>Previewing does not select a vote</span></div>
   <div class="control-bottom"><div class="selected-color" aria-live="polite"><span class="selected-dot" id="selected-dot"></span><span id="color-name">Green · Mist</span><strong class="selected-hex" id="color-hex">#D6DAC4</strong></div><div class="options"><button type="button" class="baseline" id="baseline" aria-pressed="false">Current white interface</button><label class="custom-label">Custom color <input id="custom-color" type="color" value="#d6dac4" aria-label="Custom shell color"></label></div></div>
@@ -91,9 +91,10 @@ document.querySelectorAll('[data-info]').forEach(b=>b.onclick=()=>showDialog(b.d
 })();
 </script>
 <script src="config.js"></script>
-<script src="poll.js?v=2"></script>
+<script src="poll.js?v=3"></script>
 </body>
 </html>
+
 
 
 
