@@ -1,0 +1,342 @@
+{
+  "code": "et",
+  "label": "EE",
+  "name": "Eesti",
+  "ogLocale": "et_EE",
+  "languageNav": "Keel",
+  "root": {
+    "title": "Inbox.lv – tasuta e-post kõige armastatumalt Läti kaubamärgilt",
+    "description": "Inbox.lv on tasuta ja turvaline Läti e-post: 20 GB postkast, kirjad kuni 50 MB, mobiilirakendused ning tasuta tugi läti, vene ja inglise keeles.",
+    "signIn": "Sisselogimine",
+    "signUp": "Registreeru kohe",
+    "vote": "Hääleta",
+    "heroBold": "Kõige armastatum",
+    "heroLight": "kohalik kaubamärk",
+    "heroAlt": "Inbox.lv e-post sülearvutis ja telefonis",
+    "welcome": "Tere tulemast Inbox.lv",
+    "features": [
+      [
+        "Arusaadav ja lihtne kasutada",
+        "95 % INBOX.LV kasutajatest peavad selle lihtsat ja mugavat kasutamist meie e-posti süsteemi peamiseks eeliseks"
+      ],
+      [
+        "Juurdepääs e-kirjadele mis tahes seadmest",
+        "Arvutit, telefoni või tahvelarvutit kasutades on INBOX.LV e-post kõikjal saadaval. INBOX.LV tasuta mobiilirakendus pakub juurdepääsu e-kirjadele kõikjal. Ole alati meiega!"
+      ],
+      [
+        "Suur salvestusruum",
+        "Meie e-postkasti suurus on 20 GB, kirja maksimaalne suurus on 50 MB. See on oluliselt rohkem kui see, mida meie konkurendid pakuvad"
+      ],
+      [
+        "INBOX.LV 'pilv'",
+        "Ükskõik, mis teie arvutiga või telefoniga ka ei juhtuks, tagavad kaasaegsed INBOX.LV pilveteenuste tehnoloogiad kuni 99,95% pideva juurdepääsu e-postile ja kõigi andmete kõrgeima turvalisuse."
+      ],
+      [
+        "Vajad abi?",
+        "Meie prioriteet nr 1 on hoolitseda INBOX.LV kasutaja eest! Pakume tasuta tehnilist abi ja tuge nii e-posti kui ka telefoni teel läti, vene või inglise keeles. Meie teenuste ja nende tehniliste võimaluste kohta saate teavet abi rubriigis."
+      ],
+      [
+        "Loodud Lätis",
+        "Alates asutamisest, nüüdseks üle 15 aasta, on INBOX.LV ja jääb 100 % Läti tooteks. Juba mitu aastat järjest on INBOX.LV tunnistatud armastatuimaks kodumaiseks kaubamärgiks"
+      ]
+    ],
+    "reviewsHeading": "Arvustused",
+    "reviews": [
+      [
+        "Liene",
+        "21",
+        "Meditsiinitudeng",
+        "Õppides on pidevalt vaja saata palju loengumaterjale, konspektipilte. Sellistel hetkedel on INBOX.LV tõeline ime – kõik mahub ühte kirja ja meilide saatmist saab kontaktide järgi korraldada. See on tõesti lahe!"
+      ],
+      [
+        "Ilze",
+        "38",
+        "Algkooli õpetaja",
+        "Ma hindan oma aega. Kui mul on probleem, siis tahan, et mulle selgitatakse kõike inimlikult, mitte ei sunnita mind otsima vastuseid kusagilt, kust ma ei tea, või, mis veelgi hullem, täitma elektroonilisi vorme. Seepärast valisin INBOX.LV - kui tekib probleem, siis üks telefonikõne ja kõik saab selgeks!"
+      ],
+      [
+        "Edgars",
+        "56",
+        "Taksojuht",
+        "Töötan taksojuhina, seega on mul tegelikult väga mugav telefonis meili kasutada. Olenemata sellest, kas olen teel, kalal või sõpradega puhkamas – olen alati käepärast!"
+      ]
+    ],
+    "voteBanner": {
+      "title": "Aita valida Inbox.lv uued teemad",
+      "text": "Vaata värviteemasid näidispostkastis ja hääleta oma lemmikute poolt. See võtab umbes minuti.",
+      "button": "Hääleta"
+    },
+    "alsoAvailable": "Samuti saadaval",
+    "googlePlay": "Inbox.lv Google Plays",
+    "appStore": "Inbox.lv App Store'is",
+    "contestCard": {
+      "title": "Loo Inbox.lv uus maskott",
+      "text": "Konkurss noortele: loo tehisintellekti tööriistadega tegelane, nimi ja lugu – sinu idee võib saada Inbox.lv kaubamärgi näoks. Osalemine kuni 30.10.2026.",
+      "button": "Loe lähemalt"
+    }
+  },
+  "themes": {
+    "title": "Hääleta Inbox.lv posti uute teemade poolt",
+    "description": "Vaata 48 Inbox.lv posti värviteemat interaktiivses näidispostkastis ja hääleta oma lemmikute poolt. Kontot, nime ega e-posti pole vaja.",
+    "h1": "Aita valida Inbox Maili uued teemad",
+    "intro": "Vaata värve ja märgi oma lemmikud. Võid valida nii palju teemasid kui soovid, kuid enne saatmist vali vähemalt üks igast neljast rühmast.",
+    "mobileNote": "Puuduta värvi, et avada postkasti eelvaade. Märkeruudu märkimine lisab teema sinu häälele.",
+    "chooseAria": "Vali oma lemmikteemad",
+    "voteHeading": "Saada oma hääl",
+    "demographicsNote": "Vanus ja sugu on vabatahtlikud. Need aitavad mõista, kuidas eelistused rühmiti erinevad.",
+    "age": "Vanuserühm",
+    "gender": "Sugu",
+    "preferNot": "Ei soovi öelda",
+    "under18": "Alla 18",
+    "woman": "Naine",
+    "man": "Mees",
+    "otherGender": "Muu",
+    "privacy": "Me ei küsi nime, e-posti ega kontot. Supabase'is (Euroopas) salvestatakse valitud teemad, vabatahtlik vanuserühm ja sugu, saatmise aeg ning juhuslik brauseri identifikaator. Vastused on teemade uurimiseks kättesaadavad küsitluse omanikule. See brauser mäletab, et oled hääletanud. Hääletada võib mitu korda. Iga uus hääl salvestatakse eraldi numbriga ja rühmitatakse brauseri identifikaatori järgi. Varasemad hääled jäävad alles. Teine brauser, seade või brauseri andmete kustutamine loob eraldi rühma.",
+    "previewAria": "Postkasti eelvaade",
+    "previewTitle": "Postkasti eelvaade",
+    "previewHint": "Eelvaade ei lisa teemat häälele",
+    "fullScreen": "Ava täisekraanil",
+    "currentWhite": "Praegune valge kujundus",
+    "custom": "Oma värv",
+    "customColor": "Oma värv",
+    "customAria": "Vali oma taustavärv",
+    "fullScreenAria": "Postkasti eelvaade täisekraanil",
+    "backToThemes": "Tagasi teemade juurde",
+    "previewNote": "Interaktiivne värviuuring · Näidiskirjad · Ei ole seotud sinu kontoga",
+    "demoNote": "See on ainult värvide eelvaade. Sinu päris postkast ei muutu.",
+    "close": "Sulge",
+    "previewOf": "Eelvaade: {name}",
+    "voteFor": "Hääleta: {name}",
+    "families": {
+      "Blue": "Sinised",
+      "Pink": "Roosad",
+      "Green": "Rohelised",
+      "Warm": "Soojad"
+    },
+    "colors": {
+      "Sky": "Taevas",
+      "Cloud": "Pilv",
+      "Ice": "Jää",
+      "Slate": "Kiltkivi",
+      "Haze": "Vine",
+      "Porcelain": "Portselan",
+      "Quiet Harbor": "Vaikne sadam",
+      "Mineral": "Mineraal",
+      "Coastal": "Rannik",
+      "Midnight": "Kesköö",
+      "Arctic Fog": "Arktiline udu",
+      "Ink Studio": "Tint",
+      "Rose": "Roos",
+      "Blush": "Põsepuna",
+      "Petal": "Kroonleht",
+      "Powder": "Puuder",
+      "Soft": "Pehme",
+      "Pearl": "Pärl",
+      "Dusty Mauve": "Tolmune lilla",
+      "Heather": "Kanarbik",
+      "Vintage Rose": "Vanaaegne roos",
+      "Mulberry": "Mooruspuu",
+      "Orchid": "Orhidee",
+      "Lavender Paper": "Lavendlipaber",
+      "Olive": "Oliiv",
+      "Sage": "Salvei",
+      "Leaf": "Leht",
+      "Mist": "Udu",
+      "Linen Sage": "Linane salvei",
+      "Eucalyptus": "Eukalüpt",
+      "Sea Glass": "Meriklaas",
+      "Forest": "Mets",
+      "Jade": "Jadeiit",
+      "Moss": "Sammal",
+      "Pine": "Mänd",
+      "Fresh Mint": "Värske münt",
+      "Apricot": "Aprikoos",
+      "Peach": "Virsik",
+      "Sand": "Liiv",
+      "Honey": "Mesi",
+      "Orange Cream": "Apelsinikreem",
+      "Soft Tangerine": "Pehme mandariin",
+      "Terracotta": "Terrakota",
+      "Cocoa": "Kakao",
+      "Caramel": "Karamell",
+      "Copper": "Vask",
+      "Amber Linen": "Merevaigulina",
+      "Espresso": "Espresso"
+    },
+    "poll": {
+      "storageBlocked": "Luba brauseri salvestusruum, et hääli salvestada ja selles brauseris rühmitada. Teemasid saad ikkagi vaadata.",
+      "themesSelected": {
+        "one": "{n} teema valitud",
+        "other": "{n} teemat valitud"
+      },
+      "familySelected": "Valitud: {n}",
+      "chooseAtLeast": "Vali vähemalt 1",
+      "submit": "Saada hääl",
+      "submitAnother": "Saada veel üks hääl",
+      "retry": "Saada uuesti",
+      "savedVotes": "Sellest brauserist salvestatud hääli: {n}.",
+      "earlierSaved": "Sellest brauserist antud varasemad hääled on salvestatud.",
+      "multipleAllowed": "Hääletada võib mitu korda. Iga saatmine lisab eraldi hääle, varasemad jäävad alles. Hääled rühmitatakse brauseri identifikaatori järgi.",
+      "pendingStatus": "Sinu viimast häält pole kinnitatud. Uuesti saatmine saadab salvestatud hääle, märkimata selle valikuid siin. Seda ei arvestata kaks korda.",
+      "freshForm": "Tühi vorm on järgmise hääletaja jaoks valmis. Varasemad hääled jäävad alles.",
+      "missing": "Vali igast rühmast vähemalt üks teema. Veel puudu: {list}.",
+      "notOpen": "Hääletus pole veel avatud. Sinu valikuid ei saadetud. Proovi hiljem uuesti.",
+      "submitting": "Saadame sinu häält…",
+      "thanks": "Aitäh! Selle brauseri hääl nr {n} on salvestatud. Vorm on tühjendatud ja järgmise hääletaja jaoks valmis. Varasemad hääled jäävad alles.",
+      "failed": "Sinu häält ei õnnestunud kinnitada. Saada see uuesti enne valikute muutmist. Uuesti saatmine ei arvesta sama häält kaks korda."
+    },
+    "mailbox": {
+      "nav": [
+        "Avaleht",
+        "E-post",
+        "Äri",
+        "Failid",
+        "Foto",
+        "Reklaam",
+        "Rohkem ▾"
+      ],
+      "servicesAria": "Teenused",
+      "demoAccount": "Näidiskonto",
+      "accountMenu": "Konto menüü",
+      "compose": "Kirjuta",
+      "composeMail": "Uus kiri",
+      "foldersAria": "Postkaustad",
+      "foldersHeading": "Kaustad",
+      "labelsHeading": "Sildid",
+      "folders": {
+        "Inbox": "Sisendkaust",
+        "Drafts": "Mustandid",
+        "Sent": "Saadetud",
+        "Scheduled": "Ajastatud",
+        "Lists": "Uudiskirjad",
+        "Social": "Sotsiaalmeedia",
+        "Spam": "Rämpspost",
+        "Trash": "Prügikast",
+        "Archive": "Arhiiv",
+        "Projects": "Projektid",
+        "Travel": "Reisid",
+        "Receipts": "Tšekid"
+      },
+      "labels": {
+        "Work": "Töö",
+        "Personal": "Isiklik"
+      },
+      "storageFull": "25% täis · 200 GB",
+      "storageUsed": "Kasutatud 49,1 GB",
+      "moreSpace": "Rohkem ruumi",
+      "selectAll": "Vali kõik nähtavad kirjad",
+      "search": "Otsi kaustast",
+      "searchAria": "Otsi näidiskirjadest",
+      "selected": "Valitud: {n}",
+      "markRead": "Märgi valitud loetuks",
+      "all": "Kõik",
+      "unread": "Lugemata",
+      "newest": "↕ Uuemad ees",
+      "previous": "Eelmine leht",
+      "next": "Järgmine leht",
+      "listAria": "Näidiskirjad",
+      "messageCount": {
+        "one": "{n} kiri",
+        "other": "{n} kirja"
+      },
+      "noMatching": "Sobivaid näidiskirju pole",
+      "selectMessage": "Vali: {subject}",
+      "back": "Tagasi",
+      "reply": "Vasta",
+      "forward": "Edasta",
+      "toYou": "Sulle · demo@example.com",
+      "attachments": "Manused: 1 · projekti-markmed.pdf",
+      "greeting": "Tere!",
+      "body": "See kiri näitab valitud teemat lugemisvaate ümber. Kiri ise jääb neutraalsele taustale, nii et pikka teksti on lihtne lugeda.",
+      "regards": "Parimate soovidega",
+      "senders": {
+        "Design team": "Disainitiim",
+        "Calendar": "Kalender",
+        "Bookshop": "Raamatupood",
+        "Workspace": "Tööruum",
+        "City Events": "Linna sündmused",
+        "Cloud Drive": "Pilvekett",
+        "Travel Desk": "Reisibüroo",
+        "Team Inbox": "Meeskonna postkast",
+        "Workshop": "Töötuba",
+        "Friends": "Sõbrad",
+        "Museum": "Muuseum"
+      },
+      "messages": [
+        [
+          "Veebilehe värvivalikud",
+          "Siin on uuendatud kujundused ülevaatamiseks."
+        ],
+        [
+          "Uuendatud liidese maketid",
+          "Sinised, rohelised ja soojad värvivariandid on valmis."
+        ],
+        [
+          "Koosolek algab 30 minuti pärast",
+          "Toote disaini ülevaatus kell 9.30."
+        ],
+        [
+          "Re: Nädalavahetuse plaanid",
+          "Laupäev sobib meile hästi!"
+        ],
+        [
+          "Projekti pakkumine",
+          "Pakkumine ja ajakava on manuses."
+        ],
+        [
+          "Sinu tellimus on teel",
+          "Jälgi saadetist ja vaata eeldatavat kuupäeva."
+        ],
+        [
+          "Fotod meie reisilt",
+          "Mõned lemmikud nädalavahetuselt."
+        ],
+        [
+          "Projekti nädala kokkuvõte",
+          "Lühiülevaade sellest nädalast."
+        ],
+        [
+          "Oktoobri sündmused Riias",
+          "Vaata, mis sel kuul toimub."
+        ],
+        [
+          "Lõuna järgmisel nädalal?",
+          "Kas sulle sobib teisipäev või neljapäev?"
+        ],
+        [
+          "Sinuga jagati faile",
+          "Disainitiim jagas uut kausta."
+        ],
+        [
+          "Sinu broneeringu andmed",
+          "Broneeringu kinnitus on manuses."
+        ],
+        [
+          "Tere tulemast uude tööruumi",
+          "Kõik, mida alustamiseks vaja."
+        ],
+        [
+          "Disainitöötoa materjalid",
+          "Märkmed ja materjalid viimasest kohtumisest."
+        ],
+        [
+          "Õhtusöök sel reedel",
+          "Ootame kõiki!"
+        ],
+        [
+          "Sinu piletid",
+          "Head külastust!"
+        ]
+      ]
+    }
+  },
+  "header": {
+    "home": "Avaleht",
+    "more": "Rohkem",
+    "contest": "Maskoti konkurss",
+    "vote": "Hääleta",
+    "premium": "Get Premium",
+    "menu": "Inbox.lv teenused",
+    "new": "Uus"
+  }
+}

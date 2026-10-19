@@ -1,0 +1,341 @@
+{
+  "code": "lv",
+  "label": "LV",
+  "name": "Latviešu",
+  "ogLocale": "lv_LV",
+  "languageNav": "Valoda",
+  "root": {
+    "title": "Inbox.lv – bezmaksas e-pasts no mīlētākā pašmāju zīmola",
+    "description": "Inbox.lv – bezmaksas un drošs Latvijas e-pasts: 20 GB e-pastkaste, vēstules līdz 50 MB, mobilās lietotnes un bezmaksas atbalsts latviešu, krievu un angļu valodā.",
+    "signIn": "Autorizēties",
+    "signUp": "Reģistrējieties tūlīt",
+    "vote": "Balsot",
+    "heroBold": "Mīlētākais",
+    "heroLight": "pašmāju zīmols",
+    "heroAlt": "Inbox.lv e-pasts klēpjdatorā un telefonā",
+    "welcome": "Laipni lūdzam Inbox.lv",
+    "features": [
+      [
+        "Saprotama un ērta lietošana",
+        "Par galveno mūsu e-pasta sistēmas priekšrocību 95% INBOX.LV lietotāju atzīst tā vienkāršo un parocīgo lietošanu"
+      ],
+      [
+        "Pieeja e-pastam no jebkuras ierīces",
+        "Izmantojot datoru, telefonu vai planšeti, INBOX.LV e-pasts ir pieejams jebkurā Jūsu atrašanās vietā. INBOX.LV bezmaksas mobilā aplikācija nodrošina piekļuvi e-pastam visur. Esiet kopā ar mums vienmēr!"
+      ],
+      [
+        "Apjomīga e-pastkaste",
+        "Mūsu e-pastkastes izmērs ir 20 GB, maksimālais vēstules izmērs – 50 MB. Tas ir ievērojami vairāk kā mūsu konkurentu piedāvātais"
+      ],
+      [
+        "INBOX.LV \"mākonis\"",
+        "Lai kas arī nenotiktu ar Jūsu datoru vai telefonu, modernās INBOX.LV mākoņservisu tehnoloģijas nodrošina līdz pat 99,95% nepārtrauktu piekļuvi e-pastam un visaugstāko drošību visiem datiem"
+      ],
+      [
+        "Vajadzīga palīdzība?",
+        "Rūpes par INBOX.LV lietotāju ir mūsu prioritāte Nr.1! Mēs nodrošinām bezmaksas tehnisko palīdzību un atbalstu gan ar e-pastu starpniecību, gan telefoniski latviešu, krievu vai angļu valodā. Par mūsu pakalpojumiem un to tehniskajām iespējām Jūs varat uzzināt sadaļā Palīgs."
+      ],
+      [
+        "Radīts Latvijā",
+        "Kopš dibināšanas brīža, nu jau vairāk kā 15 gadu, INBOX.LV ir un paliek 100% Latvijas produkts. Jau vairākus gadus pēc kārtas INBOX.LV ticis atzīts par mīlētāko pašmāju zīmolu."
+      ]
+    ],
+    "reviewsHeading": "Mūs jau lieto",
+    "reviews": [
+      [
+        "Liene",
+        "21",
+        "Medicīnas studente",
+        "Studējot pastāvīgi nepieciešams nosūtīt daudz lekciju materiālu, konspektu attēlu. Šādos brīžos INBOX.LV ir īsts brīnums - viss ietilpst vienā vēstulē un e-pastu izsūtīšanu iespējams sakārtot pēc kontaktiem. Tas patiešām ir forši!"
+      ],
+      [
+        "Ilze",
+        "38",
+        "Sākumskolas skolotāja",
+        "Es augstu vērtēju savu laiku. Ja man rodas kāda problēma, es vēlos, lai man visu cilvēciski paskaidro, nevis liek meklēt atbildes kaut kur, nezin kur vai, vēl sliktāk, aizpildīt elektroniskās veidlapas. Tieši tāpēc es izvēlējos INBOX.LV – ja rodas problēma, viens telefona zvans un viss top skaidrs!"
+      ],
+      [
+        "Edgars",
+        "56",
+        "Taksometra šoferis",
+        "Es strādāju par taksistu, tāpēc man reāli ļoti ērti izmantot e-pastu telefonā. Vienalga, vai esmu ceļā, makšķerēju vai atpūšos kopā ar draugiem - es vienmēr esmu sasniedzams!"
+      ]
+    ],
+    "voteBanner": {
+      "title": "Palīdziet izvēlēties jaunās Inbox.lv tēmas",
+      "text": "Apskatiet krāsu tēmas e-pasta paraugā un nobalsojiet par savām iecienītākajām. Tas aizņems tikai minūti.",
+      "button": "Balsot"
+    },
+    "alsoAvailable": "Pieejams arī",
+    "googlePlay": "Inbox.lv pakalpojumā Google Play",
+    "appStore": "Inbox.lv App Store veikalā",
+    "contestCard": {
+      "title": "Radi nākamo Inbox.lv talismanu",
+      "text": "Konkurss jauniešiem: ar AI rīkiem izveido tēlu, vārdu un stāstu – tavs koncepts var kļūt par Inbox.lv zīmola seju. Pieteikšanās līdz 30.10.2026.",
+      "button": "Uzzināt vairāk"
+    }
+  },
+  "themes": {
+    "title": "Balsojiet par jaunajām Inbox.lv e-pasta tēmām",
+    "description": "Apskatiet 48 Inbox.lv e-pasta krāsu tēmas interaktīvā e-pastkastes paraugā un nobalsojiet par iecienītākajām. Nav vajadzīgs ne konts, ne vārds, ne e-pasts.",
+    "h1": "Palīdziet izvēlēties nākamās Inbox Mail tēmas",
+    "intro": "Apskatiet krāsas un atzīmējiet iecienītākās. Varat izvēlēties tik tēmu, cik vēlaties, taču pirms nosūtīšanas atzīmējiet vismaz vienu katrā no četrām grupām.",
+    "mobileNote": "Pieskarieties krāsai, lai atvērtu e-pastkastes paraugu. Atzīmējot izvēles rūtiņu, tēma tiek pievienota jūsu balsojumam.",
+    "chooseAria": "Izvēlieties iecienītākās tēmas",
+    "voteHeading": "Nosūtiet savu balsojumu",
+    "demographicsNote": "Vecums un dzimums nav obligāti. Tie palīdz saprast, kā tēmu izvēle atšķiras dažādās grupās.",
+    "age": "Vecuma grupa",
+    "gender": "Dzimums",
+    "preferNot": "Nevēlos norādīt",
+    "under18": "Līdz 18",
+    "woman": "Sieviete",
+    "man": "Vīrietis",
+    "otherGender": "Cits dzimums",
+    "privacy": "Mēs neprasām ne vārdu, ne e-pastu, ne kontu. Supabase (Eiropā) tiek saglabātas izvēlētās tēmas, neobligātā vecuma grupa un dzimums, nosūtīšanas laiks un nejaušs pārlūka identifikators. Atbildes ir pieejamas aptaujas īpašniekam tēmu izpētei. Šis pārlūks atceras, ka esat balsojis. Balsot var vairākkārt. Katrs jauns balsojums tiek saglabāts atsevišķi ar balsojuma numuru un grupēts pēc pārlūka identifikatora. Iepriekšējie balsojumi paliek saglabāti. Cits pārlūks, ierīce vai pārlūka datu dzēšana izveido atsevišķu grupu.",
+    "previewAria": "E-pastkastes paraugs",
+    "previewTitle": "E-pastkastes paraugs",
+    "previewHint": "Apskate nepievieno tēmu balsojumam",
+    "fullScreen": "Atvērt pa visu ekrānu",
+    "currentWhite": "Pašreizējais baltais dizains",
+    "custom": "Sava krāsa",
+    "customColor": "Sava krāsa",
+    "customAria": "Izvēlēties savu fona krāsu",
+    "fullScreenAria": "E-pastkastes paraugs pa visu ekrānu",
+    "backToThemes": "Atpakaļ uz tēmām",
+    "previewNote": "Interaktīvs krāsu pētījums · Parauga vēstules · Nav saistīts ar jūsu kontu",
+    "demoNote": "Šis ir tikai krāsu paraugs. Jūsu īstā e-pastkaste netiek mainīta.",
+    "close": "Aizvērt",
+    "previewOf": "Apskatīt: {name}",
+    "voteFor": "Balsot par: {name}",
+    "families": {
+      "Blue": "Zilās",
+      "Pink": "Rozā",
+      "Green": "Zaļās",
+      "Warm": "Siltās"
+    },
+    "colors": {
+      "Sky": "Debesis",
+      "Cloud": "Mākonis",
+      "Ice": "Ledus",
+      "Slate": "Slāneklis",
+      "Haze": "Dūmaka",
+      "Porcelain": "Porcelāns",
+      "Quiet Harbor": "Klusā osta",
+      "Mineral": "Minerāls",
+      "Coastal": "Piekraste",
+      "Midnight": "Pusnakts",
+      "Arctic Fog": "Arktiskā migla",
+      "Ink Studio": "Tintes studija",
+      "Rose": "Roze",
+      "Blush": "Sārtums",
+      "Petal": "Ziedlapiņa",
+      "Powder": "Pūderis",
+      "Soft": "Maigums",
+      "Pearl": "Pērle",
+      "Dusty Mauve": "Pelēcīgi lillā",
+      "Heather": "Virši",
+      "Vintage Rose": "Vintāžas roze",
+      "Mulberry": "Zīdkoks",
+      "Orchid": "Orhideja",
+      "Lavender Paper": "Lavandas papīrs",
+      "Olive": "Olīva",
+      "Sage": "Salvija",
+      "Leaf": "Lapa",
+      "Mist": "Migla",
+      "Linen Sage": "Lina salvija",
+      "Eucalyptus": "Eikalipts",
+      "Sea Glass": "Jūras stikls",
+      "Forest": "Mežs",
+      "Jade": "Nefrīts",
+      "Moss": "Sūnas",
+      "Pine": "Priede",
+      "Fresh Mint": "Svaiga piparmētra",
+      "Apricot": "Aprikoze",
+      "Peach": "Persiks",
+      "Sand": "Smiltis",
+      "Honey": "Medus",
+      "Orange Cream": "Apelsīnu krēms",
+      "Soft Tangerine": "Maigs mandarīns",
+      "Terracotta": "Terakota",
+      "Cocoa": "Kakao",
+      "Caramel": "Karamele",
+      "Copper": "Varš",
+      "Amber Linen": "Dzintara lins",
+      "Espresso": "Espresso"
+    },
+    "poll": {
+      "storageBlocked": "Lūdzu, atļaujiet pārlūka krātuvi, lai saglabātu balsojumus un grupētu tos šajā pārlūkā. Tēmas joprojām varat apskatīt.",
+      "themesSelected": {
+        "other": "Izvēlētas tēmas: {n}"
+      },
+      "familySelected": "Izvēlētas: {n}",
+      "chooseAtLeast": "Izvēlieties vismaz 1",
+      "submit": "Nosūtīt balsojumu",
+      "submitAnother": "Nosūtīt vēl vienu balsojumu",
+      "retry": "Nosūtīt atkārtoti",
+      "savedVotes": "Saglabātie balsojumi no šī pārlūka: {n}.",
+      "earlierSaved": "Iepriekšējie balsojumi no šī pārlūka ir saglabāti.",
+      "multipleAllowed": "Balsot var vairākkārt. Katrs jauns balsojums tiek pievienots atsevišķi, iepriekšējie paliek saglabāti. Balsojumus grupējam pēc pārlūka identifikatora.",
+      "pendingStatus": "Jūsu pēdējais balsojums nav apstiprināts. Atkārtota nosūtīšana pārsūtīs saglabāto balsojumu, neatzīmējot tā izvēles šeit. Tas netiks ieskaitīts divreiz.",
+      "freshForm": "Tukša veidlapa ir gatava nākamajam balsotājam. Iepriekšējie balsojumi paliek saglabāti.",
+      "missing": "Izvēlieties vismaz vienu tēmu katrā grupā. Vēl trūkst: {list}.",
+      "notOpen": "Balsošana vēl nav sākusies. Jūsu izvēle netika nosūtīta. Lūdzu, mēģiniet vēlāk.",
+      "submitting": "Nosūta balsojumu…",
+      "thanks": "Paldies! Balsojums Nr. {n} no šī pārlūka ir saglabāts. Veidlapa ir notīrīta un gatava nākamajam balsotājam. Iepriekšējie balsojumi paliek saglabāti.",
+      "failed": "Neizdevās apstiprināt jūsu balsojumu. Pirms maināt izvēli, nosūtiet to atkārtoti. Atkārtota nosūtīšana to neieskaitīs divreiz."
+    },
+    "mailbox": {
+      "nav": [
+        "Sākums",
+        "E-pasts",
+        "Bizness",
+        "Faili",
+        "Foto",
+        "Reklāma",
+        "Vairāk ▾"
+      ],
+      "servicesAria": "Pakalpojumi",
+      "demoAccount": "Parauga konts",
+      "accountMenu": "Konta izvēlne",
+      "compose": "Rakstīt",
+      "composeMail": "Jauna vēstule",
+      "foldersAria": "E-pasta mapes",
+      "foldersHeading": "Mapes",
+      "labelsHeading": "Birkas",
+      "folders": {
+        "Inbox": "Iesūtne",
+        "Drafts": "Melnraksti",
+        "Sent": "Nosūtītās",
+        "Scheduled": "Ieplānotās",
+        "Lists": "Saraksti",
+        "Social": "Sociālie tīkli",
+        "Spam": "Mēstules",
+        "Trash": "Miskaste",
+        "Archive": "Arhīvs",
+        "Projects": "Projekti",
+        "Travel": "Ceļojumi",
+        "Receipts": "Čeki"
+      },
+      "labels": {
+        "Work": "Darbs",
+        "Personal": "Personīgi"
+      },
+      "storageFull": "Aizpildīti 25% · 200 GB",
+      "storageUsed": "Izmantoti 49,1 GB",
+      "moreSpace": "Vairāk vietas",
+      "selectAll": "Atlasīt visas redzamās vēstules",
+      "search": "Meklēt mapē",
+      "searchAria": "Meklēt parauga vēstulēs",
+      "selected": "Atlasītas: {n}",
+      "markRead": "Atzīmēt atlasītās kā izlasītas",
+      "all": "Visas",
+      "unread": "Nelasītās",
+      "newest": "↕ Jaunākās augšā",
+      "previous": "Iepriekšējā lapa",
+      "next": "Nākamā lapa",
+      "listAria": "Parauga vēstules",
+      "messageCount": {
+        "one": "{n} vēstule",
+        "other": "{n} vēstules"
+      },
+      "noMatching": "Atbilstošu parauga vēstuļu nav",
+      "selectMessage": "Atlasīt: {subject}",
+      "back": "Atpakaļ",
+      "reply": "Atbildēt",
+      "forward": "Pārsūtīt",
+      "toYou": "Jums · demo@example.com",
+      "attachments": "Pielikumi: 1 · projekta-piezimes.pdf",
+      "greeting": "Labdien!",
+      "body": "Šī vēstule parāda izvēlēto tēmu ap lasīšanas skatu. Pati vēstule paliek uz neitrāla fona, tāpēc garu tekstu ir viegli lasīt.",
+      "regards": "Ar cieņu",
+      "senders": {
+        "Design team": "Dizaina komanda",
+        "Calendar": "Kalendārs",
+        "Bookshop": "Grāmatnīca",
+        "Workspace": "Darba vide",
+        "City Events": "Pilsētas notikumi",
+        "Cloud Drive": "Mākoņdisks",
+        "Travel Desk": "Ceļojumu birojs",
+        "Team Inbox": "Komandas pastkaste",
+        "Workshop": "Darbnīca",
+        "Friends": "Draugi",
+        "Museum": "Muzejs"
+      },
+      "messages": [
+        [
+          "Mājaslapas krāsu varianti",
+          "Šeit ir atjauninātie dizaini jūsu apskatei."
+        ],
+        [
+          "Atjauninātie saskarnes maketi",
+          "Zilie, zaļie un siltie krāsu varianti ir gatavi."
+        ],
+        [
+          "Jūsu sapulce sāksies pēc 30 minūtēm",
+          "Produkta dizaina apskats plkst. 9.30."
+        ],
+        [
+          "Re: Nedēļas nogales plāni",
+          "Sestdiena mums der lieliski!"
+        ],
+        [
+          "Projekta piedāvājums",
+          "Pielikumā piedāvājums un laika plāns."
+        ],
+        [
+          "Jūsu pasūtījums ir ceļā",
+          "Sekojiet piegādei un skatiet paredzamo datumu."
+        ],
+        [
+          "Fotogrāfijas no mūsu ceļojuma",
+          "Dažas mīļākās no nedēļas nogales."
+        ],
+        [
+          "Projekta nedēļas kopsavilkums",
+          "Īss pārskats par šo nedēļu."
+        ],
+        [
+          "Oktobra pasākumi Rīgā",
+          "Uzziniet, kas notiek šomēnes."
+        ],
+        [
+          "Pusdienas nākamnedēļ?",
+          "Vai jums der otrdiena vai ceturtdiena?"
+        ],
+        [
+          "Ar jums kopīgoti faili",
+          "Dizaina komanda kopīgoja jaunu mapi."
+        ],
+        [
+          "Jūsu rezervācijas informācija",
+          "Pielikumā rezervācijas apstiprinājums."
+        ],
+        [
+          "Laipni lūdzam jaunajā darba vidē",
+          "Viss, kas nepieciešams, lai sāktu."
+        ],
+        [
+          "Dizaina darbnīcas materiāli",
+          "Piezīmes un resursi no pēdējās nodarbības."
+        ],
+        [
+          "Vakariņas šopiektdien",
+          "Gaidām visus!"
+        ],
+        [
+          "Jūsu biļetes",
+          "Lai jauks apmeklējums!"
+        ]
+      ]
+    }
+  },
+  "header": {
+    "home": "Sākums",
+    "more": "Vairāk",
+    "contest": "Talismanu konkurss",
+    "vote": "Balsot",
+    "premium": "Get Premium",
+    "menu": "Inbox.lv pakalpojumi",
+    "new": "Jauns"
+  }
+}

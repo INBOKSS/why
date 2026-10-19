@@ -1,0 +1,281 @@
+{
+  "code": "en",
+  "label": "EN",
+  "name": "English",
+  "ogLocale": "en_GB",
+  "languageNav": "Language",
+  "root": {
+    "title": "Inbox.lv – free email from the most loved Latvian brand",
+    "description": "Inbox.lv is a free, secure Latvian email service: 20 GB mailbox, 50 MB attachments, mobile apps and free support in Latvian, Russian and English.",
+    "signIn": "Sign in",
+    "signUp": "Sign up now",
+    "vote": "Vote",
+    "heroBold": "The most beloved",
+    "heroLight": "local brand",
+    "heroAlt": "Inbox.lv email on a laptop and a phone",
+    "welcome": "Welcome to Inbox.lv",
+    "features": [
+      [
+        "Understandable and easy to use",
+        "95% of INBOX.LV users recognize its simple and convenient use as the main advantage of our e-mail system"
+      ],
+      [
+        "Access email from any device",
+        "Using a computer, phone or tablet, INBOX.LV e-mail is available wherever you are. INBOX.LV free mobile application provides access to e-mail everywhere. Be with us always!"
+      ],
+      [
+        "Large storage",
+        "The size of our e-mail box is 20 GB, the maximum size of a letter is 50 MB. This is significantly more than what our competitors offer"
+      ],
+      [
+        "INBOX.LV 'cloud'",
+        "No matter what happens to your computer or phone, modern INBOX.LV cloud service technologies ensure up to 99.95% continuous access to e-mail and the highest security for all data."
+      ],
+      [
+        "Need help?",
+        "Taking care of the INBOX.LV user is our priority No. 1! We provide free technical assistance and support both via e-mail and by phone in Latvian, Russian or English. You can find out about our services and their technical capabilities in the Help section."
+      ],
+      [
+        "Created in Latvia",
+        "Since its foundation, now more than 15 years, INBOX.LV is and remains a 100% Latvian product. For several years in a row, INBOX.LV has been recognized as the most loved domestic brand"
+      ]
+    ],
+    "reviewsHeading": "Reviews",
+    "reviews": [
+      [
+        "Liene",
+        "21",
+        "Medical student",
+        "When studying, it is constantly necessary to send a lot of lecture materials, synopsis pictures. In such moments, INBOX.LV is a real miracle - everything fits into one letter and sending emails can be organized by contacts. It's really cool!"
+      ],
+      [
+        "Ilze",
+        "38",
+        "Primary school teacher",
+        "I value my time. If I have a problem, I want everything to be explained to me in a human way, and not made to look for answers somewhere, I don't know where, or, even worse, to fill out electronic forms. That's why I chose INBOX.LV - if a problem arises, one phone call and everything becomes clear!"
+      ],
+      [
+        "Edgars",
+        "56",
+        "Taxi driver",
+        "I work as a taxi driver, so it's actually very convenient for me to use e-mail on my phone. Whether I'm on the road, fishing or relaxing with friends - I'm always reachable!"
+      ]
+    ],
+    "voteBanner": {
+      "title": "Help choose the new Inbox.lv themes",
+      "text": "Preview the colour themes in a demo mailbox and vote for your favourites. It takes about a minute.",
+      "button": "Vote"
+    },
+    "alsoAvailable": "Also available",
+    "googlePlay": "Inbox.lv on Google Play",
+    "appStore": "Inbox.lv on the App Store",
+    "contestCard": {
+      "title": "Create the next Inbox.lv mascot",
+      "text": "A contest for young people: use AI tools to create a character, a name and a story – your concept can become the face of Inbox.lv. Entries until 30.10.2026.",
+      "button": "Learn more"
+    }
+  },
+  "themes": {
+    "title": "Vote for the new Inbox.lv mail themes",
+    "description": "Preview 48 colour themes for Inbox.lv mail in a live demo mailbox and vote for your favourites. No account, name or email needed.",
+    "h1": "Help choose the next Inbox Mail themes",
+    "intro": "Preview the colors, then tick your favorites. Choose as many themes as you like, but select at least one from each of the four groups before submitting.",
+    "mobileNote": "Tap a color to open the mailbox preview. Ticking a checkbox selects it for your vote.",
+    "chooseAria": "Choose your favorite themes",
+    "voteHeading": "Send your vote",
+    "demographicsNote": "Age and gender are optional. They help us understand how theme preferences differ between groups.",
+    "age": "Age group",
+    "gender": "Gender",
+    "preferNot": "Prefer not to say",
+    "under18": "Under 18",
+    "woman": "Woman",
+    "man": "Man",
+    "otherGender": "Another gender",
+    "privacy": "No name, email or account is requested. We save your selected themes, optional age group and gender, submission time and a random browser identifier in Supabase (Europe). Responses are available to the survey owner for theme research. This browser remembers that you voted. Multiple votes are allowed. Each new submission is saved separately with a vote number and grouped by browser identifier. Previous votes remain saved. Another browser, device or clearing browser storage creates a separate group.",
+    "previewAria": "Live mailbox preview",
+    "previewTitle": "Mailbox preview",
+    "previewHint": "Previewing does not select a vote",
+    "fullScreen": "View full-screen mailbox",
+    "currentWhite": "Current white interface",
+    "custom": "Custom",
+    "customColor": "Custom color",
+    "customAria": "Custom shell color",
+    "fullScreenAria": "Full-screen mailbox preview",
+    "backToThemes": "Back to themes",
+    "previewNote": "Interactive color study · Demo messages · No connection to your account",
+    "demoNote": "This is a local color preview. Your live mailbox is unchanged.",
+    "close": "Close",
+    "previewOf": "Preview {name}",
+    "voteFor": "Vote for {name}",
+    "families": {
+      "Blue": "Blue",
+      "Pink": "Pink",
+      "Green": "Green",
+      "Warm": "Warm"
+    },
+    "colors": {},
+    "poll": {
+      "storageBlocked": "Please allow browser storage to save votes and group submissions from this browser. You can still preview the themes.",
+      "themesSelected": {
+        "one": "{n} theme selected",
+        "other": "{n} themes selected"
+      },
+      "familySelected": "{n} selected",
+      "chooseAtLeast": "Choose at least 1",
+      "submit": "Submit vote",
+      "submitAnother": "Submit another vote",
+      "retry": "Retry submission",
+      "savedVotes": "Saved votes from this browser: {n}.",
+      "earlierSaved": "Earlier votes from this browser are saved.",
+      "multipleAllowed": "You may vote more than once. Each new submission adds a separate vote; previous votes remain saved. We group votes using a browser identifier.",
+      "pendingStatus": "Your last submission has not been confirmed. Retry will resend that saved submission without selecting its choices here. It will not be counted twice.",
+      "freshForm": "A fresh form is ready for the next voter. Previous votes remain saved.",
+      "missing": "Select at least one theme in every group. Still needed: {list}.",
+      "notOpen": "Voting is not open yet. Your selections have not been submitted. Please try again later.",
+      "submitting": "Submitting your vote…",
+      "thanks": "Thank you! Vote #{n} from this browser has been saved. The form is cleared and ready for the next voter. Previous votes remain saved.",
+      "failed": "We could not confirm your vote. Retry this submission before changing your choices. Retrying will not count the same submission twice."
+    },
+    "mailbox": {
+      "nav": [
+        "Home",
+        "E-mail",
+        "Business",
+        "Files",
+        "Foto",
+        "Advertising",
+        "More ▾"
+      ],
+      "servicesAria": "Services",
+      "demoAccount": "Demo account",
+      "accountMenu": "Account menu",
+      "compose": "Compose",
+      "composeMail": "Compose Mail",
+      "foldersAria": "Mail folders",
+      "foldersHeading": "Folders",
+      "labelsHeading": "Labels",
+      "folders": {
+        "Inbox": "Inbox",
+        "Drafts": "Drafts",
+        "Sent": "Sent",
+        "Scheduled": "Scheduled",
+        "Lists": "Lists",
+        "Social": "Social",
+        "Spam": "Spam",
+        "Trash": "Trash",
+        "Archive": "Archive",
+        "Projects": "Projects",
+        "Travel": "Travel",
+        "Receipts": "Receipts"
+      },
+      "labels": {
+        "Work": "Work",
+        "Personal": "Personal"
+      },
+      "storageFull": "25% full · 200 GB",
+      "storageUsed": "49.1 GB used",
+      "moreSpace": "Get more space",
+      "selectAll": "Select all visible messages",
+      "search": "Search in folder",
+      "searchAria": "Search demo messages",
+      "selected": "{n} selected",
+      "markRead": "Mark selected messages as read",
+      "all": "All",
+      "unread": "Unread",
+      "newest": "↕ Newest on top",
+      "previous": "Previous page",
+      "next": "Next page",
+      "listAria": "Demo messages",
+      "messageCount": {
+        "one": "{n} message",
+        "other": "{n} messages"
+      },
+      "noMatching": "No matching demo messages",
+      "selectMessage": "Select {subject}",
+      "back": "Back",
+      "reply": "Reply",
+      "forward": "Forward",
+      "toYou": "To you · demo@example.com",
+      "attachments": "Attachments: 1 · project-notes.pdf",
+      "greeting": "Hello,",
+      "body": "This message demonstrates the selected theme around a reading view. The message itself stays on a neutral background, so long text remains easy to read.",
+      "regards": "Best regards,",
+      "senders": {},
+      "messages": [
+        [
+          "Website color options",
+          "Here are the updated designs for your review."
+        ],
+        [
+          "Updated interface mockups",
+          "Blue, green and warm color variants are ready."
+        ],
+        [
+          "Your meeting starts in 30 minutes",
+          "Product design review at 09:30."
+        ],
+        [
+          "Re: Weekend plans",
+          "Saturday works well for us!"
+        ],
+        [
+          "Project proposal",
+          "Please find the proposal and timeline attached."
+        ],
+        [
+          "Your order is on its way",
+          "Track your delivery and see the estimated date."
+        ],
+        [
+          "Photos from our trip",
+          "A few favorites from the weekend."
+        ],
+        [
+          "Weekly project summary",
+          "Here is a quick overview of this week."
+        ],
+        [
+          "October events in Riga",
+          "Discover what is happening this month."
+        ],
+        [
+          "Lunch next week?",
+          "Would Tuesday or Thursday work for you?"
+        ],
+        [
+          "Files shared with you",
+          "The design team shared a new folder."
+        ],
+        [
+          "Your reservation details",
+          "Your booking confirmation is attached."
+        ],
+        [
+          "Welcome to your new workspace",
+          "Everything you need to get started."
+        ],
+        [
+          "Design workshop materials",
+          "Notes and resources from our last session."
+        ],
+        [
+          "Dinner this Friday",
+          "Looking forward to seeing everyone."
+        ],
+        [
+          "Your tickets",
+          "Have a wonderful visit."
+        ]
+      ]
+    }
+  },
+  "header": {
+    "home": "Home",
+    "more": "More",
+    "contest": "Mascot contest",
+    "vote": "Vote",
+    "premium": "Get Premium",
+    "menu": "Inbox.lv services",
+    "new": "New"
+  }
+}

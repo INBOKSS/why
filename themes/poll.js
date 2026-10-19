@@ -1,8 +1,11 @@
 (() => {
   'use strict';
+  const { T, fmt, plural } = window.THEME_I18N;
+  const P = T.poll;
   const form = document.getElementById('vote-form');
   const status = document.getElementById('vote-status');
   const submit = document.getElementById('submit-vote');
+  // Shared by every language version, so a voter keeps one identifier.
   const storageKey = 'webmail-theme-poll-v1';
   let identity, submitted = false, busy = false;
   const choices = () => [...document.querySelectorAll('.theme-vote:checked')].map(input => input.value);
@@ -16,7 +19,7 @@
     submitted = identity.submitted === true;
   } catch {
     identity = null;
-    status.textContent = 'Please allow browser storage to save votes and group submissions from this browser. You can still preview the themes.';
+    status.textContent = P.storageBlocked;
     submit.disabled = true;
   }
   function clearForm() {
@@ -26,24 +29,24 @@
   }
   function update() {
     const selected = choices();
-    document.getElementById('vote-count').textContent = selected.length + (selected.length === 1 ? ' theme selected' : ' themes selected');
+    document.getElementById('vote-count').textContent = plural(P.themesSelected, selected.length);
     document.querySelectorAll('.family').forEach(group => {
       const count = group.querySelectorAll('.theme-vote:checked').length;
-      group.querySelector('.family-count').textContent = count ? count + ' selected' : 'Choose at least 1';
+      group.querySelector('.family-count').textContent = count ? fmt(P.familySelected, { n: count }) : P.chooseAtLeast;
       if (count) group.classList.remove('missing-choice');
     });
     document.querySelectorAll('.theme-option').forEach(card => card.classList.toggle('voted', card.querySelector('input').checked));
     submit.disabled = !identity || busy;
-    submit.textContent = identity && identity.pending ? 'Retry submission' : submitted ? 'Submit another vote' : 'Submit vote';
+    submit.textContent = identity && identity.pending ? P.retry : submitted ? P.submitAnother : P.submit;
     form.querySelectorAll('select').forEach(input => input.disabled = busy || !!(identity && identity.pending));
     document.querySelectorAll('.theme-vote').forEach(input => input.disabled = busy || !!(identity && identity.pending));
     const count = identity && identity.voteCount;
-    document.getElementById('vote-notice').textContent = (Number.isInteger(count) && count > 0 ? 'Saved votes from this browser: ' + count + '. ' : submitted ? 'Earlier votes from this browser are saved. ' : '') + 'You may vote more than once. Each new submission adds a separate vote; previous votes remain saved. We group votes using a browser identifier.';
+    document.getElementById('vote-notice').textContent = (Number.isInteger(count) && count > 0 ? fmt(P.savedVotes, { n: count }) + ' ' : submitted ? P.earlierSaved + ' ' : '') + P.multipleAllowed;
   }
   document.querySelectorAll('.theme-vote').forEach(input => input.addEventListener('change', update));
   clearForm();
   if (identity && (submitted || identity.pending)) {
-    status.textContent = identity.pending ? 'Your last submission has not been confirmed. Retry will resend that saved submission without selecting its choices here. It will not be counted twice.' : 'A fresh form is ready for the next voter. Previous votes remain saved.';
+    status.textContent = identity.pending ? P.pendingStatus : P.freshForm;
   }
   form.addEventListener('submit', async event => {
     event.preventDefault();
@@ -51,18 +54,18 @@
     const missing = [...document.querySelectorAll('.family')].filter(group => !group.querySelector('.theme-vote:checked'));
     if (missing.length && !identity.pending) {
       missing.forEach(group => group.classList.add('missing-choice'));
-      status.textContent = 'Select at least one theme in every group. Still needed: ' + missing.map(group => group.dataset.family).join(', ') + '.';
+      status.textContent = fmt(P.missing, { list: missing.map(group => group.dataset.familyLabel).join(', ') });
       missing[0].querySelector('.theme-vote').focus();
       return;
     }
     const config = window.THEME_POLL_CONFIG || {};
     if (!/^https:\/\/[a-z0-9]+\.supabase\.co$/.test(config.supabaseUrl || '') || !config.publishableKey) {
-      status.textContent = 'Voting is not open yet. Your selections have not been submitted. Please try again later.';
+      status.textContent = P.notOpen;
       return;
     }
     busy = true;
     update();
-    status.textContent = 'Submitting your vote…';
+    status.textContent = P.submitting;
     const payload = identity.pending || {
       p_voter_id: identity.id,
       p_submission_id: crypto.randomUUID(),
@@ -89,9 +92,9 @@
       submitted = true;
       clearForm();
       try { localStorage.setItem(storageKey, JSON.stringify(identity)); } catch { /* A restored pending submission is still safe to retry. */ }
-      status.textContent = 'Thank you! Vote #' + result + ' from this browser has been saved. The form is cleared and ready for the next voter. Previous votes remain saved.';
+      status.textContent = fmt(P.thanks, { n: result });
     } catch {
-      status.textContent = 'We could not confirm your vote. Retry this submission before changing your choices. Retrying will not count the same submission twice.';
+      status.textContent = P.failed;
     } finally {
       busy = false;
       update();

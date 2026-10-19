@@ -1,0 +1,340 @@
+{
+  "code": "lt",
+  "label": "LT",
+  "name": "Lietuvių",
+  "ogLocale": "lt_LT",
+  "languageNav": "Kalba",
+  "root": {
+    "title": "Inbox.lv – nemokamas el. paštas iš mylimiausio Latvijos prekės ženklo",
+    "description": "Inbox.lv – nemokamas ir saugus Latvijos el. paštas: 20 GB pašto dėžutė, laiškai iki 50 MB, programėlės telefonams ir nemokama pagalba latvių, rusų ir anglų kalbomis.",
+    "signIn": "Prisijungti",
+    "signUp": "Prisiregistruokite dabar",
+    "vote": "Balsuoti",
+    "heroBold": "Labiausiai mylimas",
+    "heroLight": "vietinis prekės ženklas",
+    "heroAlt": "Inbox.lv el. paštas nešiojamajame kompiuteryje ir telefone",
+    "welcome": "Sveiki atvykę į Inbox.lv",
+    "features": [
+      [
+        "Suprantamas ir paprastas naudoti",
+        "95 % INBOX.LV naudotojų pagrindiniu mūsų el. pašto sistemos privalumu laiko paprastą ir patogų naudojimą."
+      ],
+      [
+        "Prieiga prie el. pašto iš bet kurio įrenginio",
+        "Naudodamiesi kompiuteriu, telefonu ar planšetiniu kompiuteriu, INBOX.LV el. paštą galite pasiekti bet kur. Nemokama INBOX.LV mobilioji programėlė suteikia prieigą prie el. pašto visur. Būkite visada su mumis!"
+      ],
+      [
+        "Didelė saugykla",
+        "Pašto dėžutės dydis yra 20 GB, o maksimalus pranešimo dydis - 50 Mb. Tai yra žymiai daugiau lyginant su pagrindiniais konkurentais."
+      ],
+      [
+        "INBOX.LV \"debesis\"",
+        "Nesvarbu, kas nutiktų jūsų kompiuteriui ar telefonui, šiuolaikinės INBOX.LV debesijos paslaugų technologijos užtikrina iki 99,95% nepertraukiamą prieigą prie el. pašto ir aukščiausią visų duomenų saugumą."
+      ],
+      [
+        "Reikia pagalbos?",
+        "Rūpinimasis INBOX.LV naudotoju yra mūsų prioritetas Nr. 1! Teikiame nemokamą techninę pagalbą ir palaikymą el. paštu ir telefonu latvių, rusų arba anglų kalbomis. Apie mūsų paslaugas ir jų technines galimybes galite sužinoti skiltyje \"Pagalba\"."
+      ],
+      [
+        "Sukurta Latvijoje",
+        "Nuo pat įkūrimo, jau daugiau nei 15 metų, INBOX.LV yra ir išlieka 100% latviškas produktas. Jau kelerius metus iš eilės INBOX.LV pripažįstamas mylimiausiu vietiniu prekės ženklu."
+      ]
+    ],
+    "reviewsHeading": "Atsiliepimai",
+    "reviews": [
+      [
+        "Liene",
+        "21",
+        "Medicinos studentė",
+        "Studijuojant nuolat reikia siųsti daug paskaitų medžiagos, konspektų nuotraukų. Tokiomis akimirkomis, INBOX.LV yra tikras stebuklas - viskas telpa į vieną laišką, o siunčiamus laiškus galima organizuoti pagal kontaktus. Tai tikrai šaunu!"
+      ],
+      [
+        "Ilze",
+        "38",
+        "Pradinių klasių mokytoja",
+        "Vertinu savo laiką. Jei turiu problemų, noriu, kad man viskas būtų paaiškinta žmogiškai, o ne verčiama ieškoti atsakymų nežinia kur arba, dar blogiau, pildyti elektronines formas. Štai kodėl pasirinkau INBOX.LV - jei iškyla problema, užtenka vieno skambučio ir viskas tampa aišku!"
+      ],
+      [
+        "Edgars",
+        "56",
+        "Taksi vairuotojas",
+        "Dirbu taksi vairuotoju, todėl man labai patogu naudotis el. paštu telefone. Nesvarbu, ar keliauju, ar žvejoju, ar ilsiuosi su draugais - visada esu pasiekiamas!"
+      ]
+    ],
+    "voteBanner": {
+      "title": "Padėkite išrinkti naujas Inbox.lv temas",
+      "text": "Peržiūrėkite spalvų temas pavyzdinėje pašto dėžutėje ir balsuokite už mėgstamiausias. Tai užtruks apie minutę.",
+      "button": "Balsuoti"
+    },
+    "alsoAvailable": "Taip pat prieinama",
+    "googlePlay": "Inbox.lv „Google Play“",
+    "appStore": "Inbox.lv „App Store“",
+    "contestCard": {
+      "title": "Sukurk naują Inbox.lv talismaną",
+      "text": "Konkursas jaunimui: DI įrankiais sukurk personažą, vardą ir istoriją – tavo idėja gali tapti Inbox.lv prekės ženklo veidu. Paraiškos iki 2026-10-30.",
+      "button": "Sužinoti daugiau"
+    }
+  },
+  "themes": {
+    "title": "Balsuokite už naujas Inbox.lv pašto temas",
+    "description": "Peržiūrėkite 48 Inbox.lv pašto spalvų temas interaktyvioje pavyzdinėje dėžutėje ir balsuokite už mėgstamiausias. Nereikia nei paskyros, nei vardo, nei el. pašto.",
+    "h1": "Padėkite išrinkti naujas Inbox Mail temas",
+    "intro": "Peržiūrėkite spalvas ir pažymėkite mėgstamiausias. Galite pasirinkti kiek norite temų, tačiau prieš siųsdami pažymėkite bent vieną kiekvienoje iš keturių grupių.",
+    "mobileNote": "Bakstelėkite spalvą, kad atidarytumėte pašto dėžutės pavyzdį. Pažymėjus langelį, tema įtraukiama į jūsų balsą.",
+    "chooseAria": "Pasirinkite mėgstamiausias temas",
+    "voteHeading": "Išsiųskite savo balsą",
+    "demographicsNote": "Amžių ir lytį nurodyti nebūtina. Tai padeda suprasti, kaip temų pasirinkimai skiriasi tarp grupių.",
+    "age": "Amžiaus grupė",
+    "gender": "Lytis",
+    "preferNot": "Nenoriu nurodyti",
+    "under18": "Iki 18",
+    "woman": "Moteris",
+    "man": "Vyras",
+    "otherGender": "Kita",
+    "privacy": "Neprašome nei vardo, nei el. pašto, nei paskyros. Supabase (Europoje) išsaugome pasirinktas temas, neprivalomą amžiaus grupę ir lytį, pateikimo laiką ir atsitiktinį naršyklės identifikatorių. Atsakymai prieinami apklausos savininkui temų tyrimui. Ši naršyklė įsimena, kad balsavote. Balsuoti galima kelis kartus. Kiekvienas naujas balsas išsaugomas atskirai su numeriu ir grupuojamas pagal naršyklės identifikatorių. Ankstesni balsai lieka išsaugoti. Kita naršyklė, įrenginys arba išvalyti naršyklės duomenys sukuria atskirą grupę.",
+    "previewAria": "Pašto dėžutės pavyzdys",
+    "previewTitle": "Pašto dėžutės pavyzdys",
+    "previewHint": "Peržiūra neprideda temos prie balso",
+    "fullScreen": "Atidaryti per visą ekraną",
+    "currentWhite": "Dabartinė balta sąsaja",
+    "custom": "Sava spalva",
+    "customColor": "Sava spalva",
+    "customAria": "Pasirinkti savo fono spalvą",
+    "fullScreenAria": "Pašto dėžutės pavyzdys per visą ekraną",
+    "backToThemes": "Atgal į temas",
+    "previewNote": "Interaktyvus spalvų tyrimas · Pavyzdiniai laiškai · Nesusiję su jūsų paskyra",
+    "demoNote": "Tai tik spalvų pavyzdys. Jūsų tikroji pašto dėžutė nepasikeičia.",
+    "close": "Uždaryti",
+    "previewOf": "Peržiūrėti: {name}",
+    "voteFor": "Balsuoti už: {name}",
+    "families": {
+      "Blue": "Mėlynos",
+      "Pink": "Rožinės",
+      "Green": "Žalios",
+      "Warm": "Šiltos"
+    },
+    "colors": {
+      "Sky": "Dangus",
+      "Cloud": "Debesis",
+      "Ice": "Ledas",
+      "Slate": "Skalūnas",
+      "Haze": "Ūkana",
+      "Porcelain": "Porcelianas",
+      "Quiet Harbor": "Rami uosta",
+      "Mineral": "Mineralas",
+      "Coastal": "Pakrantė",
+      "Midnight": "Vidurnaktis",
+      "Arctic Fog": "Arktinis rūkas",
+      "Ink Studio": "Rašalas",
+      "Rose": "Rožė",
+      "Blush": "Skaistalai",
+      "Petal": "Žiedlapis",
+      "Powder": "Pudra",
+      "Soft": "Švelnumas",
+      "Pearl": "Perlas",
+      "Dusty Mauve": "Dulsvai alyvinė",
+      "Heather": "Viržiai",
+      "Vintage Rose": "Senovinė rožė",
+      "Mulberry": "Šilkmedis",
+      "Orchid": "Orchidėja",
+      "Lavender Paper": "Levandų popierius",
+      "Olive": "Alyvuogė",
+      "Sage": "Šalavijas",
+      "Leaf": "Lapas",
+      "Mist": "Migla",
+      "Linen Sage": "Lininis šalavijas",
+      "Eucalyptus": "Eukaliptas",
+      "Sea Glass": "Jūros stiklas",
+      "Forest": "Miškas",
+      "Jade": "Nefritas",
+      "Moss": "Samanos",
+      "Pine": "Pušis",
+      "Fresh Mint": "Gaivi mėta",
+      "Apricot": "Abrikosas",
+      "Peach": "Persikas",
+      "Sand": "Smėlis",
+      "Honey": "Medus",
+      "Orange Cream": "Apelsinų kremas",
+      "Soft Tangerine": "Švelnus mandarinas",
+      "Terracotta": "Terakota",
+      "Cocoa": "Kakava",
+      "Caramel": "Karamelė",
+      "Copper": "Varis",
+      "Amber Linen": "Gintarinis linas",
+      "Espresso": "Espresas"
+    },
+    "poll": {
+      "storageBlocked": "Leiskite naudoti naršyklės saugyklą, kad galėtume išsaugoti balsus ir grupuoti juos šioje naršyklėje. Temas vis tiek galite peržiūrėti.",
+      "themesSelected": {
+        "other": "Pasirinkta temų: {n}"
+      },
+      "familySelected": "Pasirinkta: {n}",
+      "chooseAtLeast": "Pasirinkite bent 1",
+      "submit": "Siųsti balsą",
+      "submitAnother": "Siųsti dar vieną balsą",
+      "retry": "Siųsti pakartotinai",
+      "savedVotes": "Išsaugoti balsai iš šios naršyklės: {n}.",
+      "earlierSaved": "Ankstesni balsai iš šios naršyklės išsaugoti.",
+      "multipleAllowed": "Balsuoti galima kelis kartus. Kiekvienas pateikimas pridedamas kaip atskiras balsas, ankstesni lieka išsaugoti. Balsus grupuojame pagal naršyklės identifikatorių.",
+      "pendingStatus": "Paskutinis jūsų balsas nepatvirtintas. Pakartotinai siunčiant bus išsiųstas išsaugotas balsas, jo pasirinkimai čia nebus pažymėti. Dukart jis nebus įskaitytas.",
+      "freshForm": "Tuščia forma paruošta kitam balsuotojui. Ankstesni balsai lieka išsaugoti.",
+      "missing": "Pasirinkite bent vieną temą kiekvienoje grupėje. Dar trūksta: {list}.",
+      "notOpen": "Balsavimas dar neprasidėjo. Jūsų pasirinkimai neišsiųsti. Bandykite vėliau.",
+      "submitting": "Siunčiamas jūsų balsas…",
+      "thanks": "Ačiū! Balsas Nr. {n} iš šios naršyklės išsaugotas. Forma išvalyta ir paruošta kitam balsuotojui. Ankstesni balsai lieka išsaugoti.",
+      "failed": "Nepavyko patvirtinti jūsų balso. Prieš keisdami pasirinkimą, išsiųskite jį pakartotinai. Pakartotinis siuntimas neįskaitys balso dukart."
+    },
+    "mailbox": {
+      "nav": [
+        "Pradžia",
+        "El. paštas",
+        "Verslas",
+        "Failai",
+        "Foto",
+        "Reklama",
+        "Daugiau ▾"
+      ],
+      "servicesAria": "Paslaugos",
+      "demoAccount": "Demonstracinė paskyra",
+      "accountMenu": "Paskyros meniu",
+      "compose": "Rašyti",
+      "composeMail": "Naujas laiškas",
+      "foldersAria": "Pašto aplankai",
+      "foldersHeading": "Aplankai",
+      "labelsHeading": "Žymos",
+      "folders": {
+        "Inbox": "Gautieji",
+        "Drafts": "Juodraščiai",
+        "Sent": "Išsiųsti",
+        "Scheduled": "Suplanuoti",
+        "Lists": "Naujienlaiškiai",
+        "Social": "Socialiniai",
+        "Spam": "Šlamštas",
+        "Trash": "Šiukšlinė",
+        "Archive": "Archyvas",
+        "Projects": "Projektai",
+        "Travel": "Kelionės",
+        "Receipts": "Kvitai"
+      },
+      "labels": {
+        "Work": "Darbas",
+        "Personal": "Asmeniniai"
+      },
+      "storageFull": "Užpildyta 25% · 200 GB",
+      "storageUsed": "Naudojama 49,1 GB",
+      "moreSpace": "Daugiau vietos",
+      "selectAll": "Pažymėti visus matomus laiškus",
+      "search": "Ieškoti aplanke",
+      "searchAria": "Ieškoti pavyzdiniuose laiškuose",
+      "selected": "Pažymėta: {n}",
+      "markRead": "Pažymėti pasirinktus kaip perskaitytus",
+      "all": "Visi",
+      "unread": "Neperskaityti",
+      "newest": "↕ Naujausi viršuje",
+      "previous": "Ankstesnis puslapis",
+      "next": "Kitas puslapis",
+      "listAria": "Pavyzdiniai laiškai",
+      "messageCount": {
+        "other": "laiškų: {n}"
+      },
+      "noMatching": "Atitinkančių pavyzdinių laiškų nėra",
+      "selectMessage": "Pažymėti: {subject}",
+      "back": "Atgal",
+      "reply": "Atsakyti",
+      "forward": "Persiųsti",
+      "toYou": "Jums · demo@example.com",
+      "attachments": "Priedai: 1 · projekto-pastabos.pdf",
+      "greeting": "Sveiki,",
+      "body": "Šis laiškas parodo pasirinktą temą aplink skaitymo langą. Pats laiškas lieka ant neutralaus fono, todėl ilgą tekstą lengva skaityti.",
+      "regards": "Pagarbiai,",
+      "senders": {
+        "Design team": "Dizaino komanda",
+        "Calendar": "Kalendorius",
+        "Bookshop": "Knygynas",
+        "Workspace": "Darbo erdvė",
+        "City Events": "Miesto renginiai",
+        "Cloud Drive": "Debesų diskas",
+        "Travel Desk": "Kelionių biuras",
+        "Team Inbox": "Komandos paštas",
+        "Workshop": "Dirbtuvės",
+        "Friends": "Draugai",
+        "Museum": "Muziejus"
+      },
+      "messages": [
+        [
+          "Svetainės spalvų variantai",
+          "Atnaujinti dizainai jūsų peržiūrai."
+        ],
+        [
+          "Atnaujinti sąsajos maketai",
+          "Mėlyni, žali ir šilti spalvų variantai paruošti."
+        ],
+        [
+          "Susitikimas prasidės po 30 minučių",
+          "Produkto dizaino peržiūra 9:30."
+        ],
+        [
+          "Re: Savaitgalio planai",
+          "Šeštadienis mums puikiai tinka!"
+        ],
+        [
+          "Projekto pasiūlymas",
+          "Pasiūlymą ir grafiką rasite priede."
+        ],
+        [
+          "Jūsų užsakymas jau pakeliui",
+          "Sekite siuntą ir žiūrėkite numatomą datą."
+        ],
+        [
+          "Mūsų kelionės nuotraukos",
+          "Kelios mėgstamiausios iš savaitgalio."
+        ],
+        [
+          "Savaitės projekto santrauka",
+          "Trumpa šios savaitės apžvalga."
+        ],
+        [
+          "Spalio renginiai Rygoje",
+          "Sužinokite, kas vyksta šį mėnesį."
+        ],
+        [
+          "Pietūs kitą savaitę?",
+          "Ar jums tiktų antradienis ar ketvirtadienis?"
+        ],
+        [
+          "Su jumis bendrinami failai",
+          "Dizaino komanda pasidalijo nauju aplanku."
+        ],
+        [
+          "Jūsų rezervacijos informacija",
+          "Rezervacijos patvirtinimas pridėtas."
+        ],
+        [
+          "Sveiki atvykę į naują darbo erdvę",
+          "Viskas, ko reikia pradžiai."
+        ],
+        [
+          "Dizaino dirbtuvių medžiaga",
+          "Pastabos ir medžiaga iš paskutinio užsiėmimo."
+        ],
+        [
+          "Vakarienė šį penktadienį",
+          "Laukiame visų!"
+        ],
+        [
+          "Jūsų bilietai",
+          "Malonaus apsilankymo!"
+        ]
+      ]
+    }
+  },
+  "header": {
+    "home": "Pradžia",
+    "more": "Daugiau",
+    "contest": "Talismano konkursas",
+    "vote": "Balsuoti",
+    "premium": "Get Premium",
+    "menu": "Inbox.lv paslaugos",
+    "new": "Nauja"
+  }
+}
