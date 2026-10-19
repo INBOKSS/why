@@ -22,8 +22,7 @@
 .ix-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 8px}
 .ix-ico{font:normal 400 22px/1 inbox-product-icons;color:#1c1c1c;width:28px;text-align:center;flex-shrink:0;-webkit-font-smoothing:antialiased}
 .ix-ico:before{display:inline-block}
-.ix-header .ix-svg{width:28px;height:24px;stroke-width:1.6;color:#1c1c1c}
-.prod-mail:before{content:"\f10f"}.prod-business_eu:before{content:"\f102"}.prod-files:before{content:"\f106"}.prod-foto:before{content:"\f107"}.prod-dating:before{content:"\f105"}.prod-calendar:before{content:"\f103"}.prod-games:before{content:"\f108"}.prod-contacts:before{content:"\f104"}.prod-inx:before{content:"\f10c"}.prod-news:before{content:"\f110"}.prod-pp:before{content:"\f112"}.prod-xtv:before{content:"\f114"}.prod-portal:before{content:"\f111"}
+.prod-mail:before{content:"\f10f"}.prod-business_eu:before{content:"\f102"}.prod-files:before{content:"\f106"}.prod-foto:before{content:"\f107"}.prod-dating:before{content:"\f105"}.prod-calendar:before{content:"\f103"}.prod-games:before{content:"\f108"}.prod-contacts:before{content:"\f104"}.prod-inx:before{content:"\f10c"}.prod-news:before{content:"\f110"}.prod-pp:before{content:"\f112"}.prod-xtv:before{content:"\f114"}
 .prod-pp,.prod-xtv{font-size:48px;width:auto;line-height:26px;overflow:hidden;height:26px}
 .ix-products hr{border:0;border-top:1px solid #d9d6d3;margin:12px 0 14px}
 .ix-premium{display:block!important;text-align:center;background:#cb0e22;color:#fff!important;font-size:17px;padding:10px 12px!important;border-radius:6px!important}.ix-premium:hover{background:#a90b1c!important}
