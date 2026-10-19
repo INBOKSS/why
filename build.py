@@ -41,15 +41,19 @@ def rel(from_path, to_path):
 
 CONTEST = 'https://inboxtalismans.lv/'
 UTM = 'utm_source=why.inbox.lv&utm_medium=header'
-# Same services and order as the www.inbox.lv toolbar.
-SERVICES = [('E-mail', '//login.inbox.lv/login?redirect_url=https%3A%2F%2Femail.inbox.lv%2Fmailbox'),
-            ('Business', 'https://www.inbox.eu/{eu}/?' + UTM),
-            ('Files', '//files.inbox.lv/?' + UTM),
-            ('Foto', '//foto.inbox.lv/?' + UTM)]
-MORE = SERVICES + [('Dating', '//dating.inbox.lv/?' + UTM), ('Calendar', '//calendar.inbox.lv/?' + UTM),
-                   ('Games', '//games.inbox.lv/?' + UTM), ('Contacts', '//contacts.inbox.lv/?' + UTM),
-                   ('Shortlink', '//inx.inbox.lv/?' + UTM), ('News', 'https://news.inbox.lv/?language={lang}&' + UTM),
-                   ('PP.lv', 'https://pp.lv/{lang}?' + UTM), ('XTV', 'https://xtv.lv/?' + UTM)]
+# Toolbar links; the rest sit in the More menu, in www.inbox.lv order (name, icon, url).
+SERVICES = [('E-mail', 'mail', '//login.inbox.lv/login?redirect_url=https%3A%2F%2Femail.inbox.lv%2Fmailbox'),
+            ('Business', 'business_eu', 'https://www.inbox.eu/{eu}/?' + UTM)]
+MORE = SERVICES + [('Files', 'files', '//files.inbox.lv/?' + UTM), ('Foto', 'foto', '//foto.inbox.lv/?' + UTM),
+                   ('Dating', 'dating', '//dating.inbox.lv/?' + UTM), ('Calendar', 'calendar', '//calendar.inbox.lv/?' + UTM),
+                   ('Games', 'games', '//games.inbox.lv/?' + UTM), ('Contacts', 'contacts', '//contacts.inbox.lv/?' + UTM),
+                   ('Shortlink', 'inx', '//inx.inbox.lv/?' + UTM), ('News', 'news', 'https://news.inbox.lv/?language={lang}&' + UTM),
+                   ('PP.lv', 'pp', 'https://pp.lv/{lang}?' + UTM), ('XTV', 'xtv', 'https://xtv.lv/?' + UTM),
+                   ('Advertising', 'ads', '//pricelist.inbox.lv/')]
+LOGO_ONLY = {'pp', 'xtv'}
+# The icon font has no advertising glyph; drawn to match its badge-shaped icons.
+MEGAPHONE = ('<svg class="ix-svg" aria-hidden="true" viewBox="0 0 28 28"><path d="M6 4.5h16q2.5 0 2.5 2.5v14q0 2.5-2.5 2.5H6Q3.5 23.5 3.5 21V7Q3.5 4.5 6 4.5z"/>'
+             '<path d="M8 12v4h2.5l5.5 3.5v-11L10.5 12zM19 11.5q1.5 2.5 0 5"/></svg>')  # their icon is the whole brand mark
 PREMIUM = 'https://billing.inbox.lv/premium/mail?' + UTM
 GLOBE = '<svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3"/></svg>'
 CHEVRON = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>'
@@ -60,19 +64,23 @@ def site_header(lang, page, here):
     """inbox.lv-style toolbar: logo, services, More menu, vote button, language picker."""
     t, h = I18N[lang], I18N[lang]['header']
     fill = lambda url: url.format(lang=lang if lang != 'et' else 'ee', eu=lang if lang in ('lv', 'ru') else 'en')
-    links = ''.join(f'<a class="ix-link" href="{e(fill(u))}">{n}</a>' for n, u in SERVICES)
-    more = ''.join(f'<a href="{e(fill(u))}">{n}</a>' for n, u in MORE)
+    links = ''.join(f'<a class="ix-link" href="{e(fill(u))}">{n}</a>' for n, _, u in SERVICES)
+    more = ''.join(
+        f'<a href="{e(fill(u))}"' + (f' aria-label="{n}"' if i in LOGO_ONLY else '')
+        + '>' + (MEGAPHONE if i == 'ads' else f'<span class="ix-ico prod-{i}" aria-hidden="true"></span>')
+        + ('' if i in LOGO_ONLY else n) + '</a>'
+        for n, i, u in MORE)
     langs = ''.join(
         f'<a href="{rel(here, path_for(code, page))}" hreflang="{code}" lang="{code}"'
         + (' aria-current="page"' if code == lang else '') + f'>{e(I18N[code]["name"])}</a>'
         for code in LANGS)
     themes = rel(here, path_for(lang, 'themes'))
+    cur = ' aria-current="page"'
     return f'''<header class="ix-header">
 <a class="ix-logo" href="{rel(here, path_for(lang, 'root'))}"><img src="{rel(here, '/assets/img/inbox-lv-logo.svg')}" alt="Inbox.lv" width="150" height="27"></a>
-<nav class="ix-nav" aria-label="{e(h["menu"])}"><a class="ix-link" href="https://www.inbox.lv/?{UTM}">{e(h["home"])}</a>{links}<a class="ix-link" href="//pricelist.inbox.lv/">Advertising</a><a class="ix-link contest" href="{CONTEST}">{e(h["contest"])} <span class="ix-badge">{e(h["new"])}</span></a>
-<details class="ix-more"><summary>{e(h["more"])}{CHEVRON}</summary><div class="ix-menu">{more}<a class="ix-premium" href="{PREMIUM}">{e(h["premium"])}</a></div></details></nav>
-<div class="ix-right"><a class="ix-vote" href="{themes}"{' aria-current="page"' if page == 'themes' else ''}>{BALLOT}{e(h["vote"])}</a>
-<details class="ix-lang"><summary aria-label="{e(t["languageNav"])}: {e(t["name"])}">{GLOBE}<span class="ix-name">{e(t["name"])}</span></summary><nav class="ix-menu" aria-label="{e(t["languageNav"])}">{langs}</nav></details></div>
+<nav class="ix-nav" aria-label="{e(h["menu"])}"><a class="ix-link home" href="https://www.inbox.lv/?{UTM}">{e(h["home"])}</a>{links}<a class="ix-link hot" href="{themes}"{cur if page == 'themes' else ''}>{BALLOT}{e(h["vote"])}<span class="ix-badge">{e(h["new"])}</span></a><a class="ix-link hot" href="{CONTEST}">{e(h["contest"])}<span class="ix-badge">{e(h["new"])}</span></a>
+<details class="ix-more"><summary>{e(h["more"])}{CHEVRON}</summary><div class="ix-menu ix-products"><div class="ix-grid">{more}</div><hr><a class="ix-premium" href="{PREMIUM}">{e(h["premium"])}</a></div></details></nav>
+<div class="ix-right"><details class="ix-lang"><summary aria-label="{e(t["languageNav"])}: {e(t["name"])}">{GLOBE}<span class="ix-name">{e(t["name"])}</span></summary><nav class="ix-menu" aria-label="{e(t["languageNav"])}">{langs}</nav</details></div>
 </header>
 '''
 
@@ -158,12 +166,16 @@ def root_page(lang):
                   + json.dumps(targets, separators=(',', ':'))
                   + ';if(m&&t[m[1].toLowerCase()])location.replace(t[m[1].toLowerCase()])})()</script>\n')
     extra = (f'<link rel="preload" href="{a("img/hero-background.jpg")}" as="image">\n'
-             f'<link rel="stylesheet" href="{a("header.css")}">\n'
-             f'<link rel="stylesheet" href="{a("site.css")}">\n'
+             f'<link rel="stylesheet" href="{a("header.css")}?v=4">\n'
+             f'<link rel="stylesheet" href="{a("site.css")}?v=4">\n'
              f'<script src="{a("header.js")}" defer></script>\n' + legacy)
     return head(lang, 'root', here, r, extra, json_ld) + f'''<body>
 <a class="skip" href="#main">{e(r["welcome"])}</a>
 {site_header(lang, 'root', here)}<main id="main">
+<div class="wrap promos">
+<section class="promo vote" aria-labelledby="vote-title"><h2 id="vote-title">{e(r["voteBanner"]["title"])}</h2><p>{e(r["voteBanner"]["text"])}</p><div class="swatches" aria-hidden="true">{swatches}</div><a class="btn btn-light" href="{themes}">{ballot}{e(r["voteBanner"]["button"])}</a></section>
+<section class="promo contest" aria-labelledby="contest-title"><h2 id="contest-title">{e(r["contestCard"]["title"])}</h2><p>{e(r["contestCard"]["text"])}</p><a class="btn btn-outline" href="{CONTEST}">{e(r["contestCard"]["button"])}</a></section>
+</div>
 <section class="hero"><div class="wrap hero-in">
 <div><h1><b>{e(r["heroBold"])}</b> {e(r["heroLight"])}</h1>
 <div class="hero-cta"><a class="btn btn-red" href="{signup}">{e(r["signUp"])}</a></div></div>
@@ -173,10 +185,6 @@ def root_page(lang):
 <h2 id="welcome">{e(r["welcome"])}</h2>
 <ul class="feature-grid">{features}</ul>
 </div></section>
-<div class="wrap promos">
-<section class="promo vote" aria-labelledby="vote-title"><h2 id="vote-title">{e(r["voteBanner"]["title"])}</h2><p>{e(r["voteBanner"]["text"])}</p><div class="swatches" aria-hidden="true">{swatches}</div><a class="btn btn-light" href="{themes}">{ballot}{e(r["voteBanner"]["button"])}</a></section>
-<section class="promo contest" aria-labelledby="contest-title"><h2 id="contest-title">{e(r["contestCard"]["title"])}</h2><p>{e(r["contestCard"]["text"])}</p><a class="btn btn-outline" href="{CONTEST}">{e(r["contestCard"]["button"])}</a></section>
-</div>
 <section class="reviews" aria-labelledby="reviews"><div class="wrap">
 <h2 id="reviews">{e(r["reviewsHeading"])}</h2>
 <ul class="review-grid">{reviews}</ul>
@@ -218,7 +226,7 @@ def themes_page(lang):
              {'@type': 'ListItem', 'position': 1, 'name': 'Inbox.lv', 'item': SITE + path_for(lang, 'root')},
              {'@type': 'ListItem', 'position': 2, 'name': th['title'], 'item': SITE + here}]}},
     ]}
-    extra = (f'<link rel="stylesheet" href="{rel(here, "/assets/header.css")}">\n'
+    extra = (f'<link rel="stylesheet" href="{rel(here, "/assets/header.css")}?v=4">\n'
              f'<link rel="stylesheet" href="{s("themes.css")}?v=6">\n'
              f'<script src="{rel(here, "/assets/header.js")}" defer></script>\n')
     return head(lang, 'themes', here, th, extra, json_ld) + f'''<body>
