@@ -1,4 +1,4 @@
-"""Build the static why.inbox.lv site from src/.
+"""Build the static why.inbokss.com site from src/.
 
 Run `python build.py` after editing src/i18n/*.json or the templates below.
 It writes the landing page and the theme vote page in every language, plus
@@ -10,11 +10,9 @@ import json
 import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent
-SITE = 'https://why.inbox.lv'
+SITE = 'https://why.inbokss.com'
 DEFAULT = 'lv'  # served without a language prefix
 LANGS = ['lv', 'en', 'ru', 'lt', 'et']
-# Legacy ?language= values on the old why.inbox.lv
-LEGACY = {'lv': 'lv', 'en': 'en', 'ru': 'ru', 'lt': 'lt', 'ee': 'et', 'et': 'et'}
 SIGNUP = '//login.inbox.lv/signup?go=portal&language={lang}'
 SIGNIN = 'https://www.inbox.lv/'
 GOOGLE_PLAY = 'https://play.google.com/store/apps/details?id=lv.inbox.mailapp&hl={lang}'
@@ -40,7 +38,7 @@ def rel(from_path, to_path):
 
 
 CONTEST = 'https://inboxtalismans.lv/'
-UTM = 'utm_source=why.inbox.lv&utm_medium=header'
+UTM = 'utm_source=why.inbokss.com&utm_medium=header'
 # Toolbar links; the rest sit in the More menu, in www.inbox.lv order (name, icon, url).
 SERVICES = [('E-mail', 'mail', '//login.inbox.lv/login?redirect_url=https%3A%2F%2Femail.inbox.lv%2Fmailbox'),
             ('Business', 'business_eu', 'https://www.inbox.eu/{eu}/?' + UTM)]
@@ -153,17 +151,10 @@ def root_page(lang):
          'applicationCategory': 'CommunicationApplication', 'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'EUR'},
          'downloadUrl': [GOOGLE_PLAY.format(lang=lang), APP_STORE], 'publisher': {'@id': 'https://www.inbox.lv/#organization'}},
     ]}
-    legacy = ''
-    if lang == DEFAULT:
-        # Old links used /?language=xx; send them to the new language folder.
-        targets = {k: path_for(v, 'root').lstrip('/') for k, v in LEGACY.items() if v != DEFAULT}
-        legacy = ('<script>(function(){var m=/[?&]language=(\\w+)/.exec(location.search),t='
-                  + json.dumps(targets, separators=(',', ':'))
-                  + ';if(m&&t[m[1].toLowerCase()])location.replace(t[m[1].toLowerCase()])})()</script>\n')
     extra = (f'<link rel="preload" href="{a("img/hero-background.jpg")}" as="image">\n'
              f'<link rel="stylesheet" href="{a("header.css")}?v=5">\n'
              f'<link rel="stylesheet" href="{a("site.css")}?v=5">\n'
-             f'<script src="{a("header.js")}" defer></script>\n' + legacy)
+             f'<script src="{a("header.js")}" defer></script>\n')
     return head(lang, 'root', here, r, extra, json_ld) + f'''<body>
 <a class="skip" href="#main">{e(r["welcome"])}</a>
 {site_header(lang, 'root', here)}<main id="main">
@@ -284,7 +275,7 @@ def llms():
     en = I18N['en']
     lines = ['# Inbox.lv', '',
              '> Inbox.lv is a free Latvian email service (webmail and mobile apps for Android and iOS). '
-             'This site, why.inbox.lv, explains why to choose Inbox.lv and hosts an open vote on new colour themes for Inbox.lv mail.', '',
+             'This site, why.inbokss.com, explains why to choose Inbox.lv and hosts an open vote on new colour themes for Inbox.lv mail.', '',
              '## Key facts', '']
     lines += [f'- {title}: {text}' for title, text in en['root']['features']]
     lines += ['', '## Pages', '']

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://why.inbox.lv/sitemap.xml
+Sitemap: https://why.inbokss.com/sitemap.xml

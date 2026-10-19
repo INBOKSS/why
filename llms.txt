@@ -1,6 +1,6 @@
 # Inbox.lv
 
-> Inbox.lv is a free Latvian email service (webmail and mobile apps for Android and iOS). This site, why.inbox.lv, explains why to choose Inbox.lv and hosts an open vote on new colour themes for Inbox.lv mail.
+> Inbox.lv is a free Latvian email service (webmail and mobile apps for Android and iOS). This site, why.inbokss.com, explains why to choose Inbox.lv and hosts an open vote on new colour themes for Inbox.lv mail.
 
 ## Key facts
 
@@ -13,16 +13,16 @@
 
 ## Pages
 
-- [Inbox.lv – bezmaksas e-pasts no mīlētākā pašmāju zīmola](https://why.inbox.lv/) (Latviešu)
-- [Inbox.lv – free email from the most loved Latvian brand](https://why.inbox.lv/en/) (English)
-- [Inbox.lv – бесплатная почта от самого любимого латвийского бренда](https://why.inbox.lv/ru/) (Русский)
-- [Inbox.lv – nemokamas el. paštas iš mylimiausio Latvijos prekės ženklo](https://why.inbox.lv/lt/) (Lietuvių)
-- [Inbox.lv – tasuta e-post kõige armastatumalt Läti kaubamärgilt](https://why.inbox.lv/et/) (Eesti)
-- [Balsojiet par jaunajām Inbox.lv e-pasta tēmām](https://why.inbox.lv/themes/) (Latviešu)
-- [Vote for the new Inbox.lv mail themes](https://why.inbox.lv/en/themes/) (English)
-- [Голосуйте за новые темы почты Inbox.lv](https://why.inbox.lv/ru/themes/) (Русский)
-- [Balsuokite už naujas Inbox.lv pašto temas](https://why.inbox.lv/lt/themes/) (Lietuvių)
-- [Hääleta Inbox.lv posti uute teemade poolt](https://why.inbox.lv/et/themes/) (Eesti)
+- [Inbox.lv – bezmaksas e-pasts no mīlētākā pašmāju zīmola](https://why.inbokss.com/) (Latviešu)
+- [Inbox.lv – free email from the most loved Latvian brand](https://why.inbokss.com/en/) (English)
+- [Inbox.lv – бесплатная почта от самого любимого латвийского бренда](https://why.inbokss.com/ru/) (Русский)
+- [Inbox.lv – nemokamas el. paštas iš mylimiausio Latvijos prekės ženklo](https://why.inbokss.com/lt/) (Lietuvių)
+- [Inbox.lv – tasuta e-post kõige armastatumalt Läti kaubamärgilt](https://why.inbokss.com/et/) (Eesti)
+- [Balsojiet par jaunajām Inbox.lv e-pasta tēmām](https://why.inbokss.com/themes/) (Latviešu)
+- [Vote for the new Inbox.lv mail themes](https://why.inbokss.com/en/themes/) (English)
+- [Голосуйте за новые темы почты Inbox.lv](https://why.inbokss.com/ru/themes/) (Русский)
+- [Balsuokite už naujas Inbox.lv pašto temas](https://why.inbokss.com/lt/themes/) (Lietuvių)
+- [Hääleta Inbox.lv posti uute teemade poolt](https://why.inbokss.com/et/themes/) (Eesti)
 
 ## Actions
 
@@ -30,4 +30,4 @@
 - Sign in to webmail: https://www.inbox.lv/
 - Android app: https://play.google.com/store/apps/details?id=lv.inbox.mailapp&hl=en
 - iOS app: https://apps.apple.com/lv/app/inbox.lv/id580527910
-- Vote for new mail themes (no account needed): https://why.inbox.lv/en/themes/
+- Vote for new mail themes (no account needed): https://why.inbokss.com/en/themes/

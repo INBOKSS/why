@@ -1,14 +1,12 @@
-# why.inbox.lv
+# why.inbokss.com
 
-Static site served by GitHub Pages at **https://why.inbox.lv** (see `CNAME`).
+Static site served by GitHub Pages at **https://why.inbokss.com** (see `CNAME`).
 
 | URL | Page |
 | --- | --- |
 | `/`, `/en/`, `/ru/`, `/lt/`, `/et/` | Landing page "Why Inbox.lv" (Latvian is the default, served at `/`) |
 | `/themes/`, `/en/themes/`, … | Vote for the new Inbox Mail colour themes |
 | `/themes/stats/` | Live aggregate vote statistics (English only) |
-
-Old links of the form `/?language=xx` (including `ee`) are redirected to the matching language folder.
 
 ## Editing
 
