@@ -37,7 +37,11 @@ button{cursor:pointer}
 .logo img{height:26px;width:auto;display:block}
 .chips.err{outline:2px solid var(--red);outline-offset:8px;border-radius:14px}
 .beta{font:600 11px/1 var(--text);background:var(--ink);color:#fff;border-radius:99px;padding:4px 8px;margin-left:6px;vertical-align:3px;letter-spacing:.02em}
-.count{margin-left:auto;font-weight:600;font-size:14px;color:var(--muted);white-space:nowrap}
+.count{font-weight:600;font-size:14px;color:var(--muted);white-space:nowrap}
+.lang{margin-left:auto;display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:99px;padding:2px;flex:none}
+.lang button{border:0;background:none;border-radius:99px;min-width:38px;min-height:34px;padding:0 8px;font-weight:700;font-size:13px;color:var(--muted)}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+@media(max-width:420px){.bar-in{gap:8px;padding:10px 12px}.logo img{height:22px}.bar .btn{padding:0 14px}.lang button{min-width:34px}}
 .count b{color:var(--ink)}
 .btn{border:0;border-radius:99px;font-weight:700;min-height:44px;padding:0 20px;transition:transform .12s,background .15s,opacity .15s}
 .btn:active{transform:scale(.97)}
@@ -161,54 +165,55 @@ footer button{background:none;border:0;text-decoration:underline;color:inherit;p
 <div class="bar">
   <div class="bar-in">
     <div class="logo"><img src="assets/logo.png" alt="inbox.lv" width="150" height="26"></div>
+    <div class="lang" role="group" aria-label="Language / Valoda"><button type="button" data-lang="lv" aria-pressed="true">LV</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
     <div class="count" id="count" aria-live="polite"></div>
-    <button class="btn btn-dark" id="jump" disabled>Beigt</button>
+    <button class="btn btn-dark" id="jump" data-i18n="jump" disabled>Beigt</button>
   </div>
   <div class="track"><i id="track"></i></div>
 </div>
 
 <div class="layout">
-  <aside class="live" aria-label="Jaunā portāla prototips">
-    <div class="phone"><div class="phone-scroll" tabindex="0"><img src="assets/portal.webp" alt="Jaunā inbox.lv portāla prototips, visa lapa" width="375" height="2836"></div></div>
-    <p>👆 Paskrolē un izmēģini</p>
+  <aside class="live" data-i18n-aria="phone.aria" aria-label="Jaunā portāla prototips">
+    <div class="phone"><div class="phone-scroll" tabindex="0"><img src="assets/portal.webp" data-i18n-alt="phone.alt" alt="Jaunā inbox.lv portāla prototips, visa lapa" width="375" height="2836"></div></div>
+    <p data-i18n="phone.cap">👆 Paskrolē un izmēģini</p>
   </aside>
 
   <main class="flow" id="flow">
     <!-- FORM -->
     <div id="form" class="flow">
       <section class="hero">
-        <h1>Inbox.lv jauniešiem: <em>kā tev patīk?</em></h1>
-        <p>Pirms palaižam jauno portālu, gribam zināt, ko domā tu. Pasaki, kas patīk un kas ne - tas aizņems tikai 1 minūti.</p>
+        <h1 data-i18n-html="h1">Inbox.lv jauniešiem: <em>kā tev patīk?</em></h1>
+        <p data-i18n="intro">Pirms palaižam jauno portālu, gribam zināt, ko domā tu. Pasaki, kas patīk un kas ne - tas aizņems tikai 1 minūti.</p>
         <div class="row">
-          <button class="btn btn-red" id="start">Sākt ↓</button>
-          <a class="btn btn-ghost" style="display:inline-flex;align-items:center;text-decoration:none" href="https://inbox-new-portal.lovable.app/m2" target="_blank" rel="noopener">Atvērt prototipa lapu ↗</a>
+          <button class="btn btn-red" id="start" data-i18n="start">Sākt ↓</button>
+          <a class="btn btn-ghost" style="display:inline-flex;align-items:center;text-decoration:none" href="https://inbox-new-portal.lovable.app/m2" target="_blank" rel="noopener" data-i18n="openProto">Atvērt prototipa lapu ↗</a>
         </div>
-        <div class="pills"><span class="pill">⏱ ~1 min</span><span class="pill">🕶 Anonīmi</span></div>
+        <div class="pills"><span class="pill" data-i18n="pill.time">⏱ ~1 min</span><span class="pill" data-i18n="pill.anon">🕶 Anonīmi</span></div>
       </section>
 
       <div id="cards" class="flow"></div>
 
       <section class="card" id="ideas">
-        <h2 class="big">Ko vēl gribētu? ✨</h2>
-        <p class="lead">Izvēlies līdz 3 lietām, ko vēlētos redzēt jaunajā inbox.lv.</p>
+        <h2 class="big" data-i18n="ideas.h">Ko vēl gribētu? ✨</h2>
+        <p class="lead" data-i18n="ideas.lead">Izvēlies līdz 3 lietām, ko vēlētos redzēt jaunajā inbox.lv.</p>
         <div class="chips" id="ideaChips"></div>
         <p class="hint" id="ideaHint">Izvēlēts 0 no 3</p>
       </section>
 
       <section class="card" id="final">
-        <h2 class="big">Kopējais iespaids</h2>
-        <p class="lead">Kā tev šķiet jaunā lapa kopumā?</p>
-        <div class="scale" id="scale" role="group" aria-label="Kopējais vērtējums"></div>
-        <div class="scale-l"><span>Nepatīk</span><span>Super!</span></div>
+        <h2 class="big" data-i18n="final.h">Kopējais iespaids</h2>
+        <p class="lead" data-i18n="final.lead">Kā tev šķiet jaunā lapa kopumā?</p>
+        <div class="scale" id="scale" role="group" data-i18n-aria="final.aria" aria-label="Kopējais vērtējums"></div>
+        <div class="scale-l"><span data-i18n="scale.lo">Nepatīk</span><span data-i18n="scale.hi">Super!</span></div>
 
-        <span class="label" id="ageLabel">Cik tev gadu?</span>
+        <span class="label" id="ageLabel" data-i18n="age.label">Cik tev gadu?</span>
         <div class="chips" id="ageChips"></div>
 
-        <label class="label" for="comment">Vēl kaut kas? <small style="font-weight:400;color:var(--muted)">(nav obligāti)</small></label>
-        <textarea class="area" id="comment" rows="3" maxlength="600" placeholder="Idejas, kļūdas, kas traucē vai kas jāpievieno…" style="margin-top:0"></textarea>
+        <label class="label" for="comment"><span data-i18n="comment.label">Vēl kaut kas?</span> <small style="font-weight:400;color:var(--muted)" data-i18n="optional">(nav obligāti)</small></label>
+        <textarea class="area" id="comment" rows="3" maxlength="600" data-i18n-ph="comment.ph" placeholder="Idejas, kļūdas, kas traucē vai kas jāpievieno…" style="margin-top:0"></textarea>
 
-        <button class="btn btn-red submit" id="submit">Nosūtīt atbildes</button>
-        <p class="anon">Paldies par Tavu viedokli! &lt;3</p>
+        <button class="btn btn-red submit" id="submit" data-i18n="submit">Nosūtīt atbildes</button>
+        <p class="anon" data-i18n="thanks.foot">Paldies par Tavu viedokli! &lt;3</p>
       </section>
     </div>
 
@@ -218,56 +223,62 @@ footer button{background:none;border:0;text-decoration:underline;color:inherit;p
 </div>
 
 <footer>
-  <button id="toggleRes">Skatīt rezultātus</button>
+  <button id="toggleRes" data-i18n="foot.results">Skatīt rezultātus</button>
 </footer>
 <div class="toast" id="toast" role="status"></div>
 
 <script src="config.js"></script>
 <script src="survey-core.js"></script>
+<script src="i18n.js"></script>
 <script>
-const LIVE_URL = 'https://inbox-new-portal.lovable.app/m2';
-const {SECTIONS, TAGS, Q, VOTES, IDEAS, SCALE, AGES, MAX_IDEAS, LS, store, aggregate, lv, esc, topN} = Survey;   // sadaļas, teksti un datu glabāšana: survey-core.js
+const {SECTIONS, TAGS, VOTES, IDEAS, SCALE, AGES, MAX_IDEAS, LS, store, aggregate, esc, topN,
+       t, tr, pl, secT, secS, onLang, applyStatic} = Survey;   // sadaļas, teksti, datu glabāšana: survey-core.js; valodas: i18n.js
 
 const $ = (s, r=document) => r.querySelector(s);
-const el = (h) => { const t = document.createElement('template'); t.innerHTML = h.trim(); return t.content.firstElementChild; };
+const el = (h) => { const tpl = document.createElement('template'); tpl.innerHTML = h.trim(); return tpl.content.firstElementChild; };
 const params = new URLSearchParams(location.search);
 
 let state = LS.get('inbox_fb_draft', null) || {sections:{}, ideas:[], overall:null, age:null, comment:''};
 const save = () => LS.set('inbox_fb_draft', state);
 
-/* ---------- render cards ---------- */
+/* ---------- kartītes ---------- */
 const cardsEl = $('#cards');
-SECTIONS.forEach((s, i) => {
-  const card = el(`
-    <article class="card" id="c-${s.id}" data-id="${s.id}" style="animation-delay:${Math.min(i,4)*60}ms">
-      <div class="card-head">
-        <span class="num">${i+1}</span>
-        <div><h2>${s.title}</h2><p>${s.sub}</p></div>
-        <span class="done" aria-hidden="true">✓</span>
-      </div>
-      <figure class="shot"><img src="assets/${s.id}.webp" alt="Ekrānšāvums: ${s.title}" width="375" height="${s.h}" loading="${i<2?'eager':'lazy'}"></figure>
-      <div class="votes" role="group" aria-label="Tavs vērtējums: ${s.title}">
-        ${VOTES.map(o=>`<button type="button" class="vote ${o.v}" data-v="${o.v}" aria-pressed="false"><span class="e">${o.e}</span><span>${o.t}</span></button>`).join('')}
-      </div>
-      <div class="more"><div inert><div class="more-in">
-        <p class="more-q"></p>
-        <div class="chips"></div>
-        <input class="note" type="text" maxlength="200" placeholder="Pastāsti vairāk (nav obligāti)" aria-label="Komentārs: ${s.title}">
-        <button type="button" class="next">Tālāk ↓</button>
-      </div></div></div>
-    </article>`);
-  cardsEl.appendChild(card);
-});
+function renderCards(animate){
+  cardsEl.innerHTML = '';
+  SECTIONS.forEach((s, i) => {
+    const title = esc(secT(s));
+    const card = el(`
+      <article class="card" id="c-${s.id}" data-id="${s.id}" style="${animate ? 'animation-delay:' + Math.min(i,4)*60 + 'ms' : 'animation:none'}">
+        <div class="card-head">
+          <span class="num">${i+1}</span>
+          <div><h2>${title}</h2><p>${esc(secS(s))}</p></div>
+          <span class="done" aria-hidden="true">✓</span>
+        </div>
+        <figure class="shot"><img src="assets/${s.id}.webp" alt="${esc(t('card.img.alt', {t: secT(s)}))}" width="375" height="${s.h}" loading="${i<2?'eager':'lazy'}"></figure>
+        <div class="votes" role="group" aria-label="${esc(t('card.votes.aria', {t: secT(s)}))}">
+          ${VOTES.map(o=>`<button type="button" class="vote ${o.v}" data-v="${o.v}" aria-pressed="false"><span class="e">${o.e}</span><span>${t('vote.' + o.v)}</span></button>`).join('')}
+        </div>
+        <div class="more"><div inert><div class="more-in">
+          <p class="more-q"></p>
+          <div class="chips"></div>
+          <input class="note" type="text" maxlength="200" placeholder="${esc(t('card.note.ph'))}" aria-label="${esc(t('card.note.aria', {t: secT(s)}))}">
+          <button type="button" class="next">${t('card.next')}</button>
+        </div></div></div>
+      </article>`);
+    cardsEl.appendChild(card);
+  });
+}
 
 function tagsFor(s, v){ return [...(s[v] || []), ...TAGS[v]].slice(0, 7); }
 function setChips(card, s, v){
   const wrap = $('.chips', card); wrap.innerHTML = '';
   const cur = state.sections[s.id]?.tags || [];
-  tagsFor(s, v).forEach(t => {
-    const b = el(`<button type="button" class="chip" aria-pressed="${cur.includes(t)}"></button>`);
-    b.textContent = t; wrap.appendChild(b);
+  tagsFor(s, v).forEach(tag => {
+    const b = el(`<button type="button" class="chip" aria-pressed="${cur.includes(tag)}"></button>`);
+    b.textContent = tr(tag); b.dataset.v = tag;      // v = kanoniskais (latviešu) teksts, ko glabā datubāzē
+    wrap.appendChild(b);
   });
-  $('.more-q', card).textContent = Q[v];
+  $('.more-q', card).textContent = t('q.' + v);
 }
 
 function paintCard(card){
@@ -283,7 +294,7 @@ function paintCard(card){
 
 cardsEl.addEventListener('click', e => {
   const card = e.target.closest('.card'); if(!card) return;
-  const id = card.dataset.id, s = SECTIONS.find(x=>x.id===id);
+  const id = card.dataset.id;
   const vote = e.target.closest('.vote');
   if(vote){
     const prev = state.sections[id]?.vote;
@@ -301,7 +312,7 @@ cardsEl.addEventListener('click', e => {
     const a = state.sections[id]; if(!a) return;
     const on = chip.getAttribute('aria-pressed') !== 'true';
     chip.setAttribute('aria-pressed', String(on));
-    a.tags = on ? [...a.tags, chip.textContent] : a.tags.filter(t => t !== chip.textContent);
+    a.tags = on ? [...a.tags, chip.dataset.v] : a.tags.filter(x => x !== chip.dataset.v);
     save(); return;
   }
   if(e.target.closest('.next')){
@@ -315,29 +326,35 @@ cardsEl.addEventListener('input', e => {
   if(state.sections[id]){ state.sections[id].note = e.target.value; save(); }
 });
 
-/* ---------- ideas / scale / age / comment ---------- */
+/* ---------- idejas / vērtējums / vecums / komentārs ---------- */
 const ideaWrap = $('#ideaChips');
-IDEAS.forEach(([e, t]) => {
-  const b = el(`<button type="button" class="chip" aria-pressed="false"></button>`);
-  b.textContent = `${e} ${t}`; b.dataset.t = t; ideaWrap.appendChild(b);
-});
+function renderIdeas(){
+  ideaWrap.innerHTML = '';
+  IDEAS.forEach(([e, canon]) => {
+    const b = el(`<button type="button" class="chip" aria-pressed="false"></button>`);
+    b.textContent = `${e} ${tr(canon)}`; b.dataset.t = canon; ideaWrap.appendChild(b);
+  });
+}
 ideaWrap.addEventListener('click', e => {
   const b = e.target.closest('.chip'); if(!b) return;
-  const t = b.dataset.t, on = state.ideas.includes(t);
-  if(on) state.ideas = state.ideas.filter(x => x !== t);
+  const canon = b.dataset.t, on = state.ideas.includes(canon);
+  if(on) state.ideas = state.ideas.filter(x => x !== canon);
   else if(state.ideas.length >= MAX_IDEAS){
-    const h = $('#ideaHint'); h.classList.add('warn'); h.textContent = `Maksimums ${MAX_IDEAS} - noņem kādu, lai izvēlētos citu`;
+    const h = $('#ideaHint'); h.classList.add('warn'); h.textContent = t('ideas.max', {max: MAX_IDEAS});
     b.classList.remove('shake'); void b.offsetWidth; b.classList.add('shake'); return;
-  } else state.ideas.push(t);
+  } else state.ideas.push(canon);
   paintIdeas(); save(); update();
 });
 function paintIdeas(){
   ideaWrap.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', String(state.ideas.includes(b.dataset.t))));
-  const h = $('#ideaHint'); h.classList.remove('warn'); h.textContent = `Izvēlēts ${state.ideas.length} no ${MAX_IDEAS}`;
+  const h = $('#ideaHint'); h.classList.remove('warn'); h.textContent = t('ideas.hint', {n: state.ideas.length, max: MAX_IDEAS});
 }
 
 const scaleEl = $('#scale');
-SCALE.forEach((e, i) => { const b = el(`<button type="button" aria-pressed="false" aria-label="${i+1} no 5">${e}</button>`); b.dataset.n = i+1; scaleEl.appendChild(b); });
+function renderScale(){
+  scaleEl.innerHTML = '';
+  SCALE.forEach((e, i) => { const b = el(`<button type="button" aria-pressed="false" aria-label="${esc(t('scale.n', {n: i+1}))}">${e}</button>`); b.dataset.n = i+1; scaleEl.appendChild(b); });
+}
 scaleEl.addEventListener('click', e => {
   const b = e.target.closest('button'); if(!b) return;
   state.overall = state.overall === +b.dataset.n ? null : +b.dataset.n;
@@ -346,54 +363,56 @@ scaleEl.addEventListener('click', e => {
 function paintScale(){ scaleEl.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.n === state.overall))); }
 
 const ageWrap = $('#ageChips');
-AGES.forEach(t => { const b = el(`<button type="button" class="chip" aria-pressed="false"></button>`); b.textContent = t; ageWrap.appendChild(b); });
+function renderAges(){
+  ageWrap.innerHTML = '';
+  AGES.forEach(a => { const b = el(`<button type="button" class="chip" aria-pressed="false"></button>`); b.textContent = tr(a); b.dataset.v = a; ageWrap.appendChild(b); });
+}
 ageWrap.addEventListener('click', e => {
   const b = e.target.closest('.chip'); if(!b) return;
-  state.age = state.age === b.textContent ? null : b.textContent; ageWrap.classList.remove('err'); paintAge(); save();
+  state.age = state.age === b.dataset.v ? null : b.dataset.v; ageWrap.classList.remove('err'); paintAge(); save();
 });
-function paintAge(){ ageWrap.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', String(b.textContent === state.age))); }
+function paintAge(){ ageWrap.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === state.age))); }
 $('#comment').addEventListener('input', e => { state.comment = e.target.value; save(); });
 
 /* ---------- progress ---------- */
 const answeredCount = () => SECTIONS.filter(s => state.sections[s.id]?.vote).length;
 function update(){
   const n = answeredCount(), total = SECTIONS.length;
-  $('#count').innerHTML = `<b>${n}</b> no ${total}`;
+  $('#count').innerHTML = `<b>${n}</b>/${total}`;
   $('#track').style.width = (n/total*100) + '%';
   $('#jump').disabled = n === 0 && !state.overall;
-  $('#jump').textContent = n === total ? 'Nosūtīt' : 'Beigt';
+  $('#jump').textContent = n === total ? t('jump.send') : t('jump');
 }
 $('#jump').addEventListener('click', () => $('#final').scrollIntoView({behavior:'smooth'}));
 $('#start').addEventListener('click', () => $('#c-' + SECTIONS[0].id).scrollIntoView({behavior:'smooth'}));
 
 function toast(msg){
-  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
-  clearTimeout(toast.id); toast.id = setTimeout(() => t.classList.remove('show'), 2600);
+  const tt = $('#toast'); tt.textContent = msg; tt.classList.add('show');
+  clearTimeout(toast.id); toast.id = setTimeout(() => tt.classList.remove('show'), 2600);
 }
 
 const deviceType = () => /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? 'mobile' : 'desktop';
 
 $('#submit').addEventListener('click', async () => {
-  if(answeredCount() === 0 && !state.overall){ toast('Novērtē vismaz vienu sadaļu 👆'); $('#cards').scrollIntoView({behavior:'smooth'}); return; }
+  if(answeredCount() === 0 && !state.overall){ toast(t('toast.section')); $('#cards').scrollIntoView({behavior:'smooth'}); return; }
   if(!state.age){
-    toast('Norādi savu vecumu 👆'); ageWrap.classList.add('err');
+    toast(t('toast.age')); ageWrap.classList.add('err');
     $('#ageLabel').scrollIntoView({behavior:'smooth', block:'center'});
     ageWrap.classList.remove('shake'); void ageWrap.offsetWidth; ageWrap.classList.add('shake'); return;
   }
-  const btn = $('#submit'); btn.disabled = true; btn.textContent = 'Sūtām…';
+  const btn = $('#submit'); btn.disabled = true; btn.textContent = t('sending');
   const resp = {
     id: Math.random().toString(36).slice(2, 10), ts: new Date().toISOString(), device: deviceType(),
     sections: state.sections, ideas: state.ideas, overall: state.overall, age: state.age, comment: state.comment.trim(),
   };
   const mode = await store.submit(resp);
-  btn.disabled = false; btn.textContent = 'Nosūtīt atbildes';
-  if(mode === 'error'){ toast('Neizdevās nosūtīt, pamēģini vēlreiz'); return; }
+  btn.disabled = false; btn.textContent = t('submit');
+  if(mode === 'error'){ toast(t('toast.fail')); return; }
   LS.set('inbox_fb_done', resp.id); LS.del('inbox_fb_draft');
   showResults(true, mode);
 });
 
 /* ---------- rezultāti ---------- */
-
 function demoData(){
   const rs = [], rnd = (a) => a[Math.floor(Math.random()*a.length)];
   for(let i=0;i<48;i++){
@@ -404,10 +423,14 @@ function demoData(){
   return rs;
 }
 
-async function showResults(justSent=false, sendMode){
+let resCtx = null;   // pēdējie rezultātu parametri, lai pārzīmētu pēc valodas maiņas
+function setFooter(){ $('#toggleRes').textContent = $('#results').hidden ? t('foot.results') : t('foot.back'); }
+
+async function showResults(justSent=false, sendMode, quiet=false){
+  resCtx = {justSent, sendMode};
   $('#form').hidden = true; $('#count').hidden = $('#jump').hidden = true; const box = $('#results'); box.hidden = false;
-  $('#toggleRes').textContent = 'Atpakaļ uz aptauju';
-  box.innerHTML = '<div class="card"><p class="lead" style="margin:0">Ielādējam…</p></div>';
+  setFooter();
+  if(!quiet) box.innerHTML = `<div class="card"><p class="lead" style="margin:0">${t('res.loading')}</p></div>`;
   const {list} = await store.loadPublic();
   const data = params.has('demo') ? demoData() : list;
   const ag = aggregate(data);
@@ -416,63 +439,72 @@ async function showResults(justSent=false, sendMode){
 
   let html = '';
   if(justSent){
-    html += `<section class="hero"><h1>Paldies! <em>💛</em></h1><p>Tavas atbildes ir saņemtas. Zemāk - ko domā citi jaunieši.</p>
-      ${sendMode === 'local' ? '<p class="hint warn">Serveris nav pieejams - atbildes saglabātas tikai šajā ierīcē.</p>' : ''}${sendMode === 'queued' ? '<p class="hint warn">Nav interneta - atbildes nosūtīsim, tiklīdz savienojums atjaunosies. Neaizver lapu.</p>' : ''}</section>`;
+    html += `<section class="hero"><h1>${t('res.thanks.h')}</h1><p>${t('res.thanks.p')}</p>
+      ${sendMode === 'local' ? `<p class="hint warn">${t('res.warn.local')}</p>` : ''}${sendMode === 'queued' ? `<p class="hint warn">${t('res.warn.queued')}</p>` : ''}</section>`;
   } else {
-    html += `<section class="hero"><h1>Rezultāti <em>📊</em></h1><p>${ag.n ? `Atbildējuši <b>${ag.n}</b> jaunieši.` : 'Vēl nav neviena atbilde.'}${params.has('demo') ? ' (demo dati)' : ''}</p></section>`;
+    html += `<section class="hero"><h1>${t('res.h')}</h1><p>${ag.n ? t('res.count', {n: ag.n}) : t('res.none')}${params.has('demo') ? t('res.demo') : ''}</p></section>`;
   }
-  if(!ag.n){ html += '<section class="card"><p class="lead" style="margin:0">Kad kāds atbildēs, te parādīsies rezultāti.</p></section>'; box.innerHTML = html; addBack(box); return; }
+  if(!ag.n){ html += `<section class="card"><p class="lead" style="margin:0">${t('res.empty')}</p></section>`; box.innerHTML = html; addBack(box); return; }
 
-  html += `<section class="card"><h2 class="big">Kopējais iespaids</h2>
+  html += `<section class="card"><h2 class="big">${t('final.h')}</h2>
     <div style="display:flex;align-items:center;gap:14px;margin-top:8px"><span class="big-n">${avg ? avg.toFixed(1) : '-'}</span>
-    <div><div style="font-size:28px">${avg ? SCALE[Math.round(avg)-1] : ''}</div><div class="hint" style="margin:0">no 5 · ${ag.overall.n} ${lv(ag.overall.n,"vērtējums","vērtējumi")}</div></div></div></section>`;
+    <div><div style="font-size:28px">${avg ? SCALE[Math.round(avg)-1] : ''}</div><div class="hint" style="margin:0">${t('res.rating.of', {n: ag.overall.n, w: pl(ag.overall.n, 'rating')})}</div></div></div></section>`;
 
-  html += `<section class="card"><h2 class="big">Pa sadaļām</h2><p class="lead">Zaļš - patīk, dzeltens - normāli, sarkans - nepatīk.</p>`;
+  html += `<section class="card"><h2 class="big">${t('res.bysec')}</h2><p class="lead">${t('res.legend')}</p>`;
   const order = SECTIONS.map(s => ({s, a: ag.sections[s.id]})).map(x => ({...x, tot: x.a.like + x.a.ok + x.a.dislike}))
     .sort((x,y) => (y.a.like - y.a.dislike) / (y.tot||1) - (x.a.like - x.a.dislike) / (x.tot||1));
   order.forEach(({s, a, tot}) => {
     const pc = k => tot ? Math.round(a[k]/tot*100) : 0;
     const likes = topN(a.tags.like), dis = topN(a.tags.dislike);
-    html += `<div class="res-sec"><div class="res-top"><b>${s.title}</b><span>${tot} ${lv(tot,"balss","balsis")}</span></div>
-      <div class="stack" role="img" aria-label="Patīk ${pc('like')}%, normāli ${pc('ok')}%, nepatīk ${pc('dislike')}%">
+    html += `<div class="res-sec"><div class="res-top"><b>${esc(secT(s))}</b><span>${tot} ${pl(tot, 'votes')}</span></div>
+      <div class="stack" role="img" aria-label="${esc(t('res.aria', {a: pc('like'), b: pc('ok'), c: pc('dislike')}))}">
         ${tot ? `<div class="l" style="flex:${a.like}">${pc('like') >= 12 ? pc('like')+'%' : ''}</div><div class="o" style="flex:${a.ok}">${pc('ok') >= 12 ? pc('ok')+'%' : ''}</div><div class="d" style="flex:${a.dislike}">${pc('dislike') >= 12 ? pc('dislike')+'%' : ''}</div>` : ''}
       </div>
-      <div class="res-tags">${likes.length ? `<span>😍 ${likes.map(([t,n]) => esc(t)+' ×'+n).join(' · ')}</span>` : ''}${dis.length ? `<span>👎 ${dis.map(([t,n]) => esc(t)+' ×'+n).join(' · ')}</span>` : ''}</div></div>`;
+      <div class="res-tags">${likes.length ? `<span>😍 ${likes.map(([k,n]) => esc(tr(k))+' ×'+n).join(' · ')}</span>` : ''}${dis.length ? `<span>👎 ${dis.map(([k,n]) => esc(tr(k))+' ×'+n).join(' · ')}</span>` : ''}</div></div>`;
   });
   html += '</section>';
 
   const ideas = topN(ag.ideas, 12);
   if(ideas.length){
-    html += `<section class="card"><h2 class="big">Ko vēl grib ✨</h2><p class="lead">Populārākās idejas.</p><div class="rank">` +
-      ideas.map(([t,n]) => { const e = (IDEAS.find(x => x[1] === t) || ['',''])[0]; return `<div><i style="transform:scaleX(${n/maxIdea})"></i><span>${e} ${esc(t)}</span><span>${n}</span></div>`; }).join('') + `</div></section>`;
+    html += `<section class="card"><h2 class="big">${t('res.want')}</h2><p class="lead">${t('res.popular')}</p><div class="rank">` +
+      ideas.map(([k,n]) => { const e = (IDEAS.find(x => x[1] === k) || ['',''])[0]; return `<div><i style="transform:scaleX(${n/maxIdea})"></i><span>${e} ${esc(tr(k))}</span><span>${n}</span></div>`; }).join('') + `</div></section>`;
   }
 
   box.innerHTML = html;
   addBack(box);
-  if(justSent) window.scrollTo({top:0, behavior:'smooth'});
+  if(justSent && !quiet) window.scrollTo({top:0, behavior:'smooth'});
 }
 function addBack(box){
-  box.appendChild(el(`<button class="btn btn-ghost" type="button" style="justify-self:center">${LS.get('inbox_fb_done', null) ? 'Aizpildīt vēlreiz' : '← Atpakaļ uz aptauju'}</button>`)).onclick = backToForm;
+  box.appendChild(el(`<button class="btn btn-ghost" type="button" style="justify-self:center">${LS.get('inbox_fb_done', null) ? t('redo') : t('foot.back')}</button>`)).onclick = backToForm;
 }
 function backToForm(){
-  $('#results').hidden = true; $('#form').hidden = false; $('#count').hidden = $('#jump').hidden = false; $('#toggleRes').textContent = 'Skatīt rezultātus';
+  $('#results').hidden = true; $('#form').hidden = false; $('#count').hidden = $('#jump').hidden = false; setFooter();
   if(LS.get('inbox_fb_done', null)){ state = {sections:{}, ideas:[], overall:null, age:null, comment:''}; LS.del('inbox_fb_done'); init(); }
   window.scrollTo({top:0, behavior:'smooth'});
 }
 $('#toggleRes').addEventListener('click', () => { $('#results').hidden ? showResults() : backToForm(); });
 
-
-/* ---------- init ---------- */
+/* ---------- start un valodas maiņa ---------- */
 function init(){
-  state.ideas = (state.ideas || []).filter(t => IDEAS.some(x => x[1] === t));   // vecu nosaukumu tīrīšana
+  state.ideas = (state.ideas || []).filter(x => IDEAS.some(i => i[1] === x));   // vecu nosaukumu tīrīšana
   if(state.age && !AGES.includes(state.age)) state.age = null;
   cardsEl.querySelectorAll('.card').forEach(paintCard);
   paintIdeas(); paintScale(); paintAge(); $('#comment').value = state.comment || ''; update();
 }
-init();
+function build(animate){
+  document.title = t('title');
+  applyStatic();
+  renderCards(animate); renderIdeas(); renderScale(); renderAges();
+  init(); setFooter();
+}
+onLang(() => {
+  build(false);
+  if(!$('#results').hidden && resCtx) showResults(resCtx.justSent, resCtx.sendMode, true);
+});
+
+build(true);
 store.flushPending();   // ja agrāk nebija interneta, nosūta neiesūtītās atbildes
 if(params.has('results') || params.has('demo')) showResults();
-else if(LS.get('inbox_fb_done', null)){ $('#toggleRes').textContent = 'Skatīt rezultātus'; }
 </script>
 </body>
 </html>
