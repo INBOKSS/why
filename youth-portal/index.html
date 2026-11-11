@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#faf5f0">
+<title>Inbox.lv jauniešiem: kā tev patīk?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf5f0; --card:#fff; --ink:#1c1b1f; --muted:#6d6670; --line:#ece4dc;
+  --red:#c8161d; --red-soft:#fdeceb; --red-ink:#9d0f15;
+  --green:#12a150; --green-soft:#e5f6ec; --green-ink:#0b7138;
+  --amber:#e8a200; --amber-soft:#fff4d6; --amber-ink:#8a5f00;
+  --shadow:0 1px 2px rgba(60,30,10,.05),0 10px 30px rgba(60,30,10,.07);
+  --display:"Bricolage Grotesque","Inter",system-ui,sans-serif;
+  --text:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 var(--text);-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(900px 400px at 85% -10%,#ffe3dc 0,transparent 70%),radial-gradient(700px 400px at -10% 10%,#efe6ff 0,transparent 70%);
+  background-repeat:no-repeat}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid #1c1b1f;outline-offset:2px;border-radius:10px}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:20;background:rgba(250,245,240,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.bar-in{max-width:1060px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px;min-height:60px}
+.logo{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.logo img{height:26px;width:auto;display:block}
+.chips.err{outline:2px solid var(--red);outline-offset:8px;border-radius:14px}
+.beta{font:600 11px/1 var(--text);background:var(--ink);color:#fff;border-radius:99px;padding:4px 8px;margin-left:6px;vertical-align:3px;letter-spacing:.02em}
+.count{margin-left:auto;font-weight:600;font-size:14px;color:var(--muted);white-space:nowrap}
+.count b{color:var(--ink)}
+.btn{border:0;border-radius:99px;font-weight:700;min-height:44px;padding:0 20px;transition:transform .12s,background .15s,opacity .15s}
+.btn:active{transform:scale(.97)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-red{background:var(--red);color:#fff}
+.btn-ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.bar .btn{min-height:40px;padding:0 16px;font-size:14px}
+.track{position:absolute;left:0;right:0;bottom:-1px;height:3px;background:transparent}
+.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),#ff6b4a);border-radius:0 3px 3px 0;transition:width .35s cubic-bezier(.3,.8,.3,1)}
+.bar{position:sticky}
+.bar .track{position:absolute}
+
+/* layout */
+.layout{max-width:1060px;margin:0 auto;padding:20px 16px 120px;display:grid;grid-template-columns:minmax(0,1fr);gap:28px}
+.live{display:none}
+@media(min-width:980px){
+  .layout{grid-template-columns:399px minmax(0,580px);justify-content:center;gap:56px;padding-top:32px}
+  .live{display:block;position:sticky;top:92px;align-self:start}
+}
+/* Prototips = ritināms attēls, nevis iframe: iframe lielos ekrānos (Samsung Flip) mēdza salūzt (baltas švīkas, nepareizs mērogs). Tīši bez ēnām un filtriem. */
+.phone{width:399px;height:min(800px,calc(100vh - 150px));border:10px solid var(--ink);border-radius:46px;background:#fff;overflow:hidden}
+.phone-scroll{width:100%;height:100%;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;background:#fff}
+.phone-scroll::-webkit-scrollbar{display:none}
+.phone-scroll img{display:block;width:100%;height:auto}
+.live p{margin:14px 6px 0;font-size:14px;color:var(--muted);text-align:center}
+
+.flow{display:grid;gap:16px;min-width:0}
+
+/* hero */
+.hero{padding:8px 4px 4px}
+.hero h1{font:800 clamp(32px,8vw,46px)/1.02 var(--display);letter-spacing:-.035em;margin:0 0 12px}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero p{margin:0 0 18px;color:#4a444d;font-size:17px;max-width:46ch}
+.hero .row{display:flex;gap:10px;flex-wrap:wrap}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.pill{font-size:13px;font-weight:600;background:#fff;border:1px solid var(--line);border-radius:99px;padding:6px 12px;color:#4a444d}
+
+/* card */
+.card{background:var(--card);border-radius:28px;box-shadow:var(--shadow);padding:18px;position:relative;border:2px solid transparent;transition:border-color .2s}
+.card.v-like{border-color:#bfe8cf}
+.card.v-ok{border-color:#f5dd9a}
+.card.v-dislike{border-color:#f5c0bd}
+.card-head{display:flex;gap:12px;align-items:center;margin-bottom:14px}
+.num{flex:none;width:34px;height:34px;border-radius:12px;background:var(--ink);color:#fff;display:grid;place-items:center;font:800 15px var(--display)}
+.card-head h2{margin:0;font:800 21px/1.1 var(--display);letter-spacing:-.02em}
+.card-head p{margin:2px 0 0;font-size:14px;color:var(--muted)}
+.done{margin-left:auto;width:28px;height:28px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-weight:800;font-size:15px;transform:scale(0);transition:transform .25s cubic-bezier(.3,1.6,.5,1);flex:none}
+.card.answered .done{transform:scale(1)}
+.shot{margin:0 0 14px;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,#f3ece6,#efe9f6);border:1px solid var(--line);max-width:420px}
+.shot img{display:block;width:100%;height:auto}
+.votes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.vote{border:2px solid var(--line);background:#fff;border-radius:18px;min-height:68px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-weight:700;font-size:14px;transition:transform .12s,background .15s,border-color .15s}
+.vote .e{font-size:26px;line-height:1;transition:transform .25s cubic-bezier(.3,1.8,.5,1)}
+.vote:hover{background:#faf7f4}
+.vote:active{transform:scale(.96)}
+.vote[aria-pressed=true] .e{transform:scale(1.25) rotate(-6deg)}
+.vote.like[aria-pressed=true]{background:var(--green-soft);border-color:var(--green);color:var(--green-ink)}
+.vote.ok[aria-pressed=true]{background:var(--amber-soft);border-color:var(--amber);color:var(--amber-ink)}
+.vote.dislike[aria-pressed=true]{background:var(--red-soft);border-color:var(--red);color:var(--red-ink)}
+.more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.card.open .more{grid-template-rows:1fr}
+.more>div{overflow:hidden;min-height:0}
+.more-in{padding-top:16px}
+.more-q{margin:0 0 10px;font-weight:700;font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:8px 14px;min-height:40px;font-size:14px;font-weight:500;transition:background .15s,border-color .15s,transform .1s}
+.chip:active{transform:scale(.96)}
+.chip[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+.note,.area{width:100%;margin-top:12px;border:1.5px solid var(--line);border-radius:16px;padding:12px 14px;background:#fbf9f7;font-size:16px;resize:vertical}
+.note:focus,.area:focus{outline:none;border-color:var(--ink);background:#fff}
+.next{margin-top:12px;background:none;border:0;font-weight:700;font-size:14px;color:var(--muted);padding:8px 0;min-height:40px}
+.next:hover{color:var(--ink)}
+
+/* ideas + final */
+.card h2.big{margin:0 0 4px;font:800 24px/1.1 var(--display);letter-spacing:-.025em}
+.card .lead{margin:0 0 14px;color:var(--muted);font-size:15px}
+.hint{font-size:13px;color:var(--muted);margin:10px 0 0}
+.hint.warn{color:var(--red-ink);font-weight:600}
+.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:6px 0 4px}
+.scale button{border:2px solid var(--line);background:#fff;border-radius:16px;min-height:60px;font-size:28px;display:grid;place-items:center;transition:transform .12s,background .15s,border-color .15s}
+.scale button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);transform:translateY(-3px) scale(1.06)}
+.scale-l{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);padding:0 4px;margin-bottom:16px}
+.label{display:block;font-weight:700;font-size:15px;margin:18px 0 8px}
+.submit{width:100%;margin-top:18px;min-height:56px;font-size:17px}
+.anon{text-align:center;font-size:13px;color:var(--muted);margin:10px 0 0}
+
+/* results */
+.res-sec{padding:14px 0;border-top:1px solid var(--line)}
+.res-sec:first-of-type{border-top:0;padding-top:4px}
+.res-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:8px}
+.res-top b{font:800 17px var(--display)}
+.res-top span{font-size:13px;color:var(--muted)}
+.stack{display:flex;height:30px;border-radius:10px;overflow:hidden;background:#f1ebe5}
+.stack div{display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff;min-width:0;transition:flex-basis .6s cubic-bezier(.3,.8,.3,1)}
+.stack .l{background:var(--green)}.stack .o{background:var(--amber)}.stack .d{background:var(--red)}
+.res-tags{margin-top:8px;font-size:13px;color:#4a444d;display:grid;gap:2px}
+.big-n{font:800 54px/1 var(--display);letter-spacing:-.04em}
+.rank{display:grid;gap:8px}
+.rank div{position:relative;border-radius:12px;background:#f6f1ec;padding:10px 12px;font-size:14px;font-weight:600;overflow:hidden;display:flex;justify-content:space-between;gap:8px}
+.rank div i{position:absolute;inset:0;background:#ffd9d4;transform-origin:left;z-index:0}
+.rank div span{position:relative;z-index:1}
+.cmt{background:#fbf9f7;border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-size:14px;margin-top:8px}
+.cmt small{display:block;color:var(--muted);margin-bottom:2px}
+
+footer{max-width:1060px;margin:0 auto;padding:0 16px 40px;text-align:center;color:var(--muted);font-size:13px}
+footer button{background:none;border:0;text-decoration:underline;color:inherit;padding:8px;min-height:40px}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translate(-50%,30px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:99px;font-weight:600;font-size:14px;opacity:0;pointer-events:none;transition:all .3s;z-index:50;max-width:calc(100vw - 32px);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.card,.hero{animation:rise .5s both}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media(max-width:380px){.vote{font-size:13px}.card{padding:14px}}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="bar-in">
+    <div class="logo"><img src="assets/logo.png" alt="inbox.lv" width="150" height="26"></div>
+    <div class="count" id="count" aria-live="polite"></div>
+    <button class="btn btn-dark" id="jump" disabled>Beigt</button>
+  </div>
+  <div class="track"><i id="track"></i></div>
+</div>
+
+<div class="layout">
+  <aside class="live" aria-label="Jaunā portāla prototips">
+    <div class="phone"><div class="phone-scroll" tabindex="0"><img src="assets/portal.webp" alt="Jaunā inbox.lv portāla prototips, visa lapa" width="375" height="2836"></div></div>
+    <p>👆 Paskrolē un izmēģini</p>
+  </aside>
+
+  <main class="flow" id="flow">
+    <!-- FORM -->
+    <div id="form" class="flow">
+      <section class="hero">
+        <h1>Inbox.lv jauniešiem: <em>kā tev patīk?</em></h1>
+        <p>Pirms palaižam jauno portālu, gribam zināt, ko domā tu. Pasaki, kas patīk un kas ne - tas aizņems tikai 1 minūti.</p>
+        <div class="row">
+          <button class="btn btn-red" id="start">Sākt ↓</button>
+          <a class="btn btn-ghost" style="display:inline-flex;align-items:center;text-decoration:none" href="https://inbox-new-portal.lovable.app/m2" target="_blank" rel="noopener">Atvērt prototipa lapu ↗</a>
+        </div>
+        <div class="pills"><span class="pill">⏱ ~1 min</span><span class="pill">🕶 Anonīmi</span></div>
+      </section>
+
+      <div id="cards" class="flow"></div>
+
+      <section class="card" id="ideas">
+        <h2 class="big">Ko vēl gribētu? ✨</h2>
+        <p class="lead">Izvēlies līdz 3 lietām, ko vēlētos redzēt jaunajā inbox.lv.</p>
+        <div class="chips" id="ideaChips"></div>
+        <p class="hint" id="ideaHint">Izvēlēts 0 no 3</p>
+      </section>
+
+      <section class="card" id="final">
+        <h2 class="big">Kopējais iespaids</h2>
+        <p class="lead">Kā tev šķiet jaunā lapa kopumā?</p>
+        <div class="scale" id="scale" role="group" aria-label="Kopējais vērtējums"></div>
+        <div class="scale-l"><span>Nepatīk</span><span>Super!</span></div>
+
+        <span class="label" id="ageLabel">Cik tev gadu?</span>
+        <div class="chips" id="ageChips"></div>
+
+        <label class="label" for="comment">Vēl kaut kas? <small style="font-weight:400;color:var(--muted)">(nav obligāti)</small></label>
+        <textarea class="area" id="comment" rows="3" maxlength="600" placeholder="Idejas, kļūdas, kas traucē vai kas jāpievieno…" style="margin-top:0"></textarea>
+
+        <button class="btn btn-red submit" id="submit">Nosūtīt atbildes</button>
+        <p class="anon">Paldies par Tavu viedokli! &lt;3</p>
+      </section>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="results" class="flow" hidden></div>
+  </main>
+</div>
+
+<footer>
+  <button id="toggleRes">Skatīt rezultātus</button>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="config.js"></script>
+<script src="survey-core.js"></script>
+<script>
+const LIVE_URL = 'https://inbox-new-portal.lovable.app/m2';
+const {SECTIONS, TAGS, Q, VOTES, IDEAS, SCALE, AGES, MAX_IDEAS, LS, store, aggregate, lv, esc, topN} = Survey;   // sadaļas, teksti un datu glabāšana: survey-core.js
+
+const $ = (s, r=document) => r.querySelector(s);
+const el = (h) => { const t = document.createElement('template'); t.innerHTML = h.trim(); return t.content.firstElementChild; };
+const params = new URLSearchParams(location.search);
+
+let state = LS.get('inbox_fb_draft', null) || {sections:{}, ideas:[], overall:null, age:null, comment:''};
+const save = () => LS.set('inbox_fb_draft', state);
+
+/* ---------- render cards ---------- */
+const cardsEl = $('#cards');
+SECTIONS.forEach((s, i) => {
+  const card = el(`
+    <article class="card" id="c-${s.id}" data-id="${s.id}" style="animation-delay:${Math.min(i,4)*60}ms">
+      <div class="card-head">
+        <span class="num">${i+1}</span>
+        <div><h2>${s.title}</h2><p>${s.sub}</p></div>
+        <span class="done" aria-hidden="true">✓</span>
+      </div>
+      <figure class="shot"><img src="assets/${s.id}.webp" alt="Ekrānšāvums: ${s.title}" width="375" height="${s.h}" loading="${i<2?'eager':'lazy'}"></figure>
+      <div class="votes" role="group" aria-label="Tavs vērtējums: ${s.title}">
+        ${VOTES.map(o=>`<button type="button" class="vote ${o.v}" data-v="${o.v}" aria-pressed="false"><span class="e">${o.e}</span><span>${o.t}</span></button>`).join('')}
+      </div>
+      <div class="more"><div inert><div class="more-in">
+        <p class="more-q"></p>
+        <div class="chips"></div>
+        <input class="note" type="text" maxlength="200" placeholder="Pastāsti vairāk (nav obligāti)" aria-label="Komentārs: ${s.title}">
+        <button type="button" class="next">Tālāk ↓</button>
+      </div></div></div>
+    </article>`);
+  cardsEl.appendChild(card);
+});
+
+function tagsFor(s, v){ return [...(s[v] || []), ...TAGS[v]].slice(0, 7); }
+function setChips(card, s, v){
+  const wrap = $('.chips', card); wrap.innerHTML = '';
+  const cur = state.sections[s.id]?.tags || [];
+  tagsFor(s, v).forEach(t => {
+    const b = el(`<button type="button" class="chip" aria-pressed="${cur.includes(t)}"></button>`);
+    b.textContent = t; wrap.appendChild(b);
+  });
+  $('.more-q', card).textContent = Q[v];
+}
+
+function paintCard(card){
+  const id = card.dataset.id, s = SECTIONS.find(x=>x.id===id), a = state.sections[id];
+  const v = a?.vote;
+  card.classList.toggle('answered', !!v);
+  card.classList.toggle('open', !!v);
+  $('.more > div', card).inert = !v;
+  ['like','ok','dislike'].forEach(k => card.classList.toggle('v-'+k, v===k));
+  card.querySelectorAll('.vote').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v===v)));
+  if(v){ setChips(card, s, v); $('.note', card).value = a.note || ''; }
+}
+
+cardsEl.addEventListener('click', e => {
+  const card = e.target.closest('.card'); if(!card) return;
+  const id = card.dataset.id, s = SECTIONS.find(x=>x.id===id);
+  const vote = e.target.closest('.vote');
+  if(vote){
+    const prev = state.sections[id]?.vote;
+    if(prev === vote.dataset.v){ delete state.sections[id]; }   // tap again = clear
+    else {
+      const keep = state.sections[id]?.note || '';
+      state.sections[id] = {vote: vote.dataset.v, tags: [], note: keep};
+    }
+    paintCard(card); save(); update();
+    if(navigator.vibrate) try{ navigator.vibrate(12); }catch{}
+    return;
+  }
+  const chip = e.target.closest('.chip');
+  if(chip){
+    const a = state.sections[id]; if(!a) return;
+    const on = chip.getAttribute('aria-pressed') !== 'true';
+    chip.setAttribute('aria-pressed', String(on));
+    a.tags = on ? [...a.tags, chip.textContent] : a.tags.filter(t => t !== chip.textContent);
+    save(); return;
+  }
+  if(e.target.closest('.next')){
+    const nxt = card.nextElementSibling || $('#ideas');
+    nxt.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+});
+cardsEl.addEventListener('input', e => {
+  if(!e.target.classList.contains('note')) return;
+  const id = e.target.closest('.card').dataset.id;
+  if(state.sections[id]){ state.sections[id].note = e.target.value; save(); }
+});
+
+/* ---------- ideas / scale / age / comment ---------- */
+const ideaWrap = $('#ideaChips');
+IDEAS.forEach(([e, t]) => {
+  const b = el(`<button type="button" class="chip" aria-pressed="false"></button>`);
+  b.textContent = `${e} ${t}`; b.dataset.t = t; ideaWrap.appendChild(b);
+});
+ideaWrap.addEventListener('click', e => {
+  const b = e.target.closest('.chip'); if(!b) return;
+  const t = b.dataset.t, on = state.ideas.includes(t);
+  if(on) state.ideas = state.ideas.filter(x => x !== t);
+  else if(state.ideas.length >= MAX_IDEAS){
+    const h = $('#ideaHint'); h.classList.add('warn'); h.textContent = `Maksimums ${MAX_IDEAS} - noņem kādu, lai izvēlētos citu`;
+    b.classList.remove('shake'); void b.offsetWidth; b.classList.add('shake'); return;
+  } else state.ideas.push(t);
+  paintIdeas(); save(); update();
+});
+function paintIdeas(){
+  ideaWrap.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', String(state.ideas.includes(b.dataset.t))));
+  const h = $('#ideaHint'); h.classList.remove('warn'); h.textContent = `Izvēlēts ${state.ideas.length} no ${MAX_IDEAS}`;
+}
+
+const scaleEl = $('#scale');
+SCALE.forEach((e, i) => { const b = el(`<button type="button" aria-pressed="false" aria-label="${i+1} no 5">${e}</button>`); b.dataset.n = i+1; scaleEl.appendChild(b); });
+scaleEl.addEventListener('click', e => {
+  const b = e.target.closest('button'); if(!b) return;
+  state.overall = state.overall === +b.dataset.n ? null : +b.dataset.n;
+  paintScale(); save(); update();
+});
+function paintScale(){ scaleEl.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.n === state.overall))); }
+
+const ageWrap = $('#ageChips');
+AGES.forEach(t => { const b = el(`<button type="button" class="chip" aria-pressed="false"></button>`); b.textContent = t; ageWrap.appendChild(b); });
+ageWrap.addEventListener('click', e => {
+  const b = e.target.closest('.chip'); if(!b) return;
+  state.age = state.age === b.textContent ? null : b.textContent; ageWrap.classList.remove('err'); paintAge(); save();
+});
+function paintAge(){ ageWrap.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', String(b.textContent === state.age))); }
+$('#comment').addEventListener('input', e => { state.comment = e.target.value; save(); });
+
+/* ---------- progress ---------- */
+const answeredCount = () => SECTIONS.filter(s => state.sections[s.id]?.vote).length;
+function update(){
+  const n = answeredCount(), total = SECTIONS.length;
+  $('#count').innerHTML = `<b>${n}</b> no ${total}`;
+  $('#track').style.width = (n/total*100) + '%';
+  $('#jump').disabled = n === 0 && !state.overall;
+  $('#jump').textContent = n === total ? 'Nosūtīt' : 'Beigt';
+}
+$('#jump').addEventListener('click', () => $('#final').scrollIntoView({behavior:'smooth'}));
+$('#start').addEventListener('click', () => $('#c-' + SECTIONS[0].id).scrollIntoView({behavior:'smooth'}));
+
+function toast(msg){
+  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toast.id); toast.id = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+const deviceType = () => /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? 'mobile' : 'desktop';
+
+$('#submit').addEventListener('click', async () => {
+  if(answeredCount() === 0 && !state.overall){ toast('Novērtē vismaz vienu sadaļu 👆'); $('#cards').scrollIntoView({behavior:'smooth'}); return; }
+  if(!state.age){
+    toast('Norādi savu vecumu 👆'); ageWrap.classList.add('err');
+    $('#ageLabel').scrollIntoView({behavior:'smooth', block:'center'});
+    ageWrap.classList.remove('shake'); void ageWrap.offsetWidth; ageWrap.classList.add('shake'); return;
+  }
+  const btn = $('#submit'); btn.disabled = true; btn.textContent = 'Sūtām…';
+  const resp = {
+    id: Math.random().toString(36).slice(2, 10), ts: new Date().toISOString(), device: deviceType(),
+    sections: state.sections, ideas: state.ideas, overall: state.overall, age: state.age, comment: state.comment.trim(),
+  };
+  const mode = await store.submit(resp);
+  btn.disabled = false; btn.textContent = 'Nosūtīt atbildes';
+  if(mode === 'error'){ toast('Neizdevās nosūtīt, pamēģini vēlreiz'); return; }
+  LS.set('inbox_fb_done', resp.id); LS.del('inbox_fb_draft');
+  showResults(true, mode);
+});
+
+/* ---------- rezultāti ---------- */
+
+function demoData(){
+  const rs = [], rnd = (a) => a[Math.floor(Math.random()*a.length)];
+  for(let i=0;i<48;i++){
+    const sections = {};
+    SECTIONS.forEach(s => { const v = rnd(['like','like','like','ok','dislike']); sections[s.id] = {vote:v, tags:[rnd(TAGS[v])], note:''}; });
+    rs.push({sections, ideas:[rnd(IDEAS)[1], rnd(IDEAS)[1]], overall: rnd([3,4,4,5,5,2]), comment: i%9===0 ? 'Kopumā forši, bet vairāk spēļu!' : ''});
+  }
+  return rs;
+}
+
+async function showResults(justSent=false, sendMode){
+  $('#form').hidden = true; $('#count').hidden = $('#jump').hidden = true; const box = $('#results'); box.hidden = false;
+  $('#toggleRes').textContent = 'Atpakaļ uz aptauju';
+  box.innerHTML = '<div class="card"><p class="lead" style="margin:0">Ielādējam…</p></div>';
+  const {list} = await store.loadPublic();
+  const data = params.has('demo') ? demoData() : list;
+  const ag = aggregate(data);
+  const avg = ag.overall.n ? ag.overall.sum / ag.overall.n : null;
+  const maxIdea = Math.max(1, ...Object.values(ag.ideas));
+
+  let html = '';
+  if(justSent){
+    html += `<section class="hero"><h1>Paldies! <em>💛</em></h1><p>Tavas atbildes ir saņemtas. Zemāk - ko domā citi jaunieši.</p>
+      ${sendMode === 'local' ? '<p class="hint warn">Serveris nav pieejams - atbildes saglabātas tikai šajā ierīcē.</p>' : ''}${sendMode === 'queued' ? '<p class="hint warn">Nav interneta - atbildes nosūtīsim, tiklīdz savienojums atjaunosies. Neaizver lapu.</p>' : ''}</section>`;
+  } else {
+    html += `<section class="hero"><h1>Rezultāti <em>📊</em></h1><p>${ag.n ? `Atbildējuši <b>${ag.n}</b> jaunieši.` : 'Vēl nav neviena atbilde.'}${params.has('demo') ? ' (demo dati)' : ''}</p></section>`;
+  }
+  if(!ag.n){ html += '<section class="card"><p class="lead" style="margin:0">Kad kāds atbildēs, te parādīsies rezultāti.</p></section>'; box.innerHTML = html; addBack(box); return; }
+
+  html += `<section class="card"><h2 class="big">Kopējais iespaids</h2>
+    <div style="display:flex;align-items:center;gap:14px;margin-top:8px"><span class="big-n">${avg ? avg.toFixed(1) : '-'}</span>
+    <div><div style="font-size:28px">${avg ? SCALE[Math.round(avg)-1] : ''}</div><div class="hint" style="margin:0">no 5 · ${ag.overall.n} ${lv(ag.overall.n,"vērtējums","vērtējumi")}</div></div></div></section>`;
+
+  html += `<section class="card"><h2 class="big">Pa sadaļām</h2><p class="lead">Zaļš - patīk, dzeltens - normāli, sarkans - nepatīk.</p>`;
+  const order = SECTIONS.map(s => ({s, a: ag.sections[s.id]})).map(x => ({...x, tot: x.a.like + x.a.ok + x.a.dislike}))
+    .sort((x,y) => (y.a.like - y.a.dislike) / (y.tot||1) - (x.a.like - x.a.dislike) / (x.tot||1));
+  order.forEach(({s, a, tot}) => {
+    const pc = k => tot ? Math.round(a[k]/tot*100) : 0;
+    const likes = topN(a.tags.like), dis = topN(a.tags.dislike);
+    html += `<div class="res-sec"><div class="res-top"><b>${s.title}</b><span>${tot} ${lv(tot,"balss","balsis")}</span></div>
+      <div class="stack" role="img" aria-label="Patīk ${pc('like')}%, normāli ${pc('ok')}%, nepatīk ${pc('dislike')}%">
+        ${tot ? `<div class="l" style="flex:${a.like}">${pc('like') >= 12 ? pc('like')+'%' : ''}</div><div class="o" style="flex:${a.ok}">${pc('ok') >= 12 ? pc('ok')+'%' : ''}</div><div class="d" style="flex:${a.dislike}">${pc('dislike') >= 12 ? pc('dislike')+'%' : ''}</div>` : ''}
+      </div>
+      <div class="res-tags">${likes.length ? `<span>😍 ${likes.map(([t,n]) => esc(t)+' ×'+n).join(' · ')}</span>` : ''}${dis.length ? `<span>👎 ${dis.map(([t,n]) => esc(t)+' ×'+n).join(' · ')}</span>` : ''}</div></div>`;
+  });
+  html += '</section>';
+
+  const ideas = topN(ag.ideas, 12);
+  if(ideas.length){
+    html += `<section class="card"><h2 class="big">Ko vēl grib ✨</h2><p class="lead">Populārākās idejas.</p><div class="rank">` +
+      ideas.map(([t,n]) => { const e = (IDEAS.find(x => x[1] === t) || ['',''])[0]; return `<div><i style="transform:scaleX(${n/maxIdea})"></i><span>${e} ${esc(t)}</span><span>${n}</span></div>`; }).join('') + `</div></section>`;
+  }
+
+  box.innerHTML = html;
+  addBack(box);
+  if(justSent) window.scrollTo({top:0, behavior:'smooth'});
+}
+function addBack(box){
+  box.appendChild(el(`<button class="btn btn-ghost" type="button" style="justify-self:center">${LS.get('inbox_fb_done', null) ? 'Aizpildīt vēlreiz' : '← Atpakaļ uz aptauju'}</button>`)).onclick = backToForm;
+}
+function backToForm(){
+  $('#results').hidden = true; $('#form').hidden = false; $('#count').hidden = $('#jump').hidden = false; $('#toggleRes').textContent = 'Skatīt rezultātus';
+  if(LS.get('inbox_fb_done', null)){ state = {sections:{}, ideas:[], overall:null, age:null, comment:''}; LS.del('inbox_fb_done'); init(); }
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+$('#toggleRes').addEventListener('click', () => { $('#results').hidden ? showResults() : backToForm(); });
+
+
+/* ---------- init ---------- */
+function init(){
+  state.ideas = (state.ideas || []).filter(t => IDEAS.some(x => x[1] === t));   // vecu nosaukumu tīrīšana
+  if(state.age && !AGES.includes(state.age)) state.age = null;
+  cardsEl.querySelectorAll('.card').forEach(paintCard);
+  paintIdeas(); paintScale(); paintAge(); $('#comment').value = state.comment || ''; update();
+}
+init();
+store.flushPending();   // ja agrāk nebija interneta, nosūta neiesūtītās atbildes
+if(params.has('results') || params.has('demo')) showResults();
+else if(LS.get('inbox_fb_done', null)){ $('#toggleRes').textContent = 'Skatīt rezultātus'; }
+</script>
+</body>
+</html>
