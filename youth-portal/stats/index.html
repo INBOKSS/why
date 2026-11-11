@@ -35,6 +35,9 @@ button{cursor:pointer}
 @keyframes pulse{70%{box-shadow:0 0 0 9px rgba(18,161,80,0)}100%{box-shadow:0 0 0 0 rgba(18,161,80,0)}}
 .btn{border:1.5px solid var(--line);background:#fff;border-radius:99px;min-height:40px;padding:0 16px;font-weight:700;font-size:14px}
 .btn.dark{background:var(--ink);border-color:var(--ink);color:#fff}
+.lang{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:99px;padding:2px;flex:none}
+.lang button{border:0;background:none;border-radius:99px;min-width:38px;min-height:34px;padding:0 8px;font-weight:700;font-size:13px;color:var(--muted)}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
 
 main{max-width:1240px;margin:0 auto;padding:18px 16px 60px;display:grid;gap:16px}
 .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
@@ -44,7 +47,7 @@ main{max-width:1240px;margin:0 auto;padding:18px 16px 60px;display:grid;gap:16px
 @media(max-width:480px){.kpis{gap:10px}}
 
 .card{background:var(--card);border-radius:24px;box-shadow:var(--shadow);padding:18px;min-width:0}
-.card h2{margin:0 0 12px;font:800 18px/1.1 var(--display);letter-spacing:-.02em;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.card h2{margin:0 0 12px;font:800 18px/1.1 var(--display);letter-spacing:-.02em;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:2px 8px}
 .card h2 small{font:500 13px var(--text);color:var(--muted);letter-spacing:0}
 .kpi .lab{font-size:13px;font-weight:600;color:var(--muted)}
 .kpi .big{font:800 clamp(34px,5vw,54px)/1 var(--display);letter-spacing:-.04em;margin:6px 0 4px}
@@ -101,8 +104,9 @@ main{max-width:1240px;margin:0 auto;padding:18px 16px 60px;display:grid;gap:16px
 <header class="top">
   <div class="top-in">
     <img src="../assets/logo.png" alt="inbox.lv" width="150" height="26">
-    <span class="ttl">Statistika</span>
+    <span class="ttl" data-i18n="st.h">Statistika</span>
     <span class="live" id="live"><span class="dot"></span><span id="liveTxt">Savienojamies…</span></span>
+    <span class="lang" role="group" aria-label="Language / Valoda"><button type="button" data-lang="lv" aria-pressed="true">LV</button><button type="button" data-lang="en" aria-pressed="false">EN</button></span>
     <button class="btn" id="unlock">🔓 Komentāri</button>
     <button class="btn dark" id="csv" hidden>CSV</button>
   </div>
@@ -110,10 +114,10 @@ main{max-width:1240px;margin:0 auto;padding:18px 16px 60px;display:grid;gap:16px
 
 <main>
   <section class="card" id="keyBox" hidden>
-    <h2>Atvērt komentārus</h2>
-    <p class="empty">Ievadi statistikas atslēgu, lai redzētu atbilžu tekstus (komentāri, piezīmes pie sadaļām).</p>
-    <form class="key" id="keyForm"><input id="keyIn" type="password" autocomplete="off" placeholder="Atslēga" aria-label="Statistikas atslēga"><button class="btn dark" type="submit">Atvērt</button></form>
-    <p class="err" id="keyErr" hidden>Atslēga nav pareiza.</p>
+    <h2 data-i18n="st.key.h">Atvērt komentārus</h2>
+    <p class="empty" data-i18n="st.key.p">Ievadi statistikas atslēgu, lai redzētu atbilžu tekstus (komentāri, piezīmes pie sadaļām).</p>
+    <form class="key" id="keyForm"><input id="keyIn" type="password" autocomplete="off" data-i18n-ph="st.key.ph" placeholder="Atslēga" aria-label="Statistikas atslēga"><button class="btn dark" type="submit" data-i18n="st.key.go">Atvērt</button></form>
+    <p class="err" id="keyErr" hidden data-i18n="st.key.err">Atslēga nav pareiza.</p>
   </section>
 
   <div class="kpis" id="kpis"></div>
@@ -133,8 +137,9 @@ main{max-width:1240px;margin:0 auto;padding:18px 16px 60px;display:grid;gap:16px
 
 <script src="../config.js"></script>
 <script src="../survey-core.js"></script>
+<script src="../i18n.js"></script>
 <script>
-const {SECTIONS, VOTES, IDEAS, SCALE, AGES, LS, store, aggregate, lv, esc, topN} = Survey;
+const {SECTIONS, VOTES, IDEAS, SCALE, AGES, LS, store, aggregate, esc, topN, t, tr, pl, secT, applyStatic, onLang} = Survey;
 store.apiBase = '../';
 const $ = (s) => document.querySelector(s);
 const POLL_MS = 3000;
@@ -142,17 +147,18 @@ const KEY = 'youth_stats_key';
 const getKey = () => { try{ return sessionStorage.getItem(KEY) || ''; }catch{ return ''; } };
 const setKey = (v) => { try{ v ? sessionStorage.setItem(KEY, v) : sessionStorage.removeItem(KEY); }catch{} };
 
-let rows = [], admin = false, lastSig = '', lastOk = 0, seen = new Set(), firstLoad = true, mode = '';
+let rows = [], admin = false, lastSig = '', lastOk = 0, seen = new Set(), firstLoad = true, mode = '', loaded = false;
 
 const ago = (ts) => {
   const s = Math.max(0, Math.round((Date.now() - new Date(ts).getTime()) / 1000));
-  if(s < 5) return 'tikko';
-  if(s < 60) return 'pirms ' + s + ' s';
-  if(s < 3600) return 'pirms ' + Math.floor(s/60) + ' min';
-  if(s < 86400) return 'pirms ' + Math.floor(s/3600) + ' h';
-  return 'pirms ' + Math.floor(s/86400) + ' d';
+  if(s < 5) return t('ago.now');
+  if(s < 60) return t('ago.s', {n: s});
+  if(s < 3600) return t('ago.m', {n: Math.floor(s/60)});
+  if(s < 86400) return t('ago.h', {n: Math.floor(s/3600)});
+  return t('ago.d', {n: Math.floor(s/86400)});
 };
 const rowKey = (r) => r.id ?? (r.ts + '|' + r.age + '|' + r.overall);
+const showComments = () => (admin && !!getKey()) || mode === 'local';
 
 /* ---------- datu ielāde ---------- */
 async function load(){
@@ -167,7 +173,7 @@ async function tick(){
   let wait = POLL_MS;
   try{
     const res = await load();
-    rows = res.list; admin = res.admin && !!getKey() || (res.mode === 'local'); mode = res.mode; lastOk = Date.now();
+    rows = res.list; admin = res.admin && !!getKey() || (res.mode === 'local'); mode = res.mode; lastOk = Date.now(); loaded = true;
     const sig = rows.length + '|' + (rows.length ? rowKey(rows[rows.length-1]) : '') + '|' + admin;
     if(sig !== lastSig){ lastSig = sig; render(); }
     setLive('ok');
@@ -176,14 +182,15 @@ async function tick(){
   setTimeout(tick, wait);
 }
 function setLive(st){
-  const el = $('#live'); el.classList.toggle('err', st === 'err'); el.classList.remove('off');
-  const modeTxt = {supabase:'Supabase', server:'lokālais serveris', local:'šīs ierīces dati'}[mode] || '';
-  $('#liveTxt').textContent = st === 'err' ? 'Nav savienojuma' : 'Tiešraide' + (modeTxt ? ' · ' + modeTxt : '') + ' · ' + (lastOk ? ago(lastOk) : '');
+  const e = $('#live'); e.classList.toggle('err', st === 'err'); e.classList.remove('off');
+  const modeTxt = mode ? t('st.mode.' + mode) : '';
+  $('#liveTxt').textContent = !lastOk && st !== 'err' ? t('st.connecting')
+    : st === 'err' ? t('st.nocon') : t('st.live') + (modeTxt ? ' · ' + modeTxt : '') + ' · ' + ago(lastOk);
 }
 setInterval(() => { if(lastOk) setLive(Date.now() - lastOk > 15000 ? 'err' : 'ok'); renderAgo(); }, 1000);
 
 /* ---------- attēlošana ---------- */
-const pct = (a, t) => t ? Math.round(a / t * 100) : 0;
+const pct = (a, tot) => tot ? Math.round(a / tot * 100) : 0;
 function render(){
   const ag = aggregate(rows), n = rows.length;
   const now = Date.now(), hour = rows.filter(r => now - new Date(r.ts) < 3600e3).length;
@@ -196,70 +203,66 @@ function render(){
   const dist = [1,2,3,4,5].map(k => rows.filter(r => r.overall === k).length), dmax = Math.max(1, ...dist);
   const lastRow = rows[rows.length - 1];
 
-  // KPI
   const bump = !firstLoad && $('#kpis .big') && +$('#kpis .big').dataset.n !== n;
   $('#kpis').innerHTML = `
-    <div class="card kpi"><div class="lab">Atbildes kopā</div><div class="big ${bump ? 'bump' : ''}" data-n="${n}">${n}</div>
-      <div class="sub">šodien ${today} · pēdējā stundā ${hour}</div><div class="sub" id="lastAgo">${lastRow ? 'pēdējā ' + ago(lastRow.ts) : ''}</div></div>
-    <div class="card kpi"><div class="lab">Kopējais iespaids</div><div class="big">${avg ? avg.toFixed(1) : '-'}<span style="font-size:.45em;color:var(--muted)"> /5</span></div>
-      <div class="sub">${ag.overall.n} ${lv(ag.overall.n,'vērtējums','vērtējumi')}</div>
+    <div class="card kpi"><div class="lab">${t('st.total')}</div><div class="big ${bump ? 'bump' : ''}" data-n="${n}">${n}</div>
+      <div class="sub">${t('st.today', {t: today, h: hour})}</div><div class="sub" id="lastAgo">${lastRow ? t('st.last', {a: ago(lastRow.ts)}) : ''}</div></div>
+    <div class="card kpi"><div class="lab">${t('st.overall')}</div><div class="big">${avg ? avg.toFixed(1) : '-'}<span style="font-size:.45em;color:var(--muted)"> /5</span></div>
+      <div class="sub">${t('res.rating.of', {n: ag.overall.n, w: pl(ag.overall.n, 'rating')}).replace(/^.*?·\s*/, '')}</div>
       <div class="hist">${dist.map(v => `<div style="height:${Math.max(8, v/dmax*100)}%" title="${v}"></div>`).join('')}</div>
       <div class="hist-l">${SCALE.map(e => `<span>${e}</span>`).join('')}</div></div>
-    <div class="card kpi"><div class="lab">Sadaļu balsis kopā</div><div class="big">${pct(L, T)}<span style="font-size:.45em;color:var(--muted)">% 😍</span></div>
-      <div class="sub">${pct(O, T)}% 😐 · ${pct(D, T)}% 👎 · ${T} balsis</div>
+    <div class="card kpi"><div class="lab">${t('st.votesAll')}</div><div class="big">${pct(L, T)}<span style="font-size:.45em;color:var(--muted)">% 😍</span></div>
+      <div class="sub">${pct(O, T)}% 😐 · ${pct(D, T)}% 👎 · ${t('st.nvotes', {n: T})}</div>
       <div class="mini"><i class="l" style="width:${pct(L,T)}%"></i><i class="o" style="width:${pct(O,T)}%"></i><i class="d" style="width:${pct(D,T)}%"></i></div></div>
-    <div class="card kpi"><div class="lab">Ierīces</div><div class="big">${pct(mob, n)}<span style="font-size:.45em;color:var(--muted)">% 📱</span></div>
-      <div class="sub">${mob} tālrunis · ${n - mob} dators</div>
+    <div class="card kpi"><div class="lab">${t('st.devices')}</div><div class="big">${pct(mob, n)}<span style="font-size:.45em;color:var(--muted)">% 📱</span></div>
+      <div class="sub">${t('st.devline', {m: mob, d: n - mob})}</div>
       <div class="mini"><i style="width:${pct(mob,n)}%;background:var(--ink)"></i><i style="width:${100 - pct(mob,n)}%;background:#cfc6bd"></i></div></div>`;
 
-  // Sadaļas
   const order = SECTIONS.map(s => { const a = ag.sections[s.id]; return {s, a, tot: a.like + a.ok + a.dislike}; })
     .sort((x, y) => (y.a.like - y.a.dislike) / (y.tot || 1) - (x.a.like - x.a.dislike) / (x.tot || 1));
-  $('#secs').innerHTML = `<h2>Pa sadaļām <small>kārtots pēc tā, cik patīk</small></h2>` + (n ? order.map(({s, a, tot}) => {
+  $('#secs').innerHTML = `<h2>${t('st.bysec')} <small>${t('st.sorted')}</small></h2>` + (n ? order.map(({s, a, tot}) => {
     const p = k => pct(a[k], tot), lk = topN(a.tags.like), ds = topN(a.tags.dislike);
-    return `<div class="sec"><div class="sec-top"><b>${s.title}</b><span>${tot} ${lv(tot,'balss','balsis')}</span></div>
+    return `<div class="sec"><div class="sec-top"><b>${esc(secT(s))}</b><span>${tot} ${pl(tot, 'votes')}</span></div>
       <div class="stack">${tot ? ['like','ok','dislike'].map((k,i) => `<div class="${'lod'[i]}" style="flex-grow:${a[k]}">${p(k) >= 10 ? p(k) + '%' : ''}</div>`).join('') : ''}</div>
-      <div class="why">${lk.length ? `<span>😍 ${lk.map(([t,c]) => esc(t) + ' ×' + c).join(' · ')}</span>` : ''}${ds.length ? `<span>👎 ${ds.map(([t,c]) => esc(t) + ' ×' + c).join(' · ')}</span>` : ''}</div></div>`;
-  }).join('') : '<p class="empty">Gaidām pirmās atbildes…</p>');
+      <div class="why">${lk.length ? `<span>😍 ${lk.map(([k,c]) => esc(tr(k)) + ' ×' + c).join(' · ')}</span>` : ''}${ds.length ? `<span>👎 ${ds.map(([k,c]) => esc(tr(k)) + ' ×' + c).join(' · ')}</span>` : ''}</div></div>`;
+  }).join('') : `<p class="empty">${t('st.wait')}</p>`);
 
-  // Idejas
   const ideas = topN(ag.ideas, 20), imax = Math.max(1, ...Object.values(ag.ideas));
-  $('#ideas').innerHTML = `<h2>Ko vēl grib <small>līdz 3 no katra</small></h2>` + (ideas.length ? `<div class="rank">` +
-    ideas.map(([t, c]) => `<div><i style="transform:scaleX(${c / imax})"></i><span>${(IDEAS.find(x => x[1] === t) || [''])[0]} ${esc(t)}</span><span>${c}</span></div>`).join('') + '</div>' : '<p class="empty">Vēl nav izvēlētu ideju.</p>');
+  $('#ideas').innerHTML = `<h2>${t('st.ideas')} <small>${t('st.ideas.sub')}</small></h2>` + (ideas.length ? `<div class="rank">` +
+    ideas.map(([k, c]) => `<div><i style="transform:scaleX(${c / imax})"></i><span>${(IDEAS.find(x => x[1] === k) || [''])[0]} ${esc(tr(k))}</span><span>${c}</span></div>`).join('') + '</div>' : `<p class="empty">${t('st.ideas.none')}</p>`);
 
-  // Vecums
   const ac = AGES.map(a => [a, rows.filter(r => r.age === a).length]), amax = Math.max(1, ...ac.map(x => x[1]));
-  $('#ages').innerHTML = `<h2>Vecums</h2><div class="rank age">` + ac.map(([a, c]) => `<div><i style="transform:scaleX(${c / amax})"></i><span>${a}</span><span>${c}${n ? ' · ' + pct(c, n) + '%' : ''}</span></div>`).join('') + '</div>';
+  $('#ages').innerHTML = `<h2>${t('st.age')}</h2><div class="rank age">` + ac.map(([a, c]) => `<div><i style="transform:scaleX(${c / amax})"></i><span>${esc(tr(a))}</span><span>${c}${n ? ' · ' + pct(c, n) + '%' : ''}</span></div>`).join('') + '</div>';
 
-  // Laika līkne: pēdējās 24 stundas pa stundām
   const H = 24, b = new Array(H).fill(0), end = new Date(); end.setMinutes(0,0,0);
   rows.forEach(r => { const d = Math.floor((end.getTime() + 3600e3 - new Date(r.ts).getTime()) / 3600e3); if(d >= 0 && d < H) b[H - 1 - d]++; });
   const bmax = Math.max(1, ...b);
-  $('#timeline').innerHTML = `<h2>Atbildes pa stundām <small>pēdējās 24 h</small></h2><div class="chart">${b.map((v,i) => `<div style="height:${Math.max(2, v/bmax*100)}%" title="${v}"></div>`).join('')}</div>
-    <div class="chart-x"><span>pirms 24 h</span><span>pirms 12 h</span><span>tagad</span></div>`;
+  $('#timeline').innerHTML = `<h2>${t('st.hourly')} <small>${t('st.hourly.sub')}</small></h2><div class="chart">${b.map(v => `<div style="height:${Math.max(2, v/bmax*100)}%" title="${v}"></div>`).join('')}</div>
+    <div class="chart-x"><span>${t('st.x24')}</span><span>${t('st.x12')}</span><span>${t('st.xnow')}</span></div>`;
 
   renderFeed();
   firstLoad = false;
-  $('#csv').hidden = !(admin && getKey() || mode === 'local');
-  $('#unlock').textContent = admin && getKey() ? '🔒 Aizvērt komentārus' : '🔓 Komentāri';
+  $('#csv').hidden = !showComments();
+  setUnlockBtn();
 }
+function setUnlockBtn(){ $('#unlock').textContent = admin && getKey() ? t('st.lock') : t('st.unlock'); }
 
 function renderFeed(){
   const last = rows.slice(-30).reverse();
   const fresh = new Set(last.map(rowKey));
-  $('#feed').innerHTML = `<h2>Jaunākās atbildes <small>${admin && (getKey() || mode === 'local') ? 'ar komentāriem' : 'bez komentāriem'}</small></h2>` +
+  $('#feed').innerHTML = `<h2>${t('st.feed')} <small>${showComments() ? t('st.feed.with') : t('st.feed.without')}</small></h2>` +
     (last.length ? `<div class="feed">` + last.map(r => {
       const isNew = !firstLoad && !seen.has(rowKey(r));
       const emoji = SECTIONS.map(s => { const a = r.sections?.[s.id]; return a?.vote ? VOTES.find(v => v.v === a.vote).e : '·'; }).join('');
-      const notes = SECTIONS.map(s => { const a = r.sections?.[s.id]; return a?.note ? `<div class="txt"><small>${VOTES.find(v=>v.v===a.vote).e} ${esc(s.title)}:</small> ${esc(a.note)}</div>` : ''; }).join('');
-      return `<div class="item ${isNew ? 'new' : ''}"><div class="row"><span class="t" data-ts="${r.ts}">${ago(r.ts)}</span><span class="tag">${esc(r.age)}</span>${r.device === 'mobile' ? '<span class="tag">📱</span>' : '<span class="tag">💻</span>'}${r.overall ? `<span>${SCALE[r.overall-1]}</span>` : ''}</div>
-        <div class="votes" title="${SECTIONS.map(s => s.title).join(' | ')}">${emoji}</div>${r.comment ? `<div class="txt"><small>Komentārs:</small> ${esc(r.comment)}</div>` : ''}${notes}</div>`;
-    }).join('') + '</div>' : '<p class="empty">Vēl nav atbilžu.</p>');
+      const notes = SECTIONS.map(s => { const a = r.sections?.[s.id]; return a?.note ? `<div class="txt"><small>${VOTES.find(v=>v.v===a.vote).e} ${esc(secT(s))}:</small> ${esc(a.note)}</div>` : ''; }).join('');
+      return `<div class="item ${isNew ? 'new' : ''}"><div class="row"><span class="t" data-ts="${r.ts}">${ago(r.ts)}</span><span class="tag">${esc(tr(r.age))}</span>${r.device === 'mobile' ? '<span class="tag">📱</span>' : '<span class="tag">💻</span>'}${r.overall ? `<span>${SCALE[r.overall-1]}</span>` : ''}</div>
+        <div class="votes" title="${esc(SECTIONS.map(s => secT(s)).join(' | '))}">${emoji}</div>${r.comment ? `<div class="txt"><small>${t('st.comment')}</small> ${esc(r.comment)}</div>` : ''}${notes}</div>`;
+    }).join('') + '</div>' : `<p class="empty">${t('st.noanswers')}</p>`);
   fresh.forEach(k => seen.add(k));
 }
 function renderAgo(){
-  document.querySelectorAll('#feed .t[data-ts]').forEach(el => el.textContent = ago(el.dataset.ts));
-  const last = rows[rows.length - 1], el = $('#lastAgo'); if(el && last) el.textContent = 'pēdējā ' + ago(last.ts);
+  document.querySelectorAll('#feed .t[data-ts]').forEach(e => e.textContent = ago(e.dataset.ts));
+  const last = rows[rows.length - 1], e = $('#lastAgo'); if(e && last) e.textContent = t('st.last', {a: ago(last.ts)});
 }
 
 /* ---------- komentāru atslēga ---------- */
@@ -272,19 +275,26 @@ $('#keyForm').addEventListener('submit', (e) => {
   $('#keyErr').hidden = true; setKey(v); $('#keyIn').value = ''; $('#keyBox').hidden = true; lastSig = ''; tickNow();
 });
 async function tickNow(){
-  try{ const res = await load(); rows = res.list; mode = res.mode; admin = res.admin; lastOk = Date.now(); lastSig = ''; render(); }catch{}
+  try{ const res = await load(); rows = res.list; mode = res.mode; admin = res.admin; lastOk = Date.now(); lastSig = ''; loaded = true; render(); }catch{}
 }
 
 /* ---------- CSV ---------- */
 $('#csv').addEventListener('click', () => {
   const q = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
-  const head = ['laiks','ierīce','vecums','kopējais','komentārs','idejas', ...SECTIONS.flatMap(s => [s.id+'_balss', s.id+'_iemesli', s.id+'_piezīme'])];
+  const head = ['time','device','age','overall','comment','ideas', ...SECTIONS.flatMap(s => [s.id+'_vote', s.id+'_reasons', s.id+'_note'])];
   const out = rows.map(r => [r.ts, r.device, r.age, r.overall, r.comment, (r.ideas||[]).join('; '),
     ...SECTIONS.flatMap(s => { const a = r.sections?.[s.id] || {}; return [a.vote, (a.tags||[]).join('; '), a.note]; })]);
   const csv = '﻿' + [head, ...out].map(r => r.map(q).join(',')).join('\r\n');
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv;charset=utf-8'}));
-  a.download = 'inbox-jaunieši-' + new Date().toISOString().slice(0,10) + '.csv'; a.click(); URL.revokeObjectURL(a.href);
+  a.download = 'inbox-youth-' + new Date().toISOString().slice(0,10) + '.csv'; a.click(); URL.revokeObjectURL(a.href);
 });
+
+/* ---------- valoda ---------- */
+function applyLang(){
+  document.title = t('st.title'); applyStatic();
+  if(loaded){ lastSig = ''; render(); setLive(Date.now() - lastOk > 15000 ? 'err' : 'ok'); } else { setUnlockBtn(); $('#liveTxt').textContent = t('st.connecting'); }
+}
+onLang(applyLang);
 
 if(new URLSearchParams(location.search).has('demo')){
   // demo dati, lai redzētu paneļa izskatu
@@ -294,8 +304,9 @@ if(new URLSearchParams(location.search).has('demo')){
     ideas: [rnd(IDEAS)[1], rnd(IDEAS)[1]], comment: i % 7 === 0 ? 'Vairāk spēļu un tumšo režīmu!' : '',
     sections: Object.fromEntries(SECTIONS.map(s => { const v = rnd(['like','like','like','ok','dislike']); return [s.id, {vote:v, tags:[rnd(Survey.TAGS[v])], note: i % 11 === 0 ? 'Man šķiet par daudz' : ''}]; })),
   })).sort((a, b) => new Date(a.ts) - new Date(b.ts))});
+  store.loadAdmin = () => store.loadPublic();
 }
-if(new URLSearchParams(location.search).has('demo')) store.loadAdmin = () => store.loadPublic();
+applyLang();
 tick();
 </script>
 </body>
