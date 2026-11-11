@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex">
+<title>Statistika | Inbox.lv jauniešiem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf5f0; --card:#fff; --ink:#1c1b1f; --muted:#6d6670; --line:#ece4dc;
+  --red:#c8161d; --green:#12a150; --amber:#e8a200;
+  --shadow:0 1px 2px rgba(60,30,10,.05),0 8px 24px rgba(60,30,10,.06);
+  --display:"Bricolage Grotesque","Inter",system-ui,sans-serif;
+  --text:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 var(--text);-webkit-font-smoothing:antialiased}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid #1c1b1f;outline-offset:2px;border-radius:10px}
+
+.top{position:sticky;top:0;z-index:10;background:rgba(250,245,240,.96);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.top-in{max-width:1240px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px;min-height:60px;flex-wrap:wrap}
+.top img{height:26px;width:auto;display:block}
+.ttl{font:800 18px var(--display);letter-spacing:-.02em}
+.live{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted);margin-left:auto}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(18,161,80,.5);animation:pulse 2s infinite}
+.live.off .dot{background:var(--amber);animation:none}
+.live.err .dot{background:var(--red);animation:none}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(18,161,80,0)}100%{box-shadow:0 0 0 0 rgba(18,161,80,0)}}
+.btn{border:1.5px solid var(--line);background:#fff;border-radius:99px;min-height:40px;padding:0 16px;font-weight:700;font-size:14px}
+.btn.dark{background:var(--ink);border-color:var(--ink);color:#fff}
+
+main{max-width:1240px;margin:0 auto;padding:18px 16px 60px;display:grid;gap:16px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.cols{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:16px;align-items:start}
+.col{display:grid;gap:16px;min-width:0}
+@media(max-width:980px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.cols{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:480px){.kpis{gap:10px}}
+
+.card{background:var(--card);border-radius:24px;box-shadow:var(--shadow);padding:18px;min-width:0}
+.card h2{margin:0 0 12px;font:800 18px/1.1 var(--display);letter-spacing:-.02em;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.card h2 small{font:500 13px var(--text);color:var(--muted);letter-spacing:0}
+.kpi .lab{font-size:13px;font-weight:600;color:var(--muted)}
+.kpi .big{font:800 clamp(34px,5vw,54px)/1 var(--display);letter-spacing:-.04em;margin:6px 0 4px}
+.kpi .sub{font-size:13px;color:var(--muted)}
+.kpi .big.bump{animation:bump .6s}
+@keyframes bump{30%{transform:scale(1.14);color:var(--red)}}
+.mini{display:flex;height:10px;border-radius:6px;overflow:hidden;background:#f1ebe5;margin-top:10px}
+.mini i{display:block;height:100%}
+.hist{display:flex;align-items:flex-end;gap:5px;height:38px;margin-top:8px}
+.hist div{flex:1;background:#ffd9d4;border-radius:4px 4px 0 0;min-height:3px;position:relative}
+.hist-l{display:flex;gap:5px;font-size:15px;line-height:1.1;margin-top:2px}
+.hist-l span{flex:1;text-align:center}
+
+.sec{padding:12px 0;border-top:1px solid var(--line)}
+.sec:first-of-type{border-top:0;padding-top:0}
+.sec-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:7px}
+.sec-top b{font:800 16px var(--display)}
+.sec-top span{font-size:13px;color:var(--muted);white-space:nowrap}
+.stack{display:flex;height:30px;border-radius:10px;overflow:hidden;background:#f1ebe5}
+.stack div{display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff;min-width:0;transition:flex-grow .6s}
+.l{background:var(--green)}.o{background:var(--amber)}.d{background:var(--red)}
+.why{margin-top:7px;font-size:13px;color:#4a444d;display:grid;gap:2px}
+
+.rank{display:grid;gap:8px}
+.rank div{position:relative;border-radius:12px;background:#f6f1ec;padding:10px 12px;font-size:14px;font-weight:600;overflow:hidden;display:flex;justify-content:space-between;gap:10px}
+.rank div i{position:absolute;inset:0;background:#ffd9d4;transform-origin:left;transition:transform .6s;z-index:0}
+.rank div span{position:relative;z-index:1}
+.rank.age div i{background:#dfe6ff}
+
+.chart{display:flex;align-items:flex-end;gap:3px;height:110px}
+.chart div{flex:1;background:var(--red);border-radius:4px 4px 0 0;min-height:2px;opacity:.85;transition:height .5s}
+.chart-x{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:6px}
+
+.feed{display:grid;gap:8px;max-height:640px;overflow:auto}
+.item{border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-size:14px;background:#fbf9f7}
+.item.new{animation:flash 2.4s}
+@keyframes flash{0%{background:#ffe9e6;border-color:#f3a7a1}100%{background:#fbf9f7;border-color:var(--line)}}
+.item .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.item .t{color:var(--muted);font-size:12px}
+.tag{font-size:12px;font-weight:600;background:#fff;border:1px solid var(--line);border-radius:99px;padding:2px 8px}
+.votes{letter-spacing:2px;font-size:15px}
+.txt{margin-top:6px;padding-top:6px;border-top:1px dashed var(--line)}
+.txt small{color:var(--muted)}
+.empty{color:var(--muted);font-size:14px;margin:0}
+
+.key{display:flex;gap:8px;margin-top:8px}
+.key input{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;background:#fbf9f7}
+.err{color:var(--red);font-weight:600;font-size:13px;margin:6px 0 0}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <img src="../assets/logo.png" alt="inbox.lv" width="150" height="26">
+    <span class="ttl">Statistika</span>
+    <span class="live" id="live"><span class="dot"></span><span id="liveTxt">Savienojamies…</span></span>
+    <button class="btn" id="unlock">🔓 Komentāri</button>
+    <button class="btn dark" id="csv" hidden>CSV</button>
+  </div>
+</header>
+
+<main>
+  <section class="card" id="keyBox" hidden>
+    <h2>Atvērt komentārus</h2>
+    <p class="empty">Ievadi statistikas atslēgu, lai redzētu atbilžu tekstus (komentāri, piezīmes pie sadaļām).</p>
+    <form class="key" id="keyForm"><input id="keyIn" type="password" autocomplete="off" placeholder="Atslēga" aria-label="Statistikas atslēga"><button class="btn dark" type="submit">Atvērt</button></form>
+    <p class="err" id="keyErr" hidden>Atslēga nav pareiza.</p>
+  </section>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="cols">
+    <div class="col">
+      <section class="card" id="secs"></section>
+      <section class="card" id="ideas"></section>
+    </div>
+    <div class="col">
+      <section class="card" id="timeline"></section>
+      <section class="card" id="ages"></section>
+      <section class="card" id="feed"></section>
+    </div>
+  </div>
+</main>
+
+<script src="../config.js"></script>
+<script src="../survey-core.js"></script>
+<script>
+const {SECTIONS, VOTES, IDEAS, SCALE, AGES, LS, store, aggregate, lv, esc, topN} = Survey;
+store.apiBase = '../';
+const $ = (s) => document.querySelector(s);
+const POLL_MS = 3000;
+const KEY = 'youth_stats_key';
+const getKey = () => { try{ return sessionStorage.getItem(KEY) || ''; }catch{ return ''; } };
+const setKey = (v) => { try{ v ? sessionStorage.setItem(KEY, v) : sessionStorage.removeItem(KEY); }catch{} };
+
+let rows = [], admin = false, lastSig = '', lastOk = 0, seen = new Set(), firstLoad = true, mode = '';
+
+const ago = (ts) => {
+  const s = Math.max(0, Math.round((Date.now() - new Date(ts).getTime()) / 1000));
+  if(s < 5) return 'tikko';
+  if(s < 60) return 'pirms ' + s + ' s';
+  if(s < 3600) return 'pirms ' + Math.floor(s/60) + ' min';
+  if(s < 86400) return 'pirms ' + Math.floor(s/3600) + ' h';
+  return 'pirms ' + Math.floor(s/86400) + ' d';
+};
+const rowKey = (r) => r.id ?? (r.ts + '|' + r.age + '|' + r.overall);
+
+/* ---------- datu ielāde ---------- */
+async function load(){
+  const key = getKey();
+  if(key){
+    try{ return await store.loadAdmin(key); }
+    catch(e){ if(e.message === 'forbidden'){ setKey(''); $('#keyErr').hidden = false; $('#keyBox').hidden = false; } else throw e; }
+  }
+  return store.loadPublic();
+}
+async function tick(){
+  let wait = POLL_MS;
+  try{
+    const res = await load();
+    rows = res.list; admin = res.admin && !!getKey() || (res.mode === 'local'); mode = res.mode; lastOk = Date.now();
+    const sig = rows.length + '|' + (rows.length ? rowKey(rows[rows.length-1]) : '') + '|' + admin;
+    if(sig !== lastSig){ lastSig = sig; render(); }
+    setLive('ok');
+  }catch{ setLive('err'); wait = 8000; }
+  if(document.hidden) wait = 15000;
+  setTimeout(tick, wait);
+}
+function setLive(st){
+  const el = $('#live'); el.classList.toggle('err', st === 'err'); el.classList.remove('off');
+  const modeTxt = {supabase:'Supabase', server:'lokālais serveris', local:'šīs ierīces dati'}[mode] || '';
+  $('#liveTxt').textContent = st === 'err' ? 'Nav savienojuma' : 'Tiešraide' + (modeTxt ? ' · ' + modeTxt : '') + ' · ' + (lastOk ? ago(lastOk) : '');
+}
+setInterval(() => { if(lastOk) setLive(Date.now() - lastOk > 15000 ? 'err' : 'ok'); renderAgo(); }, 1000);
+
+/* ---------- attēlošana ---------- */
+const pct = (a, t) => t ? Math.round(a / t * 100) : 0;
+function render(){
+  const ag = aggregate(rows), n = rows.length;
+  const now = Date.now(), hour = rows.filter(r => now - new Date(r.ts) < 3600e3).length;
+  const today0 = new Date(); today0.setHours(0,0,0,0);
+  const today = rows.filter(r => new Date(r.ts) >= today0).length;
+  const avg = ag.overall.n ? ag.overall.sum / ag.overall.n : null;
+  let L = 0, O = 0, D = 0; SECTIONS.forEach(s => { const a = ag.sections[s.id]; L += a.like; O += a.ok; D += a.dislike; });
+  const T = L + O + D;
+  const mob = rows.filter(r => r.device === 'mobile').length;
+  const dist = [1,2,3,4,5].map(k => rows.filter(r => r.overall === k).length), dmax = Math.max(1, ...dist);
+  const lastRow = rows[rows.length - 1];
+
+  // KPI
+  const bump = !firstLoad && $('#kpis .big') && +$('#kpis .big').dataset.n !== n;
+  $('#kpis').innerHTML = `
+    <div class="card kpi"><div class="lab">Atbildes kopā</div><div class="big ${bump ? 'bump' : ''}" data-n="${n}">${n}</div>
+      <div class="sub">šodien ${today} · pēdējā stundā ${hour}</div><div class="sub" id="lastAgo">${lastRow ? 'pēdējā ' + ago(lastRow.ts) : ''}</div></div>
+    <div class="card kpi"><div class="lab">Kopējais iespaids</div><div class="big">${avg ? avg.toFixed(1) : '-'}<span style="font-size:.45em;color:var(--muted)"> /5</span></div>
+      <div class="sub">${ag.overall.n} ${lv(ag.overall.n,'vērtējums','vērtējumi')}</div>
+      <div class="hist">${dist.map(v => `<div style="height:${Math.max(8, v/dmax*100)}%" title="${v}"></div>`).join('')}</div>
+      <div class="hist-l">${SCALE.map(e => `<span>${e}</span>`).join('')}</div></div>
+    <div class="card kpi"><div class="lab">Sadaļu balsis kopā</div><div class="big">${pct(L, T)}<span style="font-size:.45em;color:var(--muted)">% 😍</span></div>
+      <div class="sub">${pct(O, T)}% 😐 · ${pct(D, T)}% 👎 · ${T} balsis</div>
+      <div class="mini"><i class="l" style="width:${pct(L,T)}%"></i><i class="o" style="width:${pct(O,T)}%"></i><i class="d" style="width:${pct(D,T)}%"></i></div></div>
+    <div class="card kpi"><div class="lab">Ierīces</div><div class="big">${pct(mob, n)}<span style="font-size:.45em;color:var(--muted)">% 📱</span></div>
+      <div class="sub">${mob} tālrunis · ${n - mob} dators</div>
+      <div class="mini"><i style="width:${pct(mob,n)}%;background:var(--ink)"></i><i style="width:${100 - pct(mob,n)}%;background:#cfc6bd"></i></div></div>`;
+
+  // Sadaļas
+  const order = SECTIONS.map(s => { const a = ag.sections[s.id]; return {s, a, tot: a.like + a.ok + a.dislike}; })
+    .sort((x, y) => (y.a.like - y.a.dislike) / (y.tot || 1) - (x.a.like - x.a.dislike) / (x.tot || 1));
+  $('#secs').innerHTML = `<h2>Pa sadaļām <small>kārtots pēc tā, cik patīk</small></h2>` + (n ? order.map(({s, a, tot}) => {
+    const p = k => pct(a[k], tot), lk = topN(a.tags.like), ds = topN(a.tags.dislike);
+    return `<div class="sec"><div class="sec-top"><b>${s.title}</b><span>${tot} ${lv(tot,'balss','balsis')}</span></div>
+      <div class="stack">${tot ? ['like','ok','dislike'].map((k,i) => `<div class="${'lod'[i]}" style="flex-grow:${a[k]}">${p(k) >= 10 ? p(k) + '%' : ''}</div>`).join('') : ''}</div>
+      <div class="why">${lk.length ? `<span>😍 ${lk.map(([t,c]) => esc(t) + ' ×' + c).join(' · ')}</span>` : ''}${ds.length ? `<span>👎 ${ds.map(([t,c]) => esc(t) + ' ×' + c).join(' · ')}</span>` : ''}</div></div>`;
+  }).join('') : '<p class="empty">Gaidām pirmās atbildes…</p>');
+
+  // Idejas
+  const ideas = topN(ag.ideas, 20), imax = Math.max(1, ...Object.values(ag.ideas));
+  $('#ideas').innerHTML = `<h2>Ko vēl grib <small>līdz 3 no katra</small></h2>` + (ideas.length ? `<div class="rank">` +
+    ideas.map(([t, c]) => `<div><i style="transform:scaleX(${c / imax})"></i><span>${(IDEAS.find(x => x[1] === t) || [''])[0]} ${esc(t)}</span><span>${c}</span></div>`).join('') + '</div>' : '<p class="empty">Vēl nav izvēlētu ideju.</p>');
+
+  // Vecums
+  const ac = AGES.map(a => [a, rows.filter(r => r.age === a).length]), amax = Math.max(1, ...ac.map(x => x[1]));
+  $('#ages').innerHTML = `<h2>Vecums</h2><div class="rank age">` + ac.map(([a, c]) => `<div><i style="transform:scaleX(${c / amax})"></i><span>${a}</span><span>${c}${n ? ' · ' + pct(c, n) + '%' : ''}</span></div>`).join('') + '</div>';
+
+  // Laika līkne: pēdējās 24 stundas pa stundām
+  const H = 24, b = new Array(H).fill(0), end = new Date(); end.setMinutes(0,0,0);
+  rows.forEach(r => { const d = Math.floor((end.getTime() + 3600e3 - new Date(r.ts).getTime()) / 3600e3); if(d >= 0 && d < H) b[H - 1 - d]++; });
+  const bmax = Math.max(1, ...b);
+  $('#timeline').innerHTML = `<h2>Atbildes pa stundām <small>pēdējās 24 h</small></h2><div class="chart">${b.map((v,i) => `<div style="height:${Math.max(2, v/bmax*100)}%" title="${v}"></div>`).join('')}</div>
+    <div class="chart-x"><span>pirms 24 h</span><span>pirms 12 h</span><span>tagad</span></div>`;
+
+  renderFeed();
+  firstLoad = false;
+  $('#csv').hidden = !(admin && getKey() || mode === 'local');
+  $('#unlock').textContent = admin && getKey() ? '🔒 Aizvērt komentārus' : '🔓 Komentāri';
+}
+
+function renderFeed(){
+  const last = rows.slice(-30).reverse();
+  const fresh = new Set(last.map(rowKey));
+  $('#feed').innerHTML = `<h2>Jaunākās atbildes <small>${admin && (getKey() || mode === 'local') ? 'ar komentāriem' : 'bez komentāriem'}</small></h2>` +
+    (last.length ? `<div class="feed">` + last.map(r => {
+      const isNew = !firstLoad && !seen.has(rowKey(r));
+      const emoji = SECTIONS.map(s => { const a = r.sections?.[s.id]; return a?.vote ? VOTES.find(v => v.v === a.vote).e : '·'; }).join('');
+      const notes = SECTIONS.map(s => { const a = r.sections?.[s.id]; return a?.note ? `<div class="txt"><small>${VOTES.find(v=>v.v===a.vote).e} ${esc(s.title)}:</small> ${esc(a.note)}</div>` : ''; }).join('');
+      return `<div class="item ${isNew ? 'new' : ''}"><div class="row"><span class="t" data-ts="${r.ts}">${ago(r.ts)}</span><span class="tag">${esc(r.age)}</span>${r.device === 'mobile' ? '<span class="tag">📱</span>' : '<span class="tag">💻</span>'}${r.overall ? `<span>${SCALE[r.overall-1]}</span>` : ''}</div>
+        <div class="votes" title="${SECTIONS.map(s => s.title).join(' | ')}">${emoji}</div>${r.comment ? `<div class="txt"><small>Komentārs:</small> ${esc(r.comment)}</div>` : ''}${notes}</div>`;
+    }).join('') + '</div>' : '<p class="empty">Vēl nav atbilžu.</p>');
+  fresh.forEach(k => seen.add(k));
+}
+function renderAgo(){
+  document.querySelectorAll('#feed .t[data-ts]').forEach(el => el.textContent = ago(el.dataset.ts));
+  const last = rows[rows.length - 1], el = $('#lastAgo'); if(el && last) el.textContent = 'pēdējā ' + ago(last.ts);
+}
+
+/* ---------- komentāru atslēga ---------- */
+$('#unlock').addEventListener('click', () => {
+  if(getKey()){ setKey(''); lastSig = ''; tickNow(); return; }
+  const box = $('#keyBox'); box.hidden = !box.hidden; if(!box.hidden) $('#keyIn').focus();
+});
+$('#keyForm').addEventListener('submit', (e) => {
+  e.preventDefault(); const v = $('#keyIn').value.trim(); if(!v) return;
+  $('#keyErr').hidden = true; setKey(v); $('#keyIn').value = ''; $('#keyBox').hidden = true; lastSig = ''; tickNow();
+});
+async function tickNow(){
+  try{ const res = await load(); rows = res.list; mode = res.mode; admin = res.admin; lastOk = Date.now(); lastSig = ''; render(); }catch{}
+}
+
+/* ---------- CSV ---------- */
+$('#csv').addEventListener('click', () => {
+  const q = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
+  const head = ['laiks','ierīce','vecums','kopējais','komentārs','idejas', ...SECTIONS.flatMap(s => [s.id+'_balss', s.id+'_iemesli', s.id+'_piezīme'])];
+  const out = rows.map(r => [r.ts, r.device, r.age, r.overall, r.comment, (r.ideas||[]).join('; '),
+    ...SECTIONS.flatMap(s => { const a = r.sections?.[s.id] || {}; return [a.vote, (a.tags||[]).join('; '), a.note]; })]);
+  const csv = '﻿' + [head, ...out].map(r => r.map(q).join(',')).join('\r\n');
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv;charset=utf-8'}));
+  a.download = 'inbox-jaunieši-' + new Date().toISOString().slice(0,10) + '.csv'; a.click(); URL.revokeObjectURL(a.href);
+});
+
+if(new URLSearchParams(location.search).has('demo')){
+  // demo dati, lai redzētu paneļa izskatu
+  const rnd = a => a[Math.floor(Math.random() * a.length)];
+  store.loadPublic = async () => ({mode:'local', admin:true, list: Array.from({length:64}, (_, i) => ({
+    id: i, ts: new Date(Date.now() - Math.random() * 20 * 3600e3).toISOString(), device: rnd(['mobile','mobile','desktop']), age: rnd(AGES), overall: rnd([2,3,4,4,5,5]),
+    ideas: [rnd(IDEAS)[1], rnd(IDEAS)[1]], comment: i % 7 === 0 ? 'Vairāk spēļu un tumšo režīmu!' : '',
+    sections: Object.fromEntries(SECTIONS.map(s => { const v = rnd(['like','like','like','ok','dislike']); return [s.id, {vote:v, tags:[rnd(Survey.TAGS[v])], note: i % 11 === 0 ? 'Man šķiet par daudz' : ''}]; })),
+  })).sort((a, b) => new Date(a.ts) - new Date(b.ts))});
+}
+if(new URLSearchParams(location.search).has('demo')) store.loadAdmin = () => store.loadPublic();
+tick();
+</script>
+</body>
+</html>

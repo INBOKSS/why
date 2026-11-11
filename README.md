@@ -8,6 +8,8 @@ Static site served by GitHub Pages at **https://why.inbokss.com** (see `CNAME`).
 | `/themes/`, `/en/themes/`, … | Vote for the new Inbox Mail colour themes |
 | `/themes/stats/` | Live aggregate vote statistics (English only) |
 | `/inbox-survey/` | Inbox.lv user survey (not indexed by search engines) |
+| `/youth-portal/` | Feedback form for the new youth portal prototype (Latvian, not indexed) |
+| `/youth-portal/stats/` | Live statistics for that form, refreshed every 3 s (comments need the stats key) |
 
 ## Editing
 
