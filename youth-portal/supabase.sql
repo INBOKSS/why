@@ -15,7 +15,7 @@ create table if not exists public.youth_feedback (
   age         text not null check (age in ('līdz 15','16-18','19-24','25+')),
   overall     smallint check (overall between 1 and 5),
   ideas       text[] not null default '{}',
-  sections    jsonb not null default '{}'::jsonb,   -- {sadaļa: {vote, tags[]}}
+  sections    jsonb not null default '{}'::jsonb,   -- {sadaļa: {vote, score 1-5, tags[]}}
   notes       jsonb not null default '{}'::jsonb,   -- {sadaļa: piezīme}  (privāts)
   comment     text                                   -- (privāts)
 );
@@ -63,6 +63,7 @@ begin
     if v->>'vote' in ('like','ok','dislike') then
       v_sections := v_sections || jsonb_build_object(left(k, 30), jsonb_build_object(
         'vote', v->>'vote',
+        'score', case when (v->>'score') in ('1','2','3','4','5') then (v->>'score')::int else null end,
         'tags', case when jsonb_typeof(v->'tags') = 'array' then v->'tags' else '[]'::jsonb end));
       if coalesce(v->>'note', '') <> '' then
         v_notes := v_notes || jsonb_build_object(left(k, 30), left(v->>'note', 200));
