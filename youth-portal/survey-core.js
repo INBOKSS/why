@@ -31,6 +31,8 @@
     ['📣','Atgriezeniskās saites poga'],['🏫','Sasaiste ar skolas portāliem (E-klase, Moodle u.c.)'],
   ];
   const SCALE = ['😖','😕','😐','🙂','🤩'];
+  /* 5 sejiņu skala sadaļām: 1-2 = nepatīk, 3 = normāli, 4-5 = patīk (datubāzē glabājas gan vote, gan score) */
+  const faceVote = (n) => n <= 2 ? 'dislike' : n === 3 ? 'ok' : 'like';
   const AGES = ['līdz 15','16-18','19-24','25+'];
   const MAX_IDEAS = 3;
   /* ====================================================================== */
@@ -139,5 +141,5 @@
   const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const topN = (obj, k=2) => Object.entries(obj).sort((a,b)=>b[1]-a[1]).slice(0,k);
 
-  global.Survey = {SECTIONS, TAGS, Q, VOTES, IDEAS, SCALE, AGES, MAX_IDEAS, LS, store, aggregate, lv, esc, topN};
+  global.Survey = {SECTIONS, TAGS, Q, VOTES, IDEAS, SCALE, faceVote, AGES, MAX_IDEAS, LS, store, aggregate, lv, esc, topN};
 })(window);
