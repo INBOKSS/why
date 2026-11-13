@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- TESTING ONLY: remove this noindex line after testing and bug fixes, before the 23.11 08:00 launch -->
+<meta name="robots" content="noindex">
+<title>Black Friday: -30% off Inbox.lv Premium | Inbox.lv</title>
+<meta name="description" content="Black Friday at Inbox.lv: -30% on all Premium 1-year and 3-year plans with code BF2026. No ads, up to 1 TB of storage, strong data security. 23–30.11.2026.">
+<meta property="og:title" content="Black Friday: -30% off Inbox.lv Premium">
+<meta property="og:description" content="-30% on all Premium 1-year and 3-year plans with code BF2026. Only 23–30 November.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://why.inbokss.com/black-friday-lv/en/">
+<link rel="canonical" href="https://why.inbokss.com/black-friday-lv/en/">
+<!--ALT--><link rel="alternate" hreflang="lv" href="https://why.inbokss.com/black-friday-lv/">
+<link rel="alternate" hreflang="en" href="https://why.inbokss.com/black-friday-lv/en/">
+<link rel="alternate" hreflang="ru" href="https://why.inbokss.com/black-friday-lv/ru/">
+<link rel="alternate" hreflang="x-default" href="https://why.inbokss.com/black-friday-lv/"><!--/ALT-->
+<!-- TODO: og:image (1200×630) when the campaign image is ready -->
+<link rel="icon" href="https://www.inbox.lv/favicon.ico">
+<style>
+  /* Tokens: InboxLV Design System (inbox-red, graphite, taupe, slate, white) + tints from www.inbox.lv */
+  :root{
+    --red:#CC0717;          /* inbox-red: primary buttons, highlights, -30% plate */
+    --red-dark:#A80613;     /* button hover */
+    --red-50:#FDEBEC;       /* active nav bg on www.inbox.lv; chips */
+    --graphite:#333333;     /* text on white, dark hero/footer */
+    --taupe:#8C8279;        /* secondary; large decorative only */
+    --slate:#566C7D;        /* secondary accent */
+    --ink:#121212;          /* www.inbox.lv nav text */
+    --muted:#5E5751;        /* secondary text on white (7:1) */
+    --line:#E6E2DE;
+    --warm-50:#FAF8F6;      /* alternate section bg */
+    --white:#FFFFFF;
+    --radius:8px;
+    --shadow:0 4px 24px rgba(0,0,0,.08);
+    --font:system-ui,-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; /* www.inbox.lv font stack */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:80px}
+  body{font-family:var(--font);color:var(--graphite);background:var(--white);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;height:auto;display:block}
+  a{color:var(--red)}
+  button{font-family:inherit}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+  section{padding:88px 0}
+  .bg-warm{background:var(--warm-50)}
+  h1,h2,h3{color:var(--graphite);line-height:1.15;font-weight:700}
+  h1{font-size:56px;letter-spacing:-.01em}
+  h2{font-size:40px;margin-bottom:16px}
+  h3{font-size:20px;line-height:1.3}
+  .sec-head{max-width:720px;margin:0 auto 48px;text-align:center}
+  .sec-head p{font-size:18px;color:var(--muted)}
+  .eyebrow{display:inline-block;font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+
+  /* Buttons — www.inbox.lv: red fill, white text, 8px radius */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:17px;font-weight:600;line-height:1.4;text-decoration:none;border-radius:var(--radius);padding:14px 28px;border:2px solid transparent;transition:background .2s,border-color .2s,color .2s;white-space:nowrap;cursor:pointer}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-dark)}
+  .btn-ghost{background:transparent;border-color:rgba(255,255,255,.7);color:#fff}
+  .btn-ghost:hover{background:#fff;color:var(--graphite)}
+  .btn-outline{background:#fff;border-color:var(--red);color:var(--red)}
+  .btn-outline:hover{background:var(--red-50)}
+  .btn-sm{padding:9px 18px;font-size:15px}
+  .btn:focus-visible,.toggle button:focus-visible,.faq-q:focus-visible,.copy:focus-visible{outline:3px solid var(--slate);outline-offset:2px}
+
+  /* Promo bar */
+  .promo-bar{background:var(--red);color:#fff;text-align:center;font-size:14px;padding:9px 16px}
+  .promo-bar a{color:#fff;font-weight:700}
+  .promo-bar code{font-family:inherit;font-weight:700;background:rgba(255,255,255,.2);padding:1px 8px;border-radius:4px;letter-spacing:.06em}
+
+  /* Header — white, like www.inbox.lv */
+  header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+  .nav-logo{display:block;line-height:0}
+  .nav-logo .logo{height:30px;width:auto}
+  .nav-right{display:flex;align-items:center;gap:8px}
+  .nav-links{display:flex;gap:4px;margin-right:12px}
+  .nav-links a{color:var(--ink);text-decoration:none;padding:8px 14px;border-radius:var(--radius)}
+  .nav-links a:hover{background:var(--red-50);color:var(--red)}
+  /* Language switcher — boxed codes, like why.inbox.lv */
+  .lang{display:flex;gap:4px;margin-right:8px}
+  .lang a{display:inline-flex;align-items:center;justify-content:center;min-width:36px;height:32px;padding:0 6px;border:1px solid var(--line);border-radius:6px;font-size:13px;font-weight:600;color:var(--muted);text-decoration:none}
+  .lang a:hover{border-color:var(--graphite);color:var(--graphite)}
+  .lang a.current{border-color:var(--graphite);color:var(--graphite);background:var(--warm-50)}
+
+  /* Hero — graphite plate */
+  .hero{background:var(--graphite);color:#fff;padding:72px 0 80px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero h1{color:#fff;margin:20px 0 20px}
+  .plate{display:inline-flex;align-items:center;background:var(--red);border-radius:8px;padding:8px 16px;font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase}
+  .hero .lead{font-size:20px;line-height:1.5;color:#E9E6E3;max-width:560px}
+  .hero .lead strong{color:#fff}
+  .big-off{display:inline-block;background:var(--red);color:#fff;border-radius:12px;padding:0 14px;line-height:1.2}
+  .code-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:28px 0}
+  .code-box{display:inline-flex;align-items:center;border:2px dashed rgba(255,255,255,.55);border-radius:var(--radius);overflow:hidden}
+  .code-box span{padding:10px 16px;font-size:14px;color:#E9E6E3}
+  .code-box strong{padding:10px 4px 10px 0;font-size:22px;letter-spacing:.12em}
+  .copy{background:rgba(255,255,255,.12);border:0;border-left:2px dashed rgba(255,255,255,.55);color:#fff;font-size:15px;font-weight:600;padding:14px 16px;cursor:pointer;margin-left:12px}
+  .copy:hover{background:rgba(255,255,255,.22)}
+  .code-note{font-size:14px;color:#D6D1CC}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px}
+  .countdown{margin-top:32px}
+  .countdown .lbl{font-size:14px;color:#D6D1CC;margin-bottom:8px}
+  .cd{display:flex;gap:10px}
+  .cd div{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);min-width:72px;padding:10px 8px;text-align:center}
+  .cd b{display:block;font-size:30px;line-height:1.1;font-variant-numeric:tabular-nums}
+  .cd small{font-size:12px;color:#D6D1CC;text-transform:uppercase;letter-spacing:.08em}
+  /* Hero image: assets/bf-hero.webp, 1200×1200 (1:1). .hero-media without .has-img = dashed placeholder */
+  .hero-media{aspect-ratio:4/3;border-radius:16px;border:2px dashed rgba(255,255,255,.35);background:repeating-linear-gradient(135deg,rgba(255,255,255,.04) 0 14px,rgba(255,255,255,0) 14px 28px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;color:#D6D1CC;padding:24px}
+  .hero-media svg{opacity:.7}
+  .hero-media b{color:#fff;font-size:16px}
+  .hero-media small{font-size:13px}
+  .hero-media img{width:100%;height:100%;object-fit:cover;border-radius:14px}
+  .hero-media.has-img{border:0;background:none;padding:0;aspect-ratio:1/1}
+
+  /* Plans */
+  .toggle-wrap{display:flex;justify-content:center;margin-bottom:12px}
+  .toggle{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px}
+  .toggle button{border:0;background:none;font-size:16px;font-weight:600;color:var(--graphite);padding:10px 24px;border-radius:999px;cursor:pointer}
+  .toggle button.active{background:var(--graphite);color:#fff}
+  .toggle-hint{text-align:center;font-size:14px;color:var(--muted);margin-bottom:36px}
+  .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+  .plan{position:relative;background:#fff;border:1px solid var(--line);border-radius:12px;padding:32px 28px 28px;display:flex;flex-direction:column;box-shadow:var(--shadow)}
+  .plan.featured{border:2px solid var(--red)}
+  .plan-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:13px;font-weight:700;padding:4px 14px;border-radius:999px;white-space:nowrap}
+  .plan-off{position:absolute;top:20px;right:20px;background:var(--red-50);color:var(--red);font-weight:800;font-size:14px;padding:4px 10px;border-radius:6px}
+  .plan h3{font-size:16px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .plan .gb{font-size:44px;font-weight:800;line-height:1.1;margin:4px 0 20px;color:var(--graphite)}
+  .price-old{font-size:16px;color:var(--muted);text-decoration:line-through}
+  .price{font-size:36px;font-weight:800;color:var(--red);line-height:1.15}
+  .price small{font-size:16px;font-weight:500;color:var(--muted)}
+  .per-month{font-size:14px;color:var(--muted);margin-top:2px}
+  .plan ul{list-style:none;margin:24px 0 28px;display:grid;gap:10px;flex:1}
+  .plan li{display:flex;gap:10px;font-size:15px}
+  .plan li svg{flex:none;margin-top:3px}
+  .plan .btn{width:100%}
+  .plans-note{text-align:center;color:var(--muted);font-size:14px;margin-top:28px}
+  .biz{margin:40px auto 0;max-width:960px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 24px}
+  .biz p{font-size:16px;flex:1}
+  .biz .btn{flex:none}
+
+  /* Benefits */
+  .ben-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .ben{background:#fff;border:1px solid var(--line);border-radius:12px;padding:28px}
+  .ben .ic{width:52px;height:52px;border-radius:12px;background:var(--red-50);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+  .ben h3{margin-bottom:6px}
+  .ben p{color:var(--muted)}
+
+  /* Steps */
+  .step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:s}
+  .step{background:#fff;border-radius:12px;padding:28px;border:1px solid var(--line)}
+  .step .n{width:44px;height:44px;border-radius:50%;background:var(--red);color:#fff;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .step h3{margin-bottom:6px}
+  .step p{color:var(--muted)}
+  .step code{font-family:inherit;font-weight:700;color:var(--graphite);background:var(--red-50);padding:1px 6px;border-radius:4px}
+  .center{text-align:center;margin-top:40px}
+
+  /* FAQ */
+  .faq{max-width:820px;margin:0 auto}
+  .faq-item{border-bottom:1px solid var(--line)}
+  .faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:none;border:0;text-align:left;font-size:18px;font-weight:600;color:var(--graphite);padding:22px 0;cursor:pointer}
+  .faq-q svg{flex:none;transition:transform .2s}
+  .faq-item.open .faq-q svg{transform:rotate(180deg)}
+  .faq-a{display:none;padding:0 0 22px;color:var(--muted)}
+  .faq-item.open .faq-a{display:block}
+  .faq-a a{font-weight:600}
+
+  /* Final CTA */
+  .final{background:var(--graphite);color:#fff;text-align:center}
+  .final h2{color:#fff;font-size:48px}
+  .final p{font-size:18px;color:#E9E6E3;margin-bottom:28px}
+
+  /* Footer — links from why.inbox.lv */
+  footer{background:#262626;color:#D6D1CC;padding:40px 0;font-size:14px}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .foot .logo{height:34px;width:auto}
+  .foot nav{display:flex;flex-wrap:wrap;gap:8px 24px}
+  .foot a{color:#fff;text-decoration:none}
+  .foot a:hover{text-decoration:underline}
+  .copyr{margin-top:20px;color:#BDB6B0}
+
+  /* Mobile sticky CTA */
+  .m-cta{display:none}
+
+  @media (max-width:1024px){
+    h1{font-size:44px}
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .hero-media{max-width:640px;width:100%;margin:0 auto}
+    .ben-grid{grid-template-columns:1fr 1fr}
+    .plan-grid{gap:16px}
+    .plan{padding:28px 20px 24px}
+    .nav-links{display:none}
+  }
+  @media (max-width:768px){
+    section{padding:64px 0}
+    h1{font-size:36px}
+    h2,.final h2{font-size:30px}
+    .hero{padding:40px 0 56px}
+    .hero .lead{font-size:18px}
+    .plan-grid,.ben-grid,.step-grid{grid-template-columns:1fr}
+    .plan-grid{gap:32px;max-width:460px;margin:0 auto}
+    .cta-row .btn{width:100%}
+    .cd div{min-width:0;flex:1}
+    .cd b{font-size:24px}
+    .nav-logo .logo{height:24px}
+    .m-cta{display:block;position:fixed;left:0;right:0;bottom:0;z-index:30;background:#fff;border-top:1px solid var(--line);padding:12px 16px;transform:translateY(110%);transition:transform .25s}
+    .m-cta.show{transform:none}
+    .m-cta .btn{width:100%}
+    footer{padding-bottom:96px}
+  }
+  @media (max-width:560px){.nav-cta{display:none}.lang{margin-right:0}.biz{flex-direction:column;align-items:flex-start;gap:14px}}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.m-cta{transition:none}}
+</style>
+</head>
+<body>
+
+<!--
+  CTA links: all go to billing with the coupon pre-applied and a plan pre-selected.
+  Plan cards pre-select their own size + period (the 1/3-year switch updates it); every other CTA pre-selects 300 GB / 1 year.
+  Base: https://billing.inbox.lv/premium/mail?language=en&coupon=BF2026&storage_option=mail_plus_300&billing=premium_1_year_(300gb)&utm_source=inbox.lv&utm_medium=landing&utm_campaign=black_friday_2026&utm_content=<placement>#coupon
+-->
+
+<div class="promo-bar">Black Friday: <b>-30%</b> on all Premium 1-year and 3-year plans with code <code>BF2026</code> · 23.–30.11. <a href="https://billing.inbox.lv/premium/mail?language=en&coupon=BF2026&storage_option=mail_plus_300&billing=premium_1_year_(300gb)&utm_source=inbox.lv&utm_medium=landing&utm_campaign=black_friday_2026&utm_content=en_promo_bar#coupon">Get the discount</a></div>
+
+<header>
+  <div class="wrap nav">
+    <a class="nav-logo" href="https://www.inbox.lv/?utm_source=inbox.lv&utm_medium=landing&utm_campaign=black_friday_2026&utm_content=en_header_logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="534.31 462.61 872.69 146.39" class="logo" role="img" aria-label="Inbox.lv"><path fill="#8C8279" d="M1176.65 585.39L1130.07 548.94L1176.65 512.09C1179.87 509.51 1181.48 506.87 1181.48 504.15C1181.48 502.93 1181.15 501.61 1180.48 500.18C1179.8 498.75 1178.96 497.47 1177.96 496.31C1176.95 495.16 1175.77 494.21 1174.43 493.46C1173.08 492.72 1171.81 492.34 1170.6 492.34C1168.45 492.34 1166.09 493.29 1163.54 495.19L1112.73 535.3L1061.72 495.19C1059.16 493.29 1056.81 492.34 1054.66 492.34C1053.45 492.34 1052.17 492.72 1050.83 493.46C1049.48 494.21 1048.31 495.16 1047.3 496.31C1046.29 497.47 1045.45 498.75 1044.78 500.18C1044.11 501.61 1043.77 502.93 1043.77 504.15C1043.77 506.87 1045.39 509.51 1048.61 512.09L1095.19 548.94L1048.61 585.39C1045.39 588.1 1043.77 590.82 1043.77 593.53C1043.77 594.75 1044.11 596.08 1044.78 597.5C1045.45 598.93 1046.29 600.22 1047.3 601.37C1048.31 602.52 1049.48 603.47 1050.83 604.22C1052.17 604.96 1053.45 605.34 1054.66 605.34C1056.81 605.34 1059.16 604.39 1061.72 602.49L1112.73 562.38L1163.54 602.49C1166.09 604.39 1168.45 605.34 1170.6 605.34C1171.94 605.34 1173.28 604.96 1174.63 604.22C1175.97 603.47 1177.15 602.56 1178.16 601.47C1179.17 600.38 1179.97 599.13 1180.58 597.7C1181.18 596.28 1181.48 594.89 1181.48 593.53C1181.48 590.82 1179.87 588.1 1176.65 585.39ZM1007.33 525.12C993.08 515.08 977.42 510.05 960.35 510.05C943.14 510.05 927.55 515.08 913.57 525.12L913.57 572.35C927.41 582.53 943.01 587.63 960.35 587.63C977.55 587.63 993.21 582.53 1007.33 572.35L1007.33 525.12ZM1028.5 519.83L1028.5 577.65C1028.5 580.91 1027.15 583.69 1024.47 586C1006.05 601.34 984.68 609 960.35 609C936.02 609 914.65 601.34 896.23 586C893.54 583.69 892.2 580.91 892.2 577.65L892.2 519.83C892.2 516.57 893.54 513.79 896.23 511.48C914.91 496.14 936.29 488.47 960.35 488.47C984.41 488.47 1005.78 496.14 1024.47 511.48C1027.15 513.79 1028.5 516.57 1028.5 519.83ZM849.66 525.12C835.41 515.08 819.74 510.05 802.68 510.05C785.47 510.05 769.88 515.08 755.9 525.12L755.9 572.35C769.74 582.53 785.34 587.63 802.68 587.63C819.88 587.63 835.54 582.53 849.66 572.35L849.66 525.12ZM870.83 519.83L870.83 577.65C870.83 580.91 869.48 583.69 866.79 586C848.38 601.34 827 609 802.68 609C778.34 609 756.97 601.34 738.56 586C735.87 583.69 734.53 580.91 734.53 577.65L734.53 473.41C734.53 466.21 738.02 462.61 745.01 462.61C752.27 462.61 755.9 466.21 755.9 473.41L755.9 500.08C770.41 492.34 786.01 488.47 802.68 488.47C826.74 488.47 848.11 496.14 866.79 511.48C869.48 513.79 870.83 516.57 870.83 519.83ZM709.12 511.48C690.44 496.14 669.06 488.47 645 488.47C620.94 488.47 599.57 496.14 580.88 511.48C578.19 513.79 576.85 516.57 576.85 519.83L576.85 593.94C576.85 601.13 580.35 604.73 587.34 604.73C594.59 604.73 598.22 601.13 598.22 593.94L598.22 525.12C612.2 515.08 627.79 510.05 645 510.05C662.07 510.05 677.73 515.08 691.98 525.12L691.98 593.94C691.98 601.13 695.48 604.73 702.47 604.73C709.59 604.73 713.15 601.13 713.15 593.94L713.15 519.83C713.15 516.57 711.81 513.79 709.12 511.48ZM544.79 462.61C537.8 462.61 534.31 466.21 534.31 473.41C534.31 480.6 537.8 484.2 544.79 484.2C552.05 484.2 555.68 480.6 555.68 473.41C555.68 466.21 552.05 462.61 544.79 462.61ZM555.68 503.54L555.68 593.94C555.68 601.13 552.05 604.73 544.79 604.73C537.8 604.73 534.31 601.13 534.31 593.94L534.31 503.54C534.31 496.35 537.8 492.75 544.79 492.75C552.05 492.75 555.68 496.35 555.68 503.54Z"></path><path fill="#CC0717" d="M1202.66 583.35C1195.53 583.35 1191.97 586.88 1191.97 593.94C1191.97 601.13 1195.53 604.73 1202.66 604.73C1209.64 604.73 1213.14 601.13 1213.14 593.94C1213.14 586.88 1209.64 583.35 1202.66 583.35Z"></path><path fill="#CC0717" d="M1234.48 462.61C1227.49 462.61 1223.99 466.21 1223.99 473.4L1223.99 593.94C1223.99 601.13 1227.49 604.73 1234.48 604.73C1241.73 604.73 1245.36 601.13 1245.36 593.94L1245.36 473.4C1245.36 466.21 1241.73 462.61 1234.48 462.61Z"></path><path fill="#CC0717" d="M1401.76 494.79C1399.34 493.16 1397.12 492.35 1395.1 492.35C1391.88 492.35 1389.19 494.05 1387.04 497.44L1333.81 575.01L1280.78 497.44C1278.63 494.05 1275.94 492.35 1272.72 492.35C1270.7 492.35 1268.48 493.16 1266.06 494.79C1262.57 497.23 1260.82 499.95 1260.82 502.93C1260.82 505.24 1261.63 507.48 1263.24 509.65L1325.14 600.05C1327.42 603.17 1330.38 604.73 1334.01 604.73C1337.77 604.73 1340.73 603.04 1342.88 599.64L1404.58 509.65C1406.19 507.48 1407 505.24 1407 502.93C1407 499.95 1405.25 497.23 1401.76 494.79Z"></path></svg></a>
+    <div class="nav-right">
+      <nav class="nav-links" aria-label="Page sections">
+        <a href="#plans">Plans</a>
+        <a href="#benefits">Benefits</a>
+        <a href="#how">How it works</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <!--LANG--><nav class="lang" aria-label="Language"><a href="https://why.inbokss.com/black-friday-lv/" data-local="../index.html" hreflang="lv" lang="lv">LV</a><a href="https://why.inbokss.com/black-friday-lv/en/" data-local="index.html" hreflang="en" lang="en" class="current" aria-current="page">EN</a><a href="https://why.inbokss.com/black-friday-lv/ru/" data-local="../ru/index.html" hreflang="ru" lang="ru">RU</a></nav><!--/LANG-->
+      <a class="btn btn-red btn-sm nav-cta" href="https://billing.inbox.lv/premium/mail?language=en&coupon=BF2026&storage_option=mail_plus_300&billing=premium_1_year_(300gb)&utm_source=inbox.lv&utm_medium=landing&utm_campaign=black_friday_2026&utm_content=en_header#coupon">Get -30%</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="plate">Black Friday · 23.–30.11.</span>
+      <h1><span class="big-off">-30%</span> Inbox.lv Premium</h1>
+      <p class="lead"><strong>Get your three wishes granted:</strong> secure ad-free email, up to 1 TB of space for your files, and an irresistible price. The discount applies to all 1-year and 3-year plans, only until 30 November.</p>
+
+      <div class="code-row">
+        <div class="code-box"><span>Code</span><strong>BF2026</strong><button class="copy" type="button" data-copy="BF2026">Copy</button></div>
+        <span class="code-note">The button below adds the code for you.</span>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-red" href="https://billing.inbox.lv/premium/mail?language=en&coupon=BF2026&storage_option=mail_plus_300&billing=premium_1_year_(300gb)&utm_source=inbox.lv&utm_medium=landing&utm_campaign=black_friday_2026&utm_content=en_hero#coupon">Get -30% off</a>
+        <a class="btn btn-ghost" href="#plans">See prices</a>
+      </div>
+
+      <div class="countdown" aria-live="polite">
+        <p class="lbl" id="cd-label">Sale starts in</p>
+        <div class="cd" id="cd">
+          <div><b id="cd-d">00</b><small>days</small></div>
+          <div><b id="cd-h">00</b><small>hours</small></div>
+          <div><b id="cd-m">00</b><small>min</small></div>
+          <div><b id="cd-s">00</b><small>sec</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-media has-img">
+      <img src="../assets/bf-hero.webp" alt="A fisherman holding a giant goldfish" width="1200" height="1200" fetchpriority="high" decoding="async">
+    </div>
+  </div>
+</section>
+
+<section class="bg-warm" id="plans">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Discounted prices</span>
+      <h2>Choose your Premium plan</h2>
+      <p>-30% on all 1-year and 3-year plans. The longer the plan, the less you pay each month.</p>
+    </div>
+
+    <div class="toggle-wrap">
+      <div class="toggle" role="group" aria-label="Plan length">
+        <button type="button" class="active" data-period="1y" aria-pressed="true">1 year</button>
+        <button type="button" data-period="3y" aria-pressed="false">3 years</button>
+      </div>
+    </div>
+    <p class="toggle-hint">The discount doesn't apply to monthly payments.</p>
+
+    <div class="plan-grid">
+      <!-- 150 GB -->
+      <div class="plan" data-plan="150gb"
+           data-1y-old="13.99 €" data-1y-new="9.78 €" data-1y-suffix="/ year" data-1y-pm="0.82 € / month"
+           data-3y-old="29.99 €" data-3y-new="20.99 €" data-3y-suffix="/ 3 years" data-3y-pm="0.58 € / month">
+        <span class="plan-off">-30%</span>
+        <h3>Premium</h3>
+        <div class="gb">150 GB</div>
+        <div class="price-old" data-f="old">13.99 €</div>
+        <div class="price"><span data-f="new">9.78 €</span> <small data-f="suffix">/ year</small></div>
+        <div class="per-month" data-f="pm">0.82 € / month</div>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#CC0717" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>No ads in email or the app</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#CC0717" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Unlimited email sending</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#CC0717" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Extra backup and deleted email retention</li>
+        </ul>
+        <a class="btn btn-outline" data-cta href="https://billing.inbox.lv/premium/mail?language=en&coupon=BF2026&storage_option=mail_plus_150&billing=premium_1_year&utm_source=inbox.lv&utm_medium=landing&utm_campaign=black_friday_2026&utm_content=en_plan_150gb_1y#coupon">Choose 150 GB</a>
+      </div>
+
+      <!-- 300 GB -->
+      <div class="plan featured" data-plan="300gb"
+           data-1y-old="18.98 €" data-1y-new="13.29 €" data-1y-suffix="/ year" data-1y-pm="1.11 € / month"
+           data-3y-old="34.99 €" data-3y-new="24.49 €" data-3y-suffix="/ 3 years" data-3y-pm="0.68 € / month">
+        <span class="plan-badge">Most popular</span>
+        <span class="plan-off">-30%</span>
+        <h3>Premium</h3>
+        <div class="gb">300 GB</div>
+        <div class="price-old" data-f="old">18.98 €</div>
+        <div class="price"><span data-f="new">13.29 €</span> <small data-f="suffix">/ year</small></div>
+        <div class="per-month" data-f="pm">1.11 € / month</div>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#CC0717" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Everything in the 150 GB plan</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#CC0717" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Twice the space for email and files</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#CC0717" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Space in Files and Foto storage</li>
+        </ul>
+        <a class="btn btn-red" data-cta href="https://billing.inbox.lv/premium/mail?language=en&coupon=BF2026&storage_option=mail_plus_300&billing=premium_1_year_(300gb)&utm_source=inbox.lv&utm_medium=landing&utm_campaign=black_friday_2026&utm_content=en_plan_300gb_1y#coupon">Choose 300 GB</a>
+      </div>
+
+      <!-- 1 TB -->
+      <div class="plan" data-plan="1tb"
+           data-1y-old="49.99 €" data-1y-new="34.99 €" data-1y-suffix="/ year" data-1y-pm="2.92 € / month"
+           data-3y-old="99.99 €" data-3y-new="69.98 €" data-3y-suffix="/ 3 years" data-3y-pm="1.94 € / month">
+        <span class="plan-off">-30%</span>
+        <h3>Premium</h3>
+        <div class="gb">1 TB</div>
+        <div class="price-old" data-f="old">49.99 €</div>
+        <div class="price"><span data-f="new">34.99 €</span> <small data-f="suffix">/ year</small></div>
+        <div class="per-month" data-f="pm">2.92 € / month</div>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#CC0717" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Everything in the 150 GB plan</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#CC0717" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Room for your whole photo and video archive</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#CC0717" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Upload files up to 2.5 GB</li>
+        </ul>
+        <a class="btn btn-outline" data-cta href="https://billing.inbox.lv/premium/mail?language=en&coupon=BF2026&storage_option=mail_plus_1024&billing=premium_1_year_(1_tb)&utm_source=inbox.lv&utm_medium=landing&utm_campaign=black_friday_2026&utm_content=en_plan_1tb_1y#coupon">Choose 1 TB</a>
+      </div>
+    </div>
+
+    <p class="plans-note">Prices include VAT. The discount applies with code BF2026 until 30.11.2026 23:59.</p>
+
+    <div class="biz">
+      <p><b>Need email on your company's own domain?</b> Try Inbox.eu Business.</p>
+      <a class="btn btn-outline btn-sm" href="https://www.inbox.eu/en/mail-for-business/?utm_source=inbox.lv&utm_medium=landing&utm_campaign=black_friday_2026&utm_content=en_business_box">Learn more</a>
+    </div>
+  </div>
+</section>
+
+<section id="benefits">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Why Premium</span>
+      <h2>More space, fewer distractions</h2>
+      <p>Everything you already know and use at Inbox.lv, without the limits.</p>
+    </div>
+    <div class="ben-grid">
+      <div class="ben">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#CC0717" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m5.6 5.6 12.8 12.8"/></svg></div>
+        <h3>No ads</h3>
+        <p>A clean inbox with no promotional emails or banners, in email and in the app.</p>
+      </div>
+      <div class="ben">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#CC0717" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+        <h3>Up to 1 TB of storage</h3>
+        <p>From 150 GB to 1 TB for email, files and photos. A free account has 20 GB.</p>
+      </div>
+      <div class="ben">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#CC0717" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Strong data security</h3>
+        <p>Extra backups, TLS 1.3 and 100% GDPR compliance.</p>
+      </div>
+      <div class="ben">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#CC0717" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg></div>
+        <h3>Unlimited communication</h3>
+        <p>Unlimited emails sent per day, up to 250 recipients in one email.</p>
+      </div>
+      <div class="ben">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#CC0717" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></svg></div>
+        <h3>More features</h3>
+        <p>5 aliases, 10 connected accounts and 10 labels to keep your inbox in order.</p>
+      </div>
+      <div class="ben">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#CC0717" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+        <h3>Files and Foto</h3>
+        <p>Extra space for files and photos. Upload large files up to 2.5 GB.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-warm" id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">3 steps</span>
+      <h2>How to get the discount</h2>
+    </div>
+    <div class="step-grid">
+      <div class="step"><div class="n">1</div><h3>Choose a plan</h3><p>150 GB, 300 GB or 1 TB, for 1 year or 3 years.</p></div>
+      <div class="step"><div class="n">2</div><h3>The code is already added</h3><p>The buttons on this page add code <code>BF2026</code> automatically. If it is missing, enter it at checkout.</p></div>
+      <div class="step"><div class="n">3</div><h3>Use it right away</h3><p>Premium works on your existing Inbox.lv account as soon as you pay.</p></div>
+    </div>
+    <div class="center"><a class="btn btn-red" href="https://billing.inbox.lv/premium/mail?language=en&coupon=BF2026&storage_option=mail_plus_300&billing=premium_1_year_(300gb)&utm_source=inbox.lv&utm_medium=landing&utm_campaign=black_friday_2026&utm_content=en_steps#coupon">Get -30% off</a></div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Questions</span>
+      <h2>Good to know</h2>
+    </div>
+    <div class="faq">
+      <div class="faq-item open"><button class="faq-q" type="button" aria-expanded="true"><span>How long does the offer run?</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 6 5 5 5-5" stroke="#333" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="faq-a"><p>From 23 November to 30 November 2026, until 23:59 (Riga time).</p></div></div>
+      <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><span>Which plans get -30%?</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 6 5 5 5-5" stroke="#333" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="faq-a"><p>All Inbox.lv Premium 1-year and 3-year plans: 150 GB, 300 GB and 1 TB. The discount doesn't apply to monthly payments.</p></div></div>
+      <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><span>Where do I enter code BF2026?</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 6 5 5 5-5" stroke="#333" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="faq-a"><p>If you open the payment page with a button on this page, the code is already added. If you open <a href="https://billing.inbox.lv/premium/mail?language=en&coupon=BF2026&storage_option=mail_plus_300&billing=premium_1_year_(300gb)&utm_source=inbox.lv&utm_medium=landing&utm_campaign=black_friday_2026&utm_content=en_faq#coupon">billing.inbox.lv</a> another way, enter BF2026 in the discount code field before you pay.</p></div></div>
+      <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><span>I already have Premium. Can I use the discount?</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 6 5 5 5-5" stroke="#333" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="faq-a"><p>Yes. With code BF2026 you can extend or upgrade your plan by choosing a 1-year or 3-year period.</p></div></div>
+      <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><span>Do prices include VAT?</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 6 5 5 5-5" stroke="#333" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="faq-a"><p>Yes, all prices include VAT. There are no extra fees.</p></div></div>
+      <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><span>Do I need a new account?</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 6 5 5 5-5" stroke="#333" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="faq-a"><p>No. Premium is added to your existing Inbox.lv address. All your emails, contacts and files stay where they are. Questions? <a href="https://help.inbox.lv/?keyword=contacts">Contact support</a>.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Don't miss <span class="big-off">-30%</span></h2>
+    <p>Code BF2026 is valid until 30 November at 23:59.</p>
+    <a class="btn btn-red" href="https://billing.inbox.lv/premium/mail?language=en&coupon=BF2026&storage_option=mail_plus_300&billing=premium_1_year_(300gb)&utm_source=inbox.lv&utm_medium=landing&utm_campaign=black_friday_2026&utm_content=en_final#coupon">Get -30% off</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="367.46 346.85 553.9 154.56" class="logo" role="img" aria-label="Inbox.lv"><path fill="#CC0717" d="M910.67 501.41L378.15 501.41C372.25 501.41 367.46 496.63 367.46 490.72L367.46 357.54C367.46 351.64 372.25 346.85 378.15 346.85L910.67 346.85C916.58 346.85 921.36 351.64 921.36 357.54L921.36 490.72C921.36 496.63 916.58 501.41 910.67 501.41Z"></path><path fill="#FFFFFF" d="M752.73 446.83L729.45 428.6L752.73 410.18C754.35 408.89 755.15 407.57 755.15 406.21C755.15 405.6 754.98 404.94 754.65 404.22C754.31 403.51 753.89 402.87 753.39 402.29C752.88 401.71 752.3 401.24 751.63 400.86C750.95 400.49 750.31 400.3 749.71 400.3C748.63 400.3 747.46 400.78 746.18 401.73L720.78 421.78L695.27 401.73C693.99 400.78 692.82 400.3 691.74 400.3C691.14 400.3 690.5 400.49 689.83 400.86C689.15 401.24 688.56 401.71 688.06 402.29C687.56 402.87 687.14 403.51 686.8 404.22C686.46 404.94 686.3 405.6 686.3 406.21C686.3 407.57 687.1 408.89 688.72 410.18L712 428.6L688.72 446.83C687.1 448.18 686.3 449.54 686.3 450.9C686.3 451.51 686.46 452.17 686.8 452.88C687.14 453.6 687.56 454.24 688.06 454.82C688.56 455.4 689.15 455.87 689.83 456.24C690.5 456.62 691.14 456.8 691.74 456.8C692.82 456.8 693.99 456.33 695.27 455.38L720.78 435.32L746.18 455.38C747.46 456.33 748.63 456.8 749.71 456.8C750.38 456.8 751.05 456.62 751.73 456.24C752.4 455.87 752.99 455.41 753.49 454.87C753.99 454.33 754.4 453.7 754.7 452.99C755 452.27 755.15 451.58 755.15 450.9C755.15 449.54 754.35 448.18 752.73 446.83ZM668.07 416.69C660.95 411.67 653.12 409.16 644.59 409.16C635.98 409.16 628.19 411.67 621.2 416.69L621.2 440.31C628.12 445.4 635.92 447.95 644.59 447.95C653.19 447.95 661.02 445.4 668.07 440.31L668.07 416.69ZM678.66 414.05L678.66 442.96C678.66 444.59 677.99 445.98 676.64 447.13C667.44 454.8 656.75 458.64 644.59 458.64C632.42 458.64 621.73 454.8 612.53 447.13C611.18 445.98 610.51 444.59 610.51 442.96L610.51 414.05C610.51 412.42 611.18 411.03 612.53 409.87C621.87 402.21 632.55 398.37 644.59 398.37C656.62 398.37 667.3 402.21 676.64 409.87C677.99 411.03 678.66 412.42 678.66 414.05ZM589.24 416.69C582.11 411.67 574.28 409.16 565.75 409.16C557.15 409.16 549.35 411.67 542.36 416.69L542.36 440.31C549.28 445.4 557.08 447.95 565.75 447.95C574.35 447.95 582.18 445.4 589.24 440.31L589.24 416.69ZM599.82 414.05L599.82 442.96C599.82 444.59 599.15 445.98 597.81 447.13C588.6 454.8 577.91 458.64 565.75 458.64C553.58 458.64 542.9 454.8 533.69 447.13C532.34 445.98 531.67 444.59 531.67 442.96L531.67 390.84C531.67 387.24 533.42 385.44 536.92 385.44C540.55 385.44 542.36 387.24 542.36 390.84L542.36 404.17C549.62 400.3 557.41 398.37 565.75 398.37C577.78 398.37 588.46 402.21 597.81 409.87C599.15 411.03 599.82 412.42 599.82 414.05ZM518.97 409.87C509.63 402.21 498.94 398.37 486.91 398.37C474.88 398.37 464.19 402.21 454.85 409.87C453.51 411.03 452.84 412.42 452.84 414.05L452.84 451.1C452.84 454.7 454.58 456.5 458.08 456.5C461.71 456.5 463.52 454.7 463.52 451.1L463.52 416.69C470.51 411.67 478.31 409.16 486.91 409.16C495.45 409.16 503.28 411.67 510.4 416.69L510.4 451.1C510.4 454.7 512.15 456.5 515.64 456.5C519.21 456.5 520.99 454.7 520.99 451.1L520.99 414.05C520.99 412.42 520.31 411.03 518.97 409.87ZM436.81 385.44C433.31 385.44 431.57 387.24 431.57 390.84C431.57 394.43 433.31 396.23 436.81 396.23C440.44 396.23 442.25 394.43 442.25 390.84C442.25 387.24 440.44 385.44 436.81 385.44ZM442.25 405.9L442.25 451.1C442.25 454.7 440.44 456.5 436.81 456.5C433.31 456.5 431.57 454.7 431.57 451.1L431.57 405.9C431.57 402.31 433.31 400.51 436.81 400.51C440.44 400.51 442.25 402.31 442.25 405.9Z"></path><path fill="#FFFFFF" d="M765.74 445.81C762.18 445.81 760.4 447.57 760.4 451.1C760.4 454.7 762.18 456.5 765.74 456.5C769.23 456.5 770.98 454.7 770.98 451.1C770.98 447.57 769.23 445.81 765.74 445.81Z"></path><path fill="#FFFFFF" d="M781.65 385.44C778.15 385.44 776.41 387.24 776.41 390.84L776.41 451.1C776.41 454.7 778.15 456.5 781.65 456.5C785.28 456.5 787.09 454.7 787.09 451.1L787.09 390.84C787.09 387.24 785.28 385.44 781.65 385.44Z"></path><path fill="#FFFFFF" d="M865.29 401.53C864.08 400.71 862.97 400.31 861.96 400.31C860.35 400.31 859.01 401.16 857.93 402.85L831.32 441.64L804.8 402.85C803.73 401.16 802.38 400.31 800.77 400.31C799.76 400.31 798.65 400.71 797.44 401.53C795.69 402.75 794.82 404.11 794.82 405.6C794.82 406.75 795.22 407.87 796.03 408.96L826.98 454.16C828.12 455.72 829.6 456.5 831.42 456.5C833.3 456.5 834.78 455.65 835.85 453.95L866.7 408.96C867.51 407.87 867.91 406.75 867.91 405.6C867.91 404.11 867.04 402.75 865.29 401.53Z"></path></svg>
+      <nav aria-label="Footer">
+        <a href="https://company.inbox.lv/">About us</a>
+        <a href="https://help.inbox.lv/">Support</a>
+        <a href="https://help.inbox.lv/?keyword=contacts">Contacts</a>
+        <a href="https://pricelist.inbox.lv/">Advertising</a>
+        <a href="https://help.inbox.lv/?keyword=privacy_policy">Privacy</a>
+        <a href="https://pricelist.inbox.lv/?keyword=mail_disclaimer">Terms of use</a>
+      </nav>
+    </div>
+    <p class="copyr">©2000 – 2026 Inbokss SIA</p>
+  </div>
+</footer>
+
+<div class="m-cta" aria-hidden="true">
+  <a class="btn btn-red" href="https://billing.inbox.lv/premium/mail?language=en&coupon=BF2026&storage_option=mail_plus_300&billing=premium_1_year_(300gb)&utm_source=inbox.lv&utm_medium=landing&utm_campaign=black_friday_2026&utm_content=en_sticky_mobile#coupon" tabindex="-1">Get -30% off</a>
+</div>
+
+<script>
+  // Countdown: 23.11.2026 00:00 – 30.11.2026 23:59:59, Riga time (EET, UTC+2)
+  (function(){
+    var start=new Date('2026-11-23T00:00:00+02:00').getTime(), end=new Date('2026-11-30T23:59:59+02:00').getTime();
+    var label=document.getElementById('cd-label'), box=document.getElementById('cd');
+    function g(k){return document.getElementById('cd-'+k)}
+    function pad(n){return String(n).padStart(2,'0')}
+    (function tick(){
+      var now=Date.now(), target;
+      if(now<start){label.textContent='Sale starts in';target=start}
+      else if(now<=end){label.textContent='Offer ends in';target=end}
+      else{label.textContent='This offer has ended';box.style.display='none';return}
+      var d=Math.max(0,Math.floor((target-now)/1000));
+      g('d').textContent=pad(Math.floor(d/86400));g('h').textContent=pad(Math.floor(d%86400/3600));
+      g('m').textContent=pad(Math.floor(d%3600/60));g('s').textContent=pad(d%60);
+      setTimeout(tick,1000);
+    })();
+  })();
+
+  // Copy promo code
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      var t=b.textContent,done=function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent=t},1800)};
+      if(navigator.clipboard){navigator.clipboard.writeText(b.dataset.copy).then(done,done)}else{done()}
+    });
+  });
+
+  // 1 gads / 3 years switch: updates prices, the billing pre-select (billing=premium_1_year|3_years…) and utm_content (lv_plan_<size>_<period>) of each plan CTA
+  (function(){
+    var btns=document.querySelectorAll('.toggle button');
+    btns.forEach(function(b){
+      b.addEventListener('click',function(){
+        var p=b.dataset.period;
+        btns.forEach(function(x){var on=x===b;x.classList.toggle('active',on);x.setAttribute('aria-pressed',on)});
+        document.querySelectorAll('.plan').forEach(function(c){
+          ['old','new','suffix','pm'].forEach(function(k){c.querySelector('[data-f="'+k+'"]').textContent=c.getAttribute('data-'+p+'-'+k)});
+          var a=c.querySelector('[data-cta]');
+          a.href=a.href.replace(/(utm_content=en_plan_[a-z0-9]+_)(1y|3y)/,'$1'+p);
+          a.href=a.href.replace(/billing=premium_(1_year|3_years)/,'billing=premium_'+(p==='3y'?'3_years':'1_year'));
+        });
+      });
+    });
+  })();
+
+  // Language links point to the live URLs; when opened as a local file, use the local copies instead
+  if(location.protocol==='file:'){document.querySelectorAll('a[data-local]').forEach(function(a){a.setAttribute('href',a.dataset.local)})}
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var it=q.parentElement,open=it.classList.toggle('open');q.setAttribute('aria-expanded',open);
+    });
+  });
+
+  // Mobile sticky CTA: visible between the hero buttons and the final section
+  (function(){
+    var bar=document.querySelector('.m-cta'),link=bar.querySelector('a'),hero=document.querySelector('.hero .cta-row'),fin=document.querySelector('.final'),heroOut=false,finIn=false;
+    function upd(){var on=heroOut&&!finIn;bar.classList.toggle('show',on);bar.setAttribute('aria-hidden',!on);link.tabIndex=on?0:-1}
+    new IntersectionObserver(function(e){heroOut=!e[0].isIntersecting&&e[0].boundingClientRect.top<0;upd()}).observe(hero);
+    new IntersectionObserver(function(e){finIn=e[0].isIntersecting;upd()}).observe(fin);
+  })();
+</script>
+</body>
+</html>
