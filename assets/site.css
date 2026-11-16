@@ -36,10 +36,14 @@ section h2{color:var(--red);font-weight:300;font-size:clamp(26px,3vw,32px);line-
 
 .promos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;padding-top:24px;padding-bottom:24px}
 .promo{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:32px;border-radius:14px;color:#fff}
-.promo.vote{background:var(--red)}.promo.contest{background:var(--dark)}
+.promo.vote{background:var(--red)}
 .promo h2{color:#fff;font-weight:700;font-size:clamp(22px,2.4vw,27px);margin:0}
 .promo p{margin:0;flex:1}
 .swatches{display:flex;gap:6px}.swatches i{width:28px;height:20px;border-radius:4px;border:1px solid #fff6}
+.promo.bf{background:#0b0b0b;flex-direction:row;align-items:stretch;gap:16px;padding:0 0 0 32px;overflow:hidden}
+.bf-copy{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:32px 0;flex:1;min-width:0}
+.bf-tag{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--red);border-radius:4px;padding:4px 10px}
+.bf-img{width:40%;max-width:240px;height:auto;object-fit:cover;object-position:50% 35%;flex-shrink:0}
 .btn-outline{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px #fff}.btn-outline:hover{background:#fff;color:var(--dark)}
 .review-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin:0;padding:0;list-style:none}
 .review{text-align:center;margin:0}
@@ -58,6 +62,7 @@ section h2{color:var(--red);font-weight:300;font-size:clamp(26px,3vw,32px);line-
 
 @media(max-width:991px){
   .hero-in{grid-template-columns:1fr;min-height:0;padding-top:56px;padding-bottom:48px;text-align:center}
+  .promos{padding-bottom:32px}
   .hero-cta{justify-content:center}
   .hero-devices{display:none}
 }
@@ -69,7 +74,8 @@ section h2{color:var(--red);font-weight:300;font-size:clamp(26px,3vw,32px);line-
   .feature h3{font-size:19px;margin-top:0}
   section h2{text-align:center;margin-bottom:24px}
   .features,.reviews{padding-top:36px}
-  .promos{grid-template-columns:1fr;gap:16px}.promo{padding:24px 20px}.promo .btn{align-self:stretch}
+  .promos{grid-template-columns:1fr;gap:16px;padding-top:16px;padding-bottom:32px}.promo{padding:24px 20px}.promo .btn{align-self:stretch}
+  .promo.bf{padding:0 0 0 20px}.bf-copy{padding:24px 0}.bf-img{width:36%}
   .review-grid{grid-template-columns:1fr;gap:36px}.review img{max-width:312px}
   .footer .wrap{flex-direction:column;text-align:center}.apps{flex-direction:column;gap:6px}
 }
