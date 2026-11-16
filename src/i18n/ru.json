@@ -69,10 +69,11 @@
     "alsoAvailable": "Также доступен на",
     "googlePlay": "Inbox.lv в Google Play",
     "appStore": "Inbox.lv в App Store",
-    "contestCard": {
-      "title": "Создай новый талисман Inbox.lv",
-      "text": "Конкурс для молодёжи: с помощью AI-инструментов придумай образ, имя и историю – твоя идея может стать лицом бренда Inbox.lv. Заявки до 30.10.2026.",
-      "button": "Подробнее"
+    "bfCard": {
+      "tag": "Black Friday · 23–30 ноября",
+      "title": "-30% Inbox.lv Premium",
+      "text": "Пусть исполнятся ваши три желания: безопасная почта без рекламы, до 1 TB места для файлов и заманчивая цена с промокодом BF2026.",
+      "button": "Получить скидку"
     }
   },
   "themes": {
@@ -337,10 +338,10 @@
   "header": {
     "home": "Главная",
     "more": "Ещё",
-    "contest": "Конкурс талисманов",
     "vote": "Голосовать",
     "premium": "Get Premium",
     "menu": "Сервисы Inbox.lv",
-    "new": "Новое"
+    "new": "Новое",
+    "blackFriday": "Black Friday"
   }
 }
