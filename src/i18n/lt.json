@@ -69,10 +69,11 @@
     "alsoAvailable": "Taip pat prieinama",
     "googlePlay": "Inbox.lv „Google Play“",
     "appStore": "Inbox.lv „App Store“",
-    "contestCard": {
-      "title": "Sukurk naują Inbox.lv talismaną",
-      "text": "Konkursas jaunimui: DI įrankiais sukurk personažą, vardą ir istoriją – tavo idėja gali tapti Inbox.lv prekės ženklo veidu. Paraiškos iki 2026-10-30.",
-      "button": "Sužinoti daugiau"
+    "bfCard": {
+      "tag": "Black Friday · lapkričio 23–30 d.",
+      "title": "-30% Inbox.lv Premium",
+      "text": "Tegul išsipildo jūsų trys norai: saugus el. paštas be reklamų, net iki 1 TB vietos failams ir viliojanti kaina su nuolaidos kodu BF2026.",
+      "button": "Gauti nuolaidą"
     }
   },
   "themes": {
@@ -331,10 +332,10 @@
   "header": {
     "home": "Pradžia",
     "more": "Daugiau",
-    "contest": "Talismano konkursas",
     "vote": "Balsuoti",
     "premium": "Get Premium",
     "menu": "Inbox.lv paslaugos",
-    "new": "Nauja"
+    "new": "Nauja",
+    "blackFriday": "Black Friday"
   }
 }

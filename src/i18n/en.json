@@ -69,10 +69,11 @@
     "alsoAvailable": "Also available",
     "googlePlay": "Inbox.lv on Google Play",
     "appStore": "Inbox.lv on the App Store",
-    "contestCard": {
-      "title": "Create the next Inbox.lv mascot",
-      "text": "A contest for young people: use AI tools to create a character, a name and a story – your concept can become the face of Inbox.lv. Entries until 30.10.2026.",
-      "button": "Learn more"
+    "bfCard": {
+      "tag": "Black Friday · 23–30 Nov",
+      "title": "-30% Inbox.lv Premium",
+      "text": "Get your three wishes granted: secure ad-free email, up to 1 TB of space for your files, and an irresistible price with promo code BF2026.",
+      "button": "Get the discount"
     }
   },
   "themes": {
@@ -272,10 +273,10 @@
   "header": {
     "home": "Home",
     "more": "More",
-    "contest": "Mascot contest",
     "vote": "Vote",
     "premium": "Get Premium",
     "menu": "Inbox.lv services",
-    "new": "New"
+    "new": "New",
+    "blackFriday": "Black Friday"
   }
 }

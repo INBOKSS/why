@@ -69,10 +69,11 @@
     "alsoAvailable": "Samuti saadaval",
     "googlePlay": "Inbox.lv Google Plays",
     "appStore": "Inbox.lv App Store'is",
-    "contestCard": {
-      "title": "Loo Inbox.lv uus maskott",
-      "text": "Konkurss noortele: loo tehisintellekti tööriistadega tegelane, nimi ja lugu – sinu idee võib saada Inbox.lv kaubamärgi näoks. Osalemine kuni 30.10.2026.",
-      "button": "Loe lähemalt"
+    "bfCard": {
+      "tag": "Black Friday · 23.–30.11.",
+      "title": "-30% Inbox.lv Premium",
+      "text": "Lase oma kolmel soovil täide minna: turvaline reklaamideta e-post, kuni 1 TB ruumi failidele ja ahvatlev hind sooduskoodiga BF2026.",
+      "button": "Hangi soodustus"
     }
   },
   "themes": {
@@ -333,10 +334,10 @@
   "header": {
     "home": "Avaleht",
     "more": "Rohkem",
-    "contest": "Maskoti konkurss",
     "vote": "Hääleta",
     "premium": "Get Premium",
     "menu": "Inbox.lv teenused",
-    "new": "Uus"
+    "new": "Uus",
+    "blackFriday": "Black Friday"
   }
 }
