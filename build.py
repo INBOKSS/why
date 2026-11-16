@@ -37,7 +37,9 @@ def rel(from_path, to_path):
     return ('../' * depth or './') + to_path.lstrip('/')
 
 
-CONTEST = 'https://inboxtalismans.lv/'
+# Black Friday 2026 landing (Inbox.lv). It has LV, EN and RU versions; LT and ET visitors get the English one.
+BLACK_FRIDAY = {'lv': '/black-friday-lv/', 'en': '/black-friday-lv/en/', 'ru': '/black-friday-lv/ru/', 'lt': '/black-friday-lv/en/', 'et': '/black-friday-lv/en/'}
+BF_UTM = 'utm_source=why.inbokss.com&utm_medium=referral&utm_campaign=black_friday_2026&utm_content={lang}_{place}'
 UTM = 'utm_source=why.inbokss.com&utm_medium=header'
 # Toolbar links; the rest sit in the More menu, in www.inbox.lv order (name, icon, url).
 SERVICES = [('E-mail', 'mail', '//login.inbox.lv/login?redirect_url=https%3A%2F%2Femail.inbox.lv%2Fmailbox'),
@@ -71,7 +73,7 @@ def site_header(lang, page, here):
     cur = ' aria-current="page"'
     return f'''<header class="ix-header">
 <a class="ix-logo" href="{rel(here, path_for(lang, 'root'))}"><img src="{rel(here, '/assets/img/inbox-lv-logo.svg')}" alt="Inbox.lv" width="150" height="27"></a>
-<nav class="ix-nav" aria-label="{e(h["menu"])}"><a class="ix-link home" href="https://www.inbox.lv/?{UTM}">{e(h["home"])}</a>{links}<a class="ix-link hot" href="{themes}"{cur if page == 'themes' else ''}>{BALLOT}{e(h["vote"])}<span class="ix-badge">{e(h["new"])}</span></a><a class="ix-link hot" href="{CONTEST}" target="_blank" rel="noopener">{e(h["contest"])}<span class="ix-badge">{e(h["new"])}</span></a>
+<nav class="ix-nav" aria-label="{e(h["menu"])}"><a class="ix-link home" href="https://www.inbox.lv/?{UTM}">{e(h["home"])}</a>{links}<a class="ix-link hot" href="{themes}"{cur if page == 'themes' else ''}>{BALLOT}{e(h["vote"])}<span class="ix-badge">{e(h["new"])}</span></a><a class="ix-link hot" href="{rel(here, BLACK_FRIDAY[lang])}?{BF_UTM.format(lang=lang, place="why_menu")}">{e(h["blackFriday"])}<span class="ix-badge">-30%</span></a>
 <details class="ix-more"><summary>{e(h["more"])}{CHEVRON}</summary><div class="ix-menu ix-products"><div class="ix-grid">{more}</div><hr><a class="ix-premium" href="{PREMIUM}">{e(h["premium"])}</a></div></details></nav>
 <div class="ix-right"><details class="ix-lang"><summary aria-label="{e(t["languageNav"])}: {e(t["name"])}">{GLOBE}<span class="ix-name">{e(t["name"])}</span></summary><nav class="ix-menu" aria-label="{e(t["languageNav"])}">{langs}</nav</details></div>
 </header>
@@ -153,14 +155,14 @@ def root_page(lang):
     ]}
     extra = (f'<link rel="preload" href="{a("img/hero-background.jpg")}" as="image">\n'
              f'<link rel="stylesheet" href="{a("header.css")}?v=5">\n'
-             f'<link rel="stylesheet" href="{a("site.css")}?v=5">\n'
+             f'<link rel="stylesheet" href="{a("site.css")}?v=7">\n'
              f'<script src="{a("header.js")}" defer></script>\n')
     return head(lang, 'root', here, r, extra, json_ld) + f'''<body>
 <a class="skip" href="#main">{e(r["welcome"])}</a>
 {site_header(lang, 'root', here)}<main id="main">
 <div class="wrap promos">
 <section class="promo vote" aria-labelledby="vote-title"><h2 id="vote-title">{e(r["voteBanner"]["title"])}</h2><p>{e(r["voteBanner"]["text"])}</p><div class="swatches" aria-hidden="true">{swatches}</div><a class="btn btn-light" href="{themes}">{ballot}{e(r["voteBanner"]["button"])}</a></section>
-<section class="promo contest" aria-labelledby="contest-title"><h2 id="contest-title">{e(r["contestCard"]["title"])}</h2><p>{e(r["contestCard"]["text"])}</p><a class="btn btn-outline" href="{CONTEST}" target="_blank" rel="noopener">{e(r["contestCard"]["button"])}</a></section>
+<section class="promo bf" aria-labelledby="bf-title"><div class="bf-copy"><span class="bf-tag">{e(r["bfCard"]["tag"])}</span><h2 id="bf-title">{e(r["bfCard"]["title"])}</h2><p>{e(r["bfCard"]["text"])}</p><a class="btn btn-red" href="{rel(here, BLACK_FRIDAY[lang])}?{BF_UTM.format(lang=lang, place="why_home_card")}">{e(r["bfCard"]["button"])}</a></div><img class="bf-img" src="{a("img/bf-goldfish.jpg")}" alt="" width="400" height="400" loading="lazy" decoding="async"></section>
 </div>
 <section class="hero"><div class="wrap hero-in">
 <div><h1><b>{e(r["heroBold"])}</b> {e(r["heroLight"])}</h1>
