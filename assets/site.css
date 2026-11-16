@@ -18,12 +18,13 @@ a{color:inherit}
 .btn-light{background:#fff;color:var(--red)}.btn-light:hover{background:#f6e9ea}
 
 /* Hero */
-.hero{position:relative;color:#fff;background:#3b2f26 url(img/hero-background.jpg) center/cover no-repeat}
-.hero-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,535px);align-items:center;gap:32px;padding-top:72px;padding-bottom:40px;min-height:470px}
+.hero{position:relative;overflow:hidden;color:#fff;background:#3b2f26}
+.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right center}
+.hero-in{position:relative;display:grid;grid-template-columns:minmax(0,1fr);align-items:center;padding-top:72px;padding-bottom:72px;min-height:clamp(470px,41.8vw,640px)}
+.hero-in>div{max-width:min(560px,50%)}
 .hero h1{margin:0;font-size:clamp(40px,5.2vw,68px);line-height:1.05;font-weight:300;text-shadow:0 0 16px #000}
 .hero h1 b{font-weight:700;display:block}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:40px}
-.hero-devices{align-self:end;width:100%;max-width:535px}
 
 /* Sections */
 section h2{color:var(--red);font-weight:300;font-size:clamp(26px,3vw,32px);line-height:1.2;margin:0 0 32px}
@@ -33,6 +34,7 @@ section h2{color:var(--red);font-weight:300;font-size:clamp(26px,3vw,32px);line-
 .feature img{width:120px;height:120px}
 .feature h3{font-size:22px;font-weight:300;line-height:1.25;margin:4px 0 10px}
 .feature p{margin:0}
+.feature p a{color:var(--red);font-weight:600;text-decoration:underline;text-underline-offset:2px}.feature p a:hover{color:var(--red-dark)}
 
 .promos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;padding-top:24px;padding-bottom:24px}
 .promo{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:32px;border-radius:14px;color:#fff}
@@ -64,7 +66,8 @@ section h2{color:var(--red);font-weight:300;font-size:clamp(26px,3vw,32px);line-
   .hero-in{grid-template-columns:1fr;min-height:0;padding-top:56px;padding-bottom:48px;text-align:center}
   .promos{padding-bottom:32px}
   .hero-cta{justify-content:center}
-  .hero-devices{display:none}
+  .hero-photo{width:250%;max-width:none;object-position:left center}
+  .hero-in>div{max-width:none}
 }
 @media(max-width:767px){
   .wrap{padding:0 16px}

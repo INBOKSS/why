@@ -51,6 +51,7 @@ MORE = SERVICES + [('Files', 'files', '//files.inbox.lv/?' + UTM), ('Foto', 'fot
                    ('PP.lv', 'pp', 'https://pp.lv/{lang}?' + UTM), ('XTV', 'xtv', 'https://xtv.lv/?' + UTM)]
 LOGO_ONLY = {'pp', 'xtv'}  # their icon is the whole brand mark
 PREMIUM = 'https://billing.inbox.lv/premium/mail?' + UTM
+HELP = 'https://help.inbox.lv/?language={lang}'  # help.inbox.lv remembers the last language, so always pass it
 GLOBE = '<svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3"/></svg>'
 CHEVRON = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>'
 BALLOT = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 11 3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>'
@@ -132,8 +133,8 @@ def root_page(lang):
     ballot = BALLOT
     features = ''.join(
         f'<li class="feature"><img src="{a(f"img/features/feature-icon-{i}.png")}" alt="" width="120" height="120" loading="lazy" decoding="async">'
-        f'<div><h3>{e(title)}</h3><p>{e(text)}</p></div></li>'
-        for i, (title, text) in enumerate(r['features'], 1))
+        f'<div><h3>{e(title)}</h3><p>{e(text)}' + (f' <a href="{e(HELP.format(lang=SIGNUP_LANG.get(lang, lang)))}">{e(more[0])}</a>' if more else '') + '</p></div></li>'
+        for i, (title, text, *more) in enumerate(r['features'], 1))
     photos = {'Liene': 1, 'Ilze': 3, 'Edgars': 2}
     reviews = ''.join(
         f'<li><figure class="review"><img src="{a(f"img/customers/customer-thumb-{photos[name]}.jpg")}" alt="{e(name)}" width="312" height="208" loading="lazy" decoding="async">'
@@ -148,14 +149,13 @@ def root_page(lang):
         {'@type': 'WebPage', '@id': SITE + here, 'url': SITE + here, 'name': r['title'],
          'description': r['description'], 'inLanguage': lang, 'isPartOf': {'@id': SITE + '/#website'},
          'about': {'@id': 'https://www.inbox.lv/#organization'},
-         'primaryImageOfPage': SITE + '/assets/img/hero-devices.png'},
+         'primaryImageOfPage': SITE + '/assets/img/hero-2026.webp'},
         {'@type': 'MobileApplication', 'name': 'Inbox.lv', 'operatingSystem': 'Android, iOS',
          'applicationCategory': 'CommunicationApplication', 'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'EUR'},
          'downloadUrl': [GOOGLE_PLAY.format(lang=lang), APP_STORE], 'publisher': {'@id': 'https://www.inbox.lv/#organization'}},
     ]}
-    extra = (f'<link rel="preload" href="{a("img/hero-background.jpg")}" as="image">\n'
-             f'<link rel="stylesheet" href="{a("header.css")}?v=5">\n'
-             f'<link rel="stylesheet" href="{a("site.css")}?v=7">\n'
+    extra = (f'<link rel="stylesheet" href="{a("header.css")}?v=5">\n'
+             f'<link rel="stylesheet" href="{a("site.css")}?v=8">\n'
              f'<script src="{a("header.js")}" defer></script>\n')
     return head(lang, 'root', here, r, extra, json_ld) + f'''<body>
 <a class="skip" href="#main">{e(r["welcome"])}</a>
@@ -164,10 +164,9 @@ def root_page(lang):
 <section class="promo vote" aria-labelledby="vote-title"><h2 id="vote-title">{e(r["voteBanner"]["title"])}</h2><p>{e(r["voteBanner"]["text"])}</p><div class="swatches" aria-hidden="true">{swatches}</div><a class="btn btn-light" href="{themes}">{ballot}{e(r["voteBanner"]["button"])}</a></section>
 <section class="promo bf" aria-labelledby="bf-title"><div class="bf-copy"><span class="bf-tag">{e(r["bfCard"]["tag"])}</span><h2 id="bf-title">{e(r["bfCard"]["title"])}</h2><p>{e(r["bfCard"]["text"])}</p><a class="btn btn-red" href="{rel(here, BLACK_FRIDAY[lang])}?{BF_UTM.format(lang=lang, place="why_home_card")}">{e(r["bfCard"]["button"])}</a></div><img class="bf-img" src="{a("img/bf-goldfish.jpg")}" alt="" width="400" height="400" loading="lazy" decoding="async"></section>
 </div>
-<section class="hero"><div class="wrap hero-in">
+<section class="hero"><img class="hero-photo" src="{a("img/hero-2026.webp")}" alt="{e(r["heroAlt"])}" width="2000" height="836" fetchpriority="high"><div class="wrap hero-in">
 <div><h1><b>{e(r["heroBold"])}</b> {e(r["heroLight"])}</h1>
 <div class="hero-cta"><a class="btn btn-red" href="{signup}">{e(r["signUp"])}</a></div></div>
-<img class="hero-devices" src="{a("img/hero-devices.png")}" alt="{e(r["heroAlt"])}" width="535" height="345" fetchpriority="high">
 </div></section>
 <section class="features" aria-labelledby="welcome"><div class="wrap">
 <h2 id="welcome">{e(r["welcome"])}</h2>
@@ -279,7 +278,7 @@ def llms():
              '> Inbox.lv is a free Latvian email service (webmail and mobile apps for Android and iOS). '
              'This site, why.inbokss.com, explains why to choose Inbox.lv and hosts an open vote on new colour themes for Inbox.lv mail.', '',
              '## Key facts', '']
-    lines += [f'- {title}: {text}' for title, text in en['root']['features']]
+    lines += [f'- {title}: {text}' for title, text, *_ in en['root']['features']]
     lines += ['', '## Pages', '']
     for page, key in [('root', 'root'), ('themes', 'themes')]:
         for code in LANGS:
