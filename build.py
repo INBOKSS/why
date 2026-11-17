@@ -164,7 +164,7 @@ def root_page(lang):
 <section class="promo vote" aria-labelledby="vote-title"><h2 id="vote-title">{e(r["voteBanner"]["title"])}</h2><p>{e(r["voteBanner"]["text"])}</p><div class="swatches" aria-hidden="true">{swatches}</div><a class="btn btn-light" href="{themes}">{ballot}{e(r["voteBanner"]["button"])}</a></section>
 <section class="promo bf" aria-labelledby="bf-title"><div class="bf-copy"><span class="bf-tag">{e(r["bfCard"]["tag"])}</span><h2 id="bf-title">{e(r["bfCard"]["title"])}</h2><p>{e(r["bfCard"]["text"])}</p><a class="btn btn-red" href="{rel(here, BLACK_FRIDAY[lang])}?{BF_UTM.format(lang=lang, place="why_home_card")}">{e(r["bfCard"]["button"])}</a></div><img class="bf-img" src="{a("img/bf-goldfish.jpg")}" alt="" width="400" height="400" loading="lazy" decoding="async"></section>
 </div>
-<section class="hero"><img class="hero-photo" src="{a("img/hero-2026.webp")}" alt="{e(r["heroAlt"])}" width="2000" height="836" fetchpriority="high"><div class="wrap hero-in">
+<section class="hero"><img class="hero-photo" src="{a("img/hero-2026.webp")}" srcset="{a("img/hero-2026.webp")} 2000w, {a("img/hero-2026-3000.jpg")} 3000w, {a("img/hero-2026-4000.jpg")} 4000w" sizes="(max-width: 991px) 600px, (max-width: 1124px) 1125px, 100vw" alt="{e(r["heroAlt"])}" width="2000" height="836" fetchpriority="high"><div class="wrap hero-in">
 <div><h1><b>{e(r["heroBold"])}</b> {e(r["heroLight"])}</h1>
 <div class="hero-cta"><a class="btn btn-red" href="{signup}">{e(r["signUp"])}</a></div></div>
 </div></section>
