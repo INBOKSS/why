@@ -37,27 +37,34 @@
   }
 
   // Messages are always set as text; a name can never become markup.
-  function setMsg(text, kind, linkHref, linkText){
+  function setMsg(text, kind){
     const m = $('msg');
     m.textContent = text;
     m.className = 'msg ' + (kind || '');
-    if (linkHref){
-      const a = document.createElement('a');
-      a.href = linkHref; a.textContent = linkText;
-      m.append(' ', a);
-    }
   }
 
+  // Scalloped garland drawn at the real page width, so the bulbs stay round on any screen.
+  let lightsWidth = 0;
   function lights(){
-    const n = 15; let p = '', b = '';
-    for (let i = 0; i < n; i++){
-      const x = 20 + i * (680/(n-1)), y = 22 + Math.sin(i/(n-1)*Math.PI) * 34;
-      p += (i ? ' L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1);
-      const c = ['#ffe9a8','#ff7a59','#bdf2e0'][i%3];
-      b += `<g class="bulb" style="animation-delay:${(i*0.37%3).toFixed(2)}s"><circle cx="${x.toFixed(1)}" cy="${(y+12).toFixed(1)}" r="14" fill="${c}" opacity=".18"/><circle cx="${x.toFixed(1)}" cy="${(y+12).toFixed(1)}" r="6" fill="${c}"/></g>`;
+    const W = Math.max(320, Math.round($('lights').clientWidth || 720));
+    lightsWidth = W;
+    const swags = Math.max(2, Math.round(W / 360)), sw = W / swags;
+    const sag = x => 16 + Math.sin(Math.PI * ((x % sw) / sw)) * 34;
+    let p = 'M0 ' + sag(0).toFixed(1), b = '', i = 0;
+    for (let x = 4; x <= W; x += 4) p += ' L' + x + ' ' + sag(x).toFixed(1);
+    for (let s = 0; s < swags; s++){
+      for (let k = 1; k <= 5; k++, i++){
+        const x = s * sw + k * sw / 6, y = sag(x) + 12, c = ['#ffe9a8','#ff7a59','#bdf2e0'][i % 3];
+        b += `<g class="bulb" style="animation-delay:${(i * 0.37 % 3).toFixed(2)}s"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="14" fill="${c}" opacity=".18"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="6" fill="${c}"/></g>`;
+      }
     }
-    $('lights').innerHTML = `<svg class="lights" viewBox="0 0 720 90" preserveAspectRatio="none" aria-hidden="true"><path d="${p}" fill="none" stroke="#3d6b6a" stroke-width="1.5"/>${b}</svg>`;
+    $('lights').innerHTML = `<svg class="lights" viewBox="0 0 ${W} 90" aria-hidden="true"><path d="${p}" fill="none" stroke="#3d6b6a" stroke-width="1.5"/>${b}</svg>`;
   }
+  let lightsTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(lightsTimer);
+    lightsTimer = setTimeout(() => { if (Math.round($('lights').clientWidth) !== lightsWidth) lights(); }, 150);
+  });
 
   function buildOptions(){
     $('opts').insertAdjacentHTML('beforeend', DATES.map(d =>
@@ -84,7 +91,7 @@
       await rpc('submit_gaisma_response', {p_voter_id: voterId, p_name: name, p_date: d.id});
       store.set('gd-name', name); store.set('gd-date', d.id);
       $('name').value = name;
-      setMsg('Paldies, ' + name + '! Tava izvēle: ' + d.d + '.', 'ok', 'stats/', 'Skatīt rezultātus');
+      setMsg('Paldies, ' + name + '! Tava izvēle: ' + d.d + '.', 'ok');
     } catch (err) {
       const s = (err && err.serverMessage) || '';
       if (s === 'Name taken') setMsg('Šis vārds jau ir izmantots citā pārlūkā. Ja tas esi Tu, uzraksti aptaujas veidotājam.', 'err');

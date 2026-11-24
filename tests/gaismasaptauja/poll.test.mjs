@@ -64,12 +64,13 @@ test('sends one request with a cleaned name, the date and this browser id', asyn
   p.close();
 });
 
-test('shows a thank-you with a link to the results and remembers the answer', async () => {
+test('shows a thank-you, with no results link, and remembers the answer', async () => {
   const p = page();
   fill(p, 'Anna Bērziņa', 2);
   p.submit('f'); await flush();
-  assert.equal(p.text('msg'), 'Paldies, Anna Bērziņa! Tava izvēle: 20. decembris. Skatīt rezultātus');
-  assert.equal(p.$('msg').querySelector('a').getAttribute('href'), 'stats/');
+  assert.equal(p.text('msg'), 'Paldies, Anna Bērziņa! Tava izvēle: 20. decembris.');
+  assert.equal(p.$('msg').querySelectorAll('a').length, 0, 'the vote page does not point to the results');
+  assert.doesNotMatch(p.doc.body.textContent, /rezultāt/i);
   assert.equal(p.$('msg').className, 'msg ok');
   assert.equal(p.$('send').textContent, 'Mainīt atbildi');
   assert.equal(p.$('send').disabled, false);
@@ -109,7 +110,7 @@ test('a name can never turn into markup', async () => {
   p.submit('f'); await flush();
   assert.equal(p.$('msg').querySelectorAll('img, b, script').length, 0);
   assert.match(p.text('msg'), /<img src=x onerror=alert\(1\)><b>x<\/b>/);
-  assert.equal(p.$('msg').querySelectorAll('a').length, 1, 'only the results link is a real element');
+  assert.equal(p.$('msg').children.length, 0, 'the message is plain text');
   p.close();
 });
 
@@ -200,5 +201,59 @@ test('still works when the browser blocks storage', async () => {
   assert.equal(p.w.fetch.calls.length, 1);
   assert.match(p.w.fetch.calls[0].body.p_voter_id, UUID_V4);
   assert.match(p.text('msg'), /^Paldies, Anna!/);
+  p.close();
+});
+
+// ---- string of lights -------------------------------------------------------------------
+const resizeTo = async (p, width) => {
+  Object.defineProperty(p.$('lights'), 'clientWidth', { value: width, configurable: true });
+  p.w.dispatchEvent(new p.w.Event('resize'));
+  await flush(220);
+};
+const bulbs = p => [...p.doc.querySelectorAll('#lights .bulb')];
+
+test('the string of lights is drawn to the real page width and never stretched', async () => {
+  for (const width of [375, 720, 1440, 2560]) {
+    const p = page();
+    await resizeTo(p, width);
+    const svg = p.doc.querySelector('#lights svg');
+    assert.equal(svg.getAttribute('viewBox'), `0 0 ${width} 90`, `${width}px wide`);
+    assert.equal(svg.getAttribute('preserveAspectRatio'), null, 'no preserveAspectRatio="none" stretching');
+    for (const c of p.doc.querySelectorAll('#lights circle')) assert.ok(['6', '14'].includes(c.getAttribute('r')), 'bulbs stay round');
+    p.close();
+  }
+});
+
+test('wider screens get more bulbs, evenly spread and inside the picture', async () => {
+  const counts = {};
+  for (const width of [375, 1440, 2560]) {
+    const p = page();
+    await resizeTo(p, width);
+    counts[width] = bulbs(p).length;
+    const xs = bulbs(p).map(b => Number(b.querySelector('circle').getAttribute('cx')));
+    assert.ok(xs.every(x => x > 0 && x < width), 'every bulb is inside the width');
+    assert.deepEqual([...xs].sort((a, b) => a - b), xs, 'bulbs are in left-to-right order');
+    const ys = bulbs(p).map(b => Number(b.querySelector('circle').getAttribute('cy')));
+    assert.ok(ys.every(y => y > 14 && y < 90 - 14), 'bulbs and glow stay inside the 90px height');
+    p.close();
+  }
+  assert.ok(counts[375] < counts[1440] && counts[1440] < counts[2560], JSON.stringify(counts));
+});
+
+test('the garland is redrawn when the window changes size, and not when the width is the same', async () => {
+  const p = page();
+  await resizeTo(p, 800);
+  const first = p.$('lights').innerHTML;
+  await resizeTo(p, 800);
+  assert.equal(p.$('lights').innerHTML, first);
+  await resizeTo(p, 1800);
+  assert.notEqual(p.$('lights').innerHTML, first);
+  assert.equal(p.doc.querySelector('#lights svg').getAttribute('viewBox'), '0 0 1800 90');
+  p.close();
+});
+
+test('the lights keep working when the width is unknown', () => {
+  const p = page();
+  assert.ok(bulbs(p).length >= 10);
   p.close();
 });
