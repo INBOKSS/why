@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://apkpjmedzlokkpyfwpqn.supabase.co; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
 <title>Gaismas dārza aptauja</title>
 <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,90 +62,6 @@ button{font:inherit;font-weight:800;border:0;border-radius:12px;min-height:48px;
   </form>
 </div>
 <script src="../themes/config.js"></script>
-<script>
-(() => {
-  'use strict';
-  const DATES = [
-    {id:'2026-12-06', d:'6. decembris', wd:'svētdiena'},
-    {id:'2026-12-13', d:'13. decembris', wd:'svētdiena'},
-    {id:'2026-12-20', d:'20. decembris', wd:'svētdiena'},
-    {id:'2026-12-27', d:'27. decembris', wd:'svētdiena'}
-  ];
-  const $ = id => document.getElementById(id);
-  const norm = s => s.trim().replace(/\s+/g, ' ').toLocaleLowerCase('lv');
-  const store = {
-    get(k){ try { return localStorage.getItem(k); } catch { return null; } },
-    set(k, v){ try { localStorage.setItem(k, v); } catch { /* optional convenience */ } }
-  };
-  let busy = false;
-
-  async function rpc(fn, body){
-    const cfg = window.THEME_POLL_CONFIG || {};
-    if (!/^https:\/\/[a-z0-9]+\.supabase\.co$/.test(cfg.supabaseUrl || '') || !cfg.publishableKey) throw new Error('not configured');
-    const r = await fetch(cfg.supabaseUrl + '/rest/v1/rpc/' + fn, {
-      method: 'POST',
-      headers: {apikey: cfg.publishableKey, 'Content-Type': 'application/json'},
-      body: JSON.stringify(body || {}),
-      cache: 'no-store',
-      signal: AbortSignal.timeout(15000)
-    });
-    if (!r.ok) throw new Error(fn + ' ' + r.status);
-    return r.json();
-  }
-
-  function setMsg(t, k, html){ const m = $('msg'); if (html) m.innerHTML = t; else m.textContent = t; m.className = 'msg ' + (k || ''); }
-
-  function lights(){
-    const n = 15; let p = '', b = '';
-    for (let i = 0; i < n; i++){
-      const x = 20 + i * (680/(n-1)), y = 22 + Math.sin(i/(n-1)*Math.PI) * 34;
-      p += (i ? ' L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1);
-      const c = ['#ffe9a8','#ff7a59','#bdf2e0'][i%3];
-      b += `<g class="bulb" style="animation-delay:${(i*0.37%3).toFixed(2)}s"><circle cx="${x.toFixed(1)}" cy="${(y+12).toFixed(1)}" r="14" fill="${c}" opacity=".18"/><circle cx="${x.toFixed(1)}" cy="${(y+12).toFixed(1)}" r="6" fill="${c}"/></g>`;
-    }
-    $('lights').innerHTML = `<svg class="lights" viewBox="0 0 720 90" preserveAspectRatio="none" aria-hidden="true"><path d="${p}" fill="none" stroke="#3d6b6a" stroke-width="1.5"/>${b}</svg>`;
-  }
-
-  function buildOptions(){
-    $('opts').insertAdjacentHTML('beforeend', DATES.map(d =>
-      `<label class="opt"><input type="radio" name="date" value="${d.id}"><span><span class="d">${d.d}</span> <span class="wd">${d.wd}</span></span></label>`).join(''));
-  }
-
-  // This browser's earlier answer (if any), only to label the button.
-  function answered(){ const n = store.get('gd-name'); return !!n && norm($('name').value) === norm(n) && !!store.get('gd-date'); }
-  function syncButton(){
-    $('send').textContent = answered() ? 'Mainīt atbildi' : 'Nosūtīt atbildi';
-    $('send').disabled = busy;
-  }
-
-  $('f').addEventListener('submit', async e => {
-    e.preventDefault();
-    if (busy) return;
-    const name = $('name').value.trim().replace(/\s+/g, ' ');
-    const pick = document.querySelector('input[name=date]:checked');
-    if (!name){ setMsg('Lūdzu, ieraksti savu vārdu.', 'err'); $('name').focus(); return; }
-    if (!pick){ setMsg('Lūdzu, atzīmē vienu datumu.', 'err'); return; }
-    const d = DATES.find(x => x.id === pick.value);
-    busy = true; syncButton(); setMsg('Saglabāju…');
-    try {
-      await rpc('submit_gaisma_response', {p_name: name, p_date: d.id});
-      store.set('gd-name', name); store.set('gd-date', d.id);
-      $('name').value = name;
-      setMsg('Paldies, ' + name + '! Tava izvēle: ' + d.d + '. <a href="stats/">Skatīt rezultātus</a>', 'ok', true);
-    } catch {
-      setMsg('Neizdevās saglabāt. Lūdzu, mēģini vēlreiz.', 'err');
-    } finally { busy = false; syncButton(); }
-  });
-
-  $('name').addEventListener('input', syncButton);
-
-  lights();
-  buildOptions();
-  $('name').value = store.get('gd-name') || '';
-  const prev = store.get('gd-date');
-  if (prev){ const r = document.querySelector('input[name=date][value="' + prev + '"]'); if (r) r.checked = true; }
-  syncButton();
-})();
-</script>
+<script src="poll.js"></script>
 </body>
 </html>
