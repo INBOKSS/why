@@ -11,7 +11,7 @@ Static site served by GitHub Pages at **https://why.inbokss.com** (see `CNAME`).
 | `/youth-portal/` | Feedback form for the new youth portal prototype (Latvian, not indexed) |
 | `/youth-portal/stats/` | Live statistics for that form, refreshed every 3 s (comments need the stats key) |
 | `/gaismasaptauja/` | Gaismas dārza date poll: name and one date only (Latvian, not indexed) |
-| `/gaismasaptauja/stats/` | Live results: votes per date and who picked which (refreshed every minute) |
+| `/gaismasaptauja/stats/` | Live votes per date (public, refreshed every minute); names only after entering the stats key |
 
 ## Editing
 

@@ -7,6 +7,7 @@
 --   * a name already used by another browser cannot be taken over or overwritten
 --   * names are cleaned (control and invisible characters removed, spaces collapsed, max 60)
 --   * only the four poll dates are accepted
+--   * names are shown only with the stats key; without it the stats page shows counts only
 --   * rate limit (30 saves per minute in total) and a hard cap of 1000 responses
 begin;
 
@@ -91,18 +92,52 @@ $$;
 revoke all on function public.submit_gaisma_response(uuid, text, text) from public, anon, authenticated;
 grant execute on function public.submit_gaisma_response(uuid, text, text) to anon;
 
--- Everyone with the link sees who picked which date. voter_id is never returned.
-create or replace function public.get_gaisma_results()
+-- Stats key: only its SHA-256 hash is stored (the key itself is not in the database or the repo).
+-- To change it:  node -e "console.log(require('crypto').createHash('sha256').update('NEW-KEY').digest('hex'))"
+-- then:  update public.gaisma_settings set value = '<hash>' where key = 'stats_key_sha256';
+create table if not exists public.gaisma_settings (key text primary key, value text not null);
+alter table public.gaisma_settings enable row level security;
+revoke all on public.gaisma_settings from public, anon, authenticated;
+insert into public.gaisma_settings(key, value) values ('stats_key_sha256', 'bb362f16fd9b2a486819ff0ff0bb01cf2bd3aba0dd0ce39a5260260706a87095')
+  on conflict (key) do nothing;
+
+-- The first version returned names to everyone.
+drop function if exists public.get_gaisma_results();
+
+-- Public: votes per date only, no names.
+create or replace function public.get_gaisma_counts()
 returns jsonb
 language sql stable security definer set search_path = ''
 as $$
   select coalesce(
-    pg_catalog.jsonb_agg(pg_catalog.jsonb_build_object('name', r.name, 'date_id', r.date_id) order by r.name),
+    pg_catalog.jsonb_agg(pg_catalog.jsonb_build_object('date_id', c.date_id, 'votes', c.votes) order by c.date_id),
     '[]'::jsonb)
-  from public.gaisma_responses r;
+  from (select date_id, pg_catalog.count(*) as votes from public.gaisma_responses group by date_id) c;
 $$;
-revoke all on function public.get_gaisma_results() from public, anon, authenticated;
-grant execute on function public.get_gaisma_results() to anon;
+revoke all on function public.get_gaisma_counts() from public, anon, authenticated;
+grant execute on function public.get_gaisma_counts() to anon;
+
+-- Names: only with the correct stats key. voter_id is never returned.
+create or replace function public.get_gaisma_results(p_key text)
+returns jsonb
+language plpgsql stable security definer set search_path = ''
+as $$
+begin
+  if not exists (
+    select 1 from public.gaisma_settings
+    where key = 'stats_key_sha256'
+      and value = pg_catalog.encode(pg_catalog.sha256(pg_catalog.convert_to(coalesce(p_key, ''), 'utf8')), 'hex')
+  ) then
+    perform pg_catalog.pg_sleep(0.5);
+    raise exception 'Forbidden' using errcode = '42501';
+  end if;
+  return (select coalesce(
+    pg_catalog.jsonb_agg(pg_catalog.jsonb_build_object('name', r.name, 'date_id', r.date_id) order by r.name),
+    '[]'::jsonb) from public.gaisma_responses r);
+end;
+$$;
+revoke all on function public.get_gaisma_results(text) from public, anon, authenticated;
+grant execute on function public.get_gaisma_results(text) to anon;
 
 commit;
 

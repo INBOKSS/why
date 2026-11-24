@@ -35,6 +35,12 @@ button,.btn{font:inherit;font-weight:600;border:1px solid var(--line);border-rad
 button:disabled{opacity:.5;cursor:default}
 button:focus-visible,.btn:focus-visible{outline:3px solid var(--glow);outline-offset:2px}
 .msg{font-size:14px;color:var(--mut)}
+.keybox{background:var(--bg2);border-radius:16px;padding:16px;margin-top:16px}
+.keybox p{margin:0 0 10px;color:var(--mut);font-size:15px}
+.keybox form{display:flex;gap:8px}
+input[type=password]{flex:1;font:inherit;font-size:17px;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);min-height:48px}
+input[type=password]:focus-visible{outline:3px solid var(--glow);outline-offset:2px}
+.go{background:var(--glow);color:#1a1405;border:0;font-weight:800}
 .msg.err{color:var(--acc)}
 </style>
 </head>
@@ -46,8 +52,14 @@ button:focus-visible,.btn:focus-visible{outline:3px solid var(--glow);outline-of
   <div class="act">
     <button id="refresh" type="button">Atjaunot</button>
     <a class="btn" href="../">Atpakaļ uz aptauju</a>
+    <button id="unlock" type="button">Atvērt vārdus</button>
     <span class="msg" id="msg" role="status" aria-live="polite"></span>
   </div>
+  <div class="keybox" id="keyBox" hidden>
+    <p>Vārdi ir redzami tikai ar atslēgu. Ievadi to, lai redzētu, kurš kuru datumu izvēlējies.</p>
+    <form id="keyForm"><input id="keyIn" type="password" autocomplete="off" placeholder="Atslēga" aria-label="Atslēga"><button class="go" type="submit">Atvērt</button></form>
+  </div>
+  <p class="msg err" id="keyErr" role="alert" hidden>Atslēga nav pareiza.</p>
 </div>
 <script src="../../themes/config.js"></script>
 <script src="stats.js"></script>
