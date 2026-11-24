@@ -11,8 +11,13 @@
   const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const votes = n => n + ' ' + (n % 10 === 1 && n % 100 !== 11 ? 'balss' : 'balsis');
   // The key stays in this tab only (sessionStorage) and is sent only to the Supabase function.
-  const getKey = () => { try { return sessionStorage.getItem(KEY) || ''; } catch { return ''; } };
-  const setKey = v => { try { v ? sessionStorage.setItem(KEY, v) : sessionStorage.removeItem(KEY); } catch { /* tab-only convenience */ } };
+  // memKey keeps the key for this page load when the browser blocks sessionStorage.
+  let memKey = '';
+  const getKey = () => { try { return sessionStorage.getItem(KEY) || memKey; } catch { return memKey; } };
+  const setKey = v => {
+    memKey = v || '';
+    try { v ? sessionStorage.setItem(KEY, v) : sessionStorage.removeItem(KEY); } catch { /* tab-only convenience */ }
+  };
   let loaded = false, requestNumber = 0, keyError = false;
 
   async function rpc(fn, body){
