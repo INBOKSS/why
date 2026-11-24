@@ -107,3 +107,10 @@ test('the public pages are listed in the README', () => {
   assert.match(readme, /\/gaismasaptauja\//);
   assert.match(readme, /\/gaismasaptauja\/stats\//);
 });
+
+test('date cards: the weekday is always on its own line and all cards are the same height', () => {
+  const css = read('gaismasaptauja/index.html');
+  assert.match(css, /\.d\{[^}]*display:block/, 'date on its own line');
+  assert.match(css, /\.wd\{[^}]*display:block/, 'weekday on its own line');
+  assert.match(css, /\.opt>span\{[^}]*height:100%/, 'cards fill the grid row');
+});
