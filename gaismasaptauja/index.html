@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://apkpjmedzlokkpyfwpqn.supabase.co; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Gaismas dārza aptauja</title>
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: warm, festive, simple — a winter evening invitation for colleagues
+   IDEA: a garden of lights at night; each date is a glowing lantern you pick
+   PICTURE: a string of lights across the top; the four date lanterns are the form
+   COLOUR and TYPE: deep winter-teal night, warm light #ffe9a8, coral accent; DM Serif Display + Manrope
+   LAYOUT: one calm column — title, lights, name, four date cards, send; results grouped by date below */
+:root{color-scheme:dark;--bg:#0b2426;--bg2:#103236;--card:#143b40;--line:#24555a;--ink:#f2f6f2;--mut:#a9c2bf;--glow:#ffe9a8;--acc:#ff7a59}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:radial-gradient(1200px 500px at 50% -10%,#174a4c 0%,var(--bg) 60%) fixed,var(--bg);color:var(--ink);font:16px/1.55 Manrope,system-ui,sans-serif;overflow-x:clip}
+.wrap{max-width:720px;margin:0 auto;padding:0 max(5vw,16px) 64px}
+.lights{display:block;width:100%;height:90px}
+.bulb{animation:tw 3.2s ease-in-out infinite}
+@keyframes tw{50%{opacity:.45}}
+@media(prefers-reduced-motion:reduce){.bulb{animation:none}}
+h1{font:400 clamp(32px,6vw,50px)/1.05 "DM Serif Display",Georgia,serif;margin:8px 0 10px;text-wrap:balance}
+.lead{color:var(--mut);margin:0 0 28px;max-width:60ch}
+label.f{display:block;font-weight:600;margin:0 0 8px}
+input[type=text]{width:100%;font:inherit;font-size:17px;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);min-height:48px}
+input[type=text]:focus-visible,button:focus-visible,.opt input:focus-visible+span{outline:3px solid var(--glow);outline-offset:2px}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:24px 0 8px;border:0;padding:0}
+.opts legend{font-weight:600;margin-bottom:8px;padding:0}
+.opt{position:relative;display:block;cursor:pointer}
+.opt input{position:absolute;opacity:0;inset:0}
+.opt>span{display:block;padding:16px;border-radius:16px;background:var(--card);border:2px solid transparent;transition:border-color .15s,box-shadow .15s}
+.opt:hover>span{border-color:var(--line)}
+.opt input:checked+span{border-color:var(--glow);box-shadow:0 0 0 4px rgba(255,233,168,.12),0 0 28px rgba(255,233,168,.18)}
+.d{font:400 30px/1 "DM Serif Display",Georgia,serif;white-space:nowrap}
+.wd{color:var(--mut);font-size:14px}
+.act{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:20px}
+button{font:inherit;font-weight:800;border:0;border-radius:12px;min-height:48px;padding:0 22px;cursor:pointer}
+.go{background:var(--glow);color:#1a1405}
+.go:disabled{opacity:.5;cursor:default}
+.msg{font-size:15px;color:var(--mut)}
+.msg.ok{color:var(--glow)}.msg.err{color:var(--acc)}
+.msg a{color:var(--glow)}
+@media(max-width:600px){.opts{grid-template-columns:minmax(0,1fr)}.opt>span{display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:baseline}}
+</style>
+</head>
+<body>
+<div id="lights"></div>
+<div class="wrap">
+  <h1>Vēlos apmeklēt Gaismas dārzu</h1>
+  <p class="lead">Ieraksti savu vārdu un atzīmē vienu datumu, kas Tev der vislabāk.</p>
+  <form id="f" novalidate>
+    <label class="f" for="name">Vārds un uzvārds</label>
+    <input type="text" id="name" name="name" maxlength="60" autocomplete="name" placeholder="Piem., Anna Bērziņa">
+    <fieldset class="opts" id="opts"><legend>Kurš datums Tev der?</legend></fieldset>
+    <div class="act"><button class="go" id="send" type="submit">Nosūtīt atbildi</button><span class="msg" id="msg" role="status" aria-live="polite"></span></div>
+  </form>
+</div>
+<script src="../themes/config.js"></script>
+<script src="poll.js"></script>
+</body>
+</html>

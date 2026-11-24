@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://apkpjmedzlokkpyfwpqn.supabase.co; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Gaismas dārza aptauja — rezultāti</title>
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#0b2426;--bg2:#103236;--card:#143b40;--line:#24555a;--ink:#f2f6f2;--mut:#a9c2bf;--glow:#ffe9a8;--acc:#ff7a59}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:radial-gradient(1200px 500px at 50% -10%,#174a4c 0%,var(--bg) 60%) fixed,var(--bg);color:var(--ink);font:16px/1.55 Manrope,system-ui,sans-serif;overflow-x:clip}
+.wrap{max-width:720px;margin:0 auto;padding:32px max(5vw,16px) 64px}
+h1{font:400 clamp(32px,6vw,50px)/1.05 "DM Serif Display",Georgia,serif;margin:0 0 10px;text-wrap:balance}
+.lead{color:var(--mut);margin:0 0 24px}
+.lead b{color:var(--glow)}
+.cards{display:grid;gap:12px}
+.card{background:var(--card);border-radius:16px;padding:16px}
+.card h2{margin:0;display:flex;justify-content:space-between;align-items:baseline;gap:8px;font:400 28px/1.1 "DM Serif Display",Georgia,serif}
+.card h2 small{font:400 14px Manrope,system-ui,sans-serif;color:var(--mut)}
+.cnt{display:flex;justify-content:space-between;gap:8px;font-size:14px;margin-top:12px;color:var(--mut)}
+.top{color:var(--acc);font-weight:800}
+.bar{display:block;height:6px;border-radius:3px;background:#0b2426;margin-top:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--glow);border-radius:3px;transition:width .3s}
+.names{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:14px 0 0;padding:0}
+.names li{background:var(--bg2);border-radius:999px;padding:4px 12px;font-size:15px}
+.empty{color:var(--mut);font-size:15px;margin:14px 0 0}
+.act{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:24px}
+button,.btn{font:inherit;font-weight:600;border:1px solid var(--line);border-radius:12px;min-height:48px;padding:0 22px;cursor:pointer;background:transparent;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center}
+button:disabled{opacity:.5;cursor:default}
+button:focus-visible,.btn:focus-visible{outline:3px solid var(--glow);outline-offset:2px}
+.msg{font-size:14px;color:var(--mut)}
+.keybox{background:var(--bg2);border-radius:16px;padding:16px;margin-top:16px}
+.keybox p{margin:0 0 10px;color:var(--mut);font-size:15px}
+.keybox form{display:flex;gap:8px}
+input[type=password]{flex:1;font:inherit;font-size:17px;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);min-height:48px}
+input[type=password]:focus-visible{outline:3px solid var(--glow);outline-offset:2px}
+.go{background:var(--glow);color:#1a1405;border:0;font-weight:800}
+.msg.err{color:var(--acc)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Gaismas dārza aptauja</h1>
+  <p class="lead">Kopā atbildējuši: <b id="total">–</b></p>
+  <div class="cards" id="res" aria-busy="true"><p class="empty">Ielādēju atbildes…</p></div>
+  <div class="act">
+    <button id="refresh" type="button">Atjaunot</button>
+    <a class="btn" href="../">Atpakaļ uz aptauju</a>
+    <button id="unlock" type="button">Atvērt vārdus</button>
+    <span class="msg" id="msg" role="status" aria-live="polite"></span>
+  </div>
+  <div class="keybox" id="keyBox" hidden>
+    <p>Vārdi ir redzami tikai ar atslēgu. Ievadi to, lai redzētu, kurš kuru datumu izvēlējies.</p>
+    <form id="keyForm"><input id="keyIn" type="password" autocomplete="off" placeholder="Atslēga" aria-label="Atslēga"><button class="go" type="submit">Atvērt</button></form>
+  </div>
+  <p class="msg err" id="keyErr" role="alert" hidden>Atslēga nav pareiza.</p>
+</div>
+<script src="../../themes/config.js"></script>
+<script src="stats.js"></script>
+</body>
+</html>
