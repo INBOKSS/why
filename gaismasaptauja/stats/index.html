@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Gaismas dārza aptauja — rezultāti</title>
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#0b2426;--bg2:#103236;--card:#143b40;--line:#24555a;--ink:#f2f6f2;--mut:#a9c2bf;--glow:#ffe9a8;--acc:#ff7a59}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:radial-gradient(1200px 500px at 50% -10%,#174a4c 0%,var(--bg) 60%) fixed,var(--bg);color:var(--ink);font:16px/1.55 Manrope,system-ui,sans-serif;overflow-x:clip}
+.wrap{max-width:720px;margin:0 auto;padding:32px max(5vw,16px) 64px}
+h1{font:400 clamp(32px,6vw,50px)/1.05 "DM Serif Display",Georgia,serif;margin:0 0 10px;text-wrap:balance}
+.lead{color:var(--mut);margin:0 0 24px}
+.lead b{color:var(--glow)}
+.cards{display:grid;gap:12px}
+.card{background:var(--card);border-radius:16px;padding:16px}
+.card h2{margin:0;display:flex;justify-content:space-between;align-items:baseline;gap:8px;font:400 28px/1.1 "DM Serif Display",Georgia,serif}
+.card h2 small{font:400 14px Manrope,system-ui,sans-serif;color:var(--mut)}
+.cnt{display:flex;justify-content:space-between;gap:8px;font-size:14px;margin-top:12px;color:var(--mut)}
+.top{color:var(--acc);font-weight:800}
+.bar{display:block;height:6px;border-radius:3px;background:#0b2426;margin-top:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--glow);border-radius:3px;transition:width .3s}
+.names{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:14px 0 0;padding:0}
+.names li{background:var(--bg2);border-radius:999px;padding:4px 12px;font-size:15px}
+.empty{color:var(--mut);font-size:15px;margin:14px 0 0}
+.act{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:24px}
+button,.btn{font:inherit;font-weight:600;border:1px solid var(--line);border-radius:12px;min-height:48px;padding:0 22px;cursor:pointer;background:transparent;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center}
+button:disabled{opacity:.5;cursor:default}
+button:focus-visible,.btn:focus-visible{outline:3px solid var(--glow);outline-offset:2px}
+.msg{font-size:14px;color:var(--mut)}
+.msg.err{color:var(--acc)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Gaismas dārza aptauja</h1>
+  <p class="lead">Kopā atbildējuši: <b id="total">–</b></p>
+  <div class="cards" id="res" aria-busy="true"><p class="empty">Ielādēju atbildes…</p></div>
+  <div class="act">
+    <button id="refresh" type="button">Atjaunot</button>
+    <a class="btn" href="../">Atpakaļ uz aptauju</a>
+    <span class="msg" id="msg" role="status" aria-live="polite"></span>
+  </div>
+</div>
+<script src="../../themes/config.js"></script>
+<script>
+(() => {
+  'use strict';
+  const DATES = [
+    {id:'2026-12-06', d:'6. decembris', wd:'svētdiena'},
+    {id:'2026-12-13', d:'13. decembris', wd:'svētdiena'},
+    {id:'2026-12-20', d:'20. decembris', wd:'svētdiena'},
+    {id:'2026-12-27', d:'27. decembris', wd:'svētdiena'}
+  ];
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const votes = n => n + ' ' + (n % 10 === 1 && n % 100 !== 11 ? 'balss' : 'balsis');
+  let loaded = false, requestNumber = 0;
+
+  function paint(responses){
+    const by = {}; DATES.forEach(d => by[d.id] = []);
+    responses.forEach(r => { if (by[r.date_id]) by[r.date_id].push(r); });
+    Object.values(by).forEach(a => a.sort((x, y) => x.name.localeCompare(y.name, 'lv')));
+    const total = DATES.reduce((s, d) => s + by[d.id].length, 0);
+    const max = Math.max(0, ...DATES.map(d => by[d.id].length));
+    $('total').textContent = total;
+    $('res').innerHTML = DATES.map(d => {
+      const list = by[d.id], n = list.length, pct = total ? Math.round(n / total * 100) : 0;
+      return `<section class="card"><h2><span>${d.d}</span><small>${d.wd}</small></h2>
+        <div class="cnt"><span>${votes(n)} · ${pct}%</span>${n && n === max ? '<span class="top">Populārākais</span>' : ''}</div>
+        <span class="bar"><i style="width:${pct}%"></i></span>
+        ${n ? `<ul class="names">${list.map(r => `<li>${esc(r.name)}</li>`).join('')}</ul>` : '<p class="empty">Vēl neviens nav izvēlējies šo datumu.</p>'}</section>`;
+    }).join('');
+  }
+
+  async function load(){
+    const number = ++requestNumber;
+    const cfg = window.THEME_POLL_CONFIG || {};
+    $('refresh').disabled = true;
+    $('res').setAttribute('aria-busy', 'true');
+    try {
+      if (!/^https:\/\/[a-z0-9]+\.supabase\.co$/.test(cfg.supabaseUrl || '') || !cfg.publishableKey) throw new Error('not configured');
+      const r = await fetch(cfg.supabaseUrl + '/rest/v1/rpc/get_gaisma_results', {
+        method: 'POST',
+        headers: {apikey: cfg.publishableKey, 'Content-Type': 'application/json'},
+        body: '{}',
+        cache: 'no-store',
+        signal: AbortSignal.timeout(15000)
+      });
+      if (!r.ok) throw new Error('Results unavailable');
+      const data = await r.json();
+      if (number !== requestNumber) return;
+      if (!Array.isArray(data)) throw new Error('Unexpected response');
+      paint(data.filter(x => x && typeof x.name === 'string' && typeof x.date_id === 'string'));
+      loaded = true;
+      $('msg').className = 'msg';
+      $('msg').textContent = 'Atjaunots ' + new Date().toLocaleTimeString('lv', {hour: '2-digit', minute: '2-digit'}) + '. Atjaunojas ik pēc minūtes.';
+    } catch {
+      if (number !== requestNumber) return;
+      $('msg').className = 'msg err';
+      $('msg').textContent = 'Neizdevās ielādēt rezultātus. Lūdzu, nospied „Atjaunot”.';
+      if (!loaded) $('res').innerHTML = '<p class="empty">Rezultāti šobrīd nav pieejami.</p>';
+    } finally {
+      if (number === requestNumber){ $('refresh').disabled = false; $('res').setAttribute('aria-busy', 'false'); }
+    }
+  }
+
+  $('refresh').addEventListener('click', load);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) load(); });
+  setInterval(() => { if (!document.hidden && !$('refresh').disabled) load(); }, 60000);
+  load();
+})();
+</script>
+</body>
+</html>
